@@ -33,7 +33,7 @@ class PTA:
                 else:
                     current_index = i
                     break
-            if current_index != (len(trace)-1):
+            if current_index < len(trace):
                 for j in range(current_index, len(trace)):
                     #  add transaction
                     self.current_state_id += 1
