@@ -5,6 +5,7 @@ from Transition import Transition
 class Graph:
     def __init__(self):
         self.graph = {}
+        self.initial_state = ""
 
     def is_empty(self):
         if len(self.graph) == 0:
@@ -13,7 +14,6 @@ class Graph:
             return False
 
     def set_initial_state(self, new_state:State):
-        self.initial_state = ""
         has_initial = False
         for state, transitions in self.graph.items():
             if state.isInitial:
@@ -37,11 +37,22 @@ class Graph:
         if state not in self.graph:
             self.graph[state] = {}
 
-    def get_outgoing_transitions(self, state:State):
+    def get_outgoing_transitions_for_state(self, state:State):
+        list_of_outgoing_transitions = []
         if state in self.graph:
-            return self.graph[state]
-        else:
-            return {}
+            for tran_list in self.graph[state].values():
+                for item in tran_list:
+                    list_of_outgoing_transitions.append(item)
+
+        return list_of_outgoing_transitions
+    def get_outgoing_transitions_for_list_of_states(self, s1, set_to_merge):
+        out_transitions=[]
+        for s in set_to_merge:
+            if s != s1:
+                s_out_trans = self.get_outgoing_transitions_for_state(s)
+                for out_trans in s_out_trans:
+                   out_transitions.append(out_trans)
+        return out_transitions
 
     # Function to get incoming transitions for a given state
     def get_incoming_transitions(self, target_state):
@@ -108,6 +119,49 @@ class Graph:
         return target_state
 
     # Function to print the graph
+    def get_children(self, state):
+        return list(self.graph[state].keys())
+    def get_descendants(self, state):
+        # Initialize a set to keep track of visited states and a list for the stack
+        visited = set()
+        stack = [state]
+        descendants = set()
+
+        while stack:
+            current_state = stack.pop()
+            if current_state not in visited:
+                visited.add(current_state)
+                if current_state in self.graph:
+                    for neighbor in self.graph[current_state]:
+                        if neighbor not in visited:
+                            stack.append(neighbor)
+                            descendants.add(neighbor)
+
+        return list(descendants)
+
+    # have_shared_outgoing_transition: Boolean
+    # True: if both states have shard an outgoing transition with the same label
+    # the next state doesn't matter
+    # False: if both states have totally different outgoing transitions
+    def have_shared_outgoing_transition(self, state1, state2):
+        share_label = False
+        shared_labels = []
+        # Collect labels of outgoing transitions for state1
+        state1_outgoing_transitions = self.get_outgoing_transitions_for_state(state1)
+        state1_labels = set()
+        for transition in state1_outgoing_transitions:
+            state1_labels.add(transition.label)
+
+        # Collect labels of outgoing transitions for state2
+        state2_outgoing_transitions = self.get_outgoing_transitions_for_state(state2)
+        state2_labels = set()
+        for transition in state2_outgoing_transitions:
+            state2_labels.add(transition.label)
+
+        # Check if there is any common label
+        common_labels = state1_labels.intersection(state2_labels)
+
+        return list(common_labels)
     def print_graph(self):
         for state, transitions in self.graph.items():
             print(f"{state}:")
