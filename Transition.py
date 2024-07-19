@@ -20,3 +20,6 @@ class Transition:
         if index != -1:
             self.input = self.label[:index]
             self.output = self.label[index + 1:]
+
+    def is_self_loop(self):
+        return self.from_state == self.to_state

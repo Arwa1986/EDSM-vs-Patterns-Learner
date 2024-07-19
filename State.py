@@ -4,6 +4,7 @@ class State:
             self.label = label
             self.type = type
             self.isInitial = isInitial
+            self.color = "white"
 
     def __hash__(self):
         return hash(self.label)

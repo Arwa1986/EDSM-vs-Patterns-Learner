@@ -21,7 +21,7 @@ class PTA:
                 self.current_state_id += 1
                 to_state = State(self.current_state_id)
                 self.G.add_state(to_state)
-                self.G.add_transaction(current_state, to_state, trace[i])
+                self.G.add_transition(current_state, to_state, trace[i])
                 # the distination now become the source for the next transaction
                 current_state = to_state
         else:
@@ -39,7 +39,7 @@ class PTA:
                     self.current_state_id += 1
                     to_state = State(self.current_state_id)
                     self.G.add_state(to_state)
-                    self.G.add_transaction(current_state, to_state, trace[j])
+                    self.G.add_transition(current_state, to_state, trace[j])
                     # the distination now become the source for the next transaction
                     current_state = to_state
 

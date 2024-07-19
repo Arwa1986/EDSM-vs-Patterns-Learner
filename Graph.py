@@ -7,6 +7,29 @@ class Graph:
         self.graph = {}
         self.initial_state = ""
 
+    def __eq__(self, other):
+        equal = False
+        if self.initial_state == other.initial_state:
+            if self.compare_dicts_of_dicts(self.graph, other.graph):
+                            equal = True
+        return equal
+    def compare_dicts_of_dicts(self, graph1, graph2):
+        if graph1.keys() != graph2.keys():
+            return False
+
+        for key in graph1:
+            if isinstance(graph1[key], dict) and isinstance(graph2[key], dict):
+                if not self.compare_dicts_of_dicts(graph1[key], graph2[key]):
+                    return False
+            elif isinstance(graph1[key], list) and isinstance(graph2[key], list):
+                if sorted(graph1[key]) != sorted(graph2[key]):
+                    return False
+            else:
+                if graph1[key] != graph2[key]:
+                    return False
+
+        return True
+
     def is_empty(self):
         if len(self.graph) == 0:
             return True
@@ -36,6 +59,12 @@ class Graph:
     def add_state(self, state:State):
         if state not in self.graph:
             self.graph[state] = {}
+    def get_all_states(self):
+        return list(self.graph.keys())
+    def get_state_for_label(self, label):
+        for state in self.get_all_states():
+            if state.label == label:
+                return state
 
     def get_outgoing_transitions_for_state(self, state:State):
         list_of_outgoing_transitions = []
@@ -61,12 +90,19 @@ class Graph:
             for neighbor, transaction_list in transitions.items():
                 if neighbor == target_state:
                     for transaction in transaction_list:
-                        incoming_transitions.append((state, transaction))
+                        incoming_transitions.append(transaction)
         return incoming_transitions
 
-    def add_transaction(self, from_state:State, to_state:State, transitionLabel):
+    def has_incoming_transition_label(self, state, transition):
+        if state in self.graph:
+            for t in self.get_incoming_transitions(state):
+                if t.label == transition.label and t.from_state == transition.from_state:
+                    return True
+        return False
+
+    def add_transition(self, from_state:State, to_state:State, transitionLabel):
         if from_state not in self.graph:
-            self.addState(from_state)
+            self.add_state(from_state)
         if to_state not in self.graph[from_state]:
             self.graph[from_state][to_state]=[]
 
@@ -75,6 +111,8 @@ class Graph:
 
     def delete_Transition(self, transition:Transition):
         self.graph[transition.from_state][transition.to_state].remove(transition)
+        if len(self.graph[transition.from_state][transition.to_state])==0:
+           del self.graph[transition.from_state][transition.to_state]
 
     def get_transitions_between_states(self, source, target):
         return self.graph[source][target]
