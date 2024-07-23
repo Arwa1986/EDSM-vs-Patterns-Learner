@@ -112,11 +112,12 @@ class EDSM:
 
     def update_red_states(self):
         new_list = []
-        for state in self.apta.G.nodes:
-            if self.apta.is_red(state) and not self.apta.is_leaf(state):
+        for state in self.pta.G.get_all_states():
+            if state.color == 'red':
                 new_list.append(state)
 
         self.red_states = new_list
+
     def make_set_for_every_state_rooted_at(self, ds, s):
         ds.make_set(s)
         descendants = self.pta.G.get_descendants(s)
@@ -168,11 +169,11 @@ class EDSM:
             self.transfer_out_edge(source, target)
             self.transfer_in_coming_edges(source, target)
 
-            if source == self.apta.root:
-                self.apta.root = target
+            if source == self.pta.G.initial_state:
+                self.pta.G.initial_state = target
             if source != target:  # this if to solve butterfly problem
-                self.apta.delete_state(source)
-            self.apta.set_state_type(target,list_type)
+                self.pta.G.delete_state(source)
+            self.pta.G.graph[target].type = list_type
         return target
 
     def transfer_out_edge(self, source, target):

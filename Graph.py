@@ -59,6 +59,11 @@ class Graph:
     def add_state(self, state:State):
         if state not in self.graph:
             self.graph[state] = {}
+
+    def delete_state(self, state):
+        if state in self.graph:
+            del self.graph[state]
+
     def get_all_states(self):
         return list(self.graph.keys())
     def get_state_for_label(self, label):
