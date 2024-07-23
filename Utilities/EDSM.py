@@ -137,8 +137,9 @@ class EDSM:
     def is_valid_merge(self, ds):
         all_sets = ds.get_sets()
         for representative, _set in all_sets.items():
-            compatible, list_type = self.is_compatible_type(_set)
-            if not compatible:
+            type_compatible, list_type = self.is_compatible_type(_set)
+            input_compatible = self.is_input_compatible(_set)
+            if not type_compatible or input_compatible:
                 return False
         return True
 
@@ -214,10 +215,23 @@ class EDSM:
                 self.pta.G.add_transition(e.from_state, target, temp_lbl)
             self.pta.G.delete_Transition(e)
 
+    def is_input_compatible(self, states_list):
+        outgoing_transitions_list = self.pta.G.get_outgoing_transitions_for_list_of_states(None, states_list)
+        input_dict = {}
+        for transition in outgoing_transitions_list:
+            if transition.input not in input_dict:
+                input_dict[transition.input] = set()
+            input_dict[transition.input].add(transition.output)
+
+        for input, output in input_dict.items():
+            if len(output) > 1:
+                return False
+        return True
+
     # is_compatible_type: boolean
     # return true is s1 and s2 of the same type or at least of them is unlabeled
     # return false if one is rejected the other is accepted
-    def is_compatible_type(self,list):
+    def is_compatible_type(self, list):
         compatible = False
         list_type = 'unlabeled'
         if any (state.type == 'rejected' for state in list):
@@ -242,8 +256,6 @@ class EDSM:
         _c, typ = self.is_compatible_type(merge_list)
         return typ
 
-
-
     def pick_high_scour_pair(self, list_of_mergable_states):# list of disjoint_sets object
         # Sort the list of lists based on the merging_scour (3rd item)
         list_of_mergable_states.sort(key=lambda x: x.merging_scour, reverse=True)
@@ -252,28 +264,29 @@ class EDSM:
         ds_with_highest_scour = list_of_mergable_states.pop(0)
 
         return ds_with_highest_scour
-    def add_child(self, red, blue, b_child):
-        transitions = self.apta.get_transitions_between_states(blue,b_child)
-        for label in transitions:
-            self.apta.add_edge(red, b_child, label)
 
-    def draw(self):
-        temp_color = self.apta.G.nodes[self.apta.root]['fillcolor']
-        self.apta.G.nodes[self.apta.root]['fillcolor'] = 'green'
-        p = nx.nx_agraph.pygraphviz_layout(self.apta.G, prog='dot')
-        p = nx.drawing.nx_pydot.to_pydot(self.apta.G)
-        p.write_png(f'output/figure{FSM.figure_num:02d}.png')
-        FSM.figure_num+=1
-        self.apta.G.nodes[self.apta.root]['fillcolor'] = temp_color
+    # def add_child(self, red, blue, b_child):
+    #     transitions = self.apta.get_transitions_between_states(blue,b_child)
+    #     for label in transitions:
+    #         self.apta.add_edge(red, b_child, label)
 
-    def draw2(self, outputfile):
-        temp_color = self.apta.G.nodes[self.apta.root]['fillcolor']
-        self.apta.G.nodes[self.apta.root]['fillcolor'] = 'green'
-        p = nx.nx_agraph.pygraphviz_layout(self.apta.G, prog='dot')
-        p = nx.drawing.nx_pydot.to_pydot(self.apta.G)
-        p.write_png(f'output/{outputfile}.png')
-        FSM.figure_num+=1
-        self.apta.G.nodes[self.apta.root]['fillcolor'] = temp_color
+    # def draw(self):
+    #     temp_color = self.apta.G.nodes[self.apta.root]['fillcolor']
+    #     self.apta.G.nodes[self.apta.root]['fillcolor'] = 'green'
+    #     p = nx.nx_agraph.pygraphviz_layout(self.apta.G, prog='dot')
+    #     p = nx.drawing.nx_pydot.to_pydot(self.apta.G)
+    #     p.write_png(f'output/figure{FSM.figure_num:02d}.png')
+    #     FSM.figure_num+=1
+    #     self.apta.G.nodes[self.apta.root]['fillcolor'] = temp_color
+    #
+    # def draw2(self, outputfile):
+    #     temp_color = self.apta.G.nodes[self.apta.root]['fillcolor']
+    #     self.apta.G.nodes[self.apta.root]['fillcolor'] = 'green'
+    #     p = nx.nx_agraph.pygraphviz_layout(self.apta.G, prog='dot')
+    #     p = nx.drawing.nx_pydot.to_pydot(self.apta.G)
+    #     p.write_png(f'output/{outputfile}.png')
+    #     FSM.figure_num+=1
+    #     self.apta.G.nodes[self.apta.root]['fillcolor'] = temp_color
 
     def compute_classes2(self,ds ,work_to_do):
         add_something_new = False
@@ -300,75 +313,17 @@ class EDSM:
             self.compute_classes2(ds, updated_work_to_do)
 
 
-    def merge_remaining_leaves(self):
-        leaves = []
-        for node in self.apta.G.nodes:
-            if self.apta.is_leaf(node):
-                leaves.append(node)
-        print(f'Leaves: {leaves}')
-        for leaf in leaves:
-            merged = False
-            print(f'leaf: {leaf}')
-            leaf_type = self.apta.get_state_type(leaf)
-            print(f'leaf_type: {leaf_type}')
-            siblings = self.apta.get_siblings(leaf)
-            print(f'try siblings: {siblings}')
-            for sib in siblings:
-                if self.apta.get_state_type(sib) == leaf_type:
-                    self.merge_states(sib, [sib, leaf])
-                    merged = True
-                    print(f'merged with: {sib}')
-                    break
-            if not merged:
-                # try to merge it with a parent
-                parent_nodes = list(self.apta.G.predecessors(leaf))
-                print(f'try parents: {parent_nodes}')
-                for parent in parent_nodes:
-                    print(f'parent: {parent}')
-                    compatible, _t = self.is_compatible_type([parent, leaf])
-                    if not compatible:
-                        continue
-                    elif self.apta.get_state_type(parent) == leaf_type:
-                        self.merge_states(parent, [parent, leaf])
-                        merged = True
-                        print(f'merged with: {parent}')
-                    else:
-                        merged = self.merge_if_sharing_incoming_transition(parent, leaf)
-                        print(f'merged with: {parent}')
-                    if merged:
-                        break
-            if not merged:
-                # try to merge it with any compatible state
-                # first: try states of the same type
-                # then: try unlabeled states with sharing incoming transition
-
-                # Get a list of all nodes (states) in the graph
-                all_states = self.apta.G.nodes
-                # filttering states to include just intranal states with the sae type of the leaf
-                same_type_states = [s for s in all_states if self.apta.get_state_type(s) == leaf_type and not self.apta.is_leaf(s)]
-                print(f'try any same type:{same_type_states}')
-                if same_type_states:
-                    self.merge_states(same_type_states[0], [same_type_states[0], leaf])
-                    merged = True
-                else:
-                    unlabeled_states = [s for s in all_states if
-                                        self.apta.get_state_type(s) == 'unlabeled' and not self.apta.is_leaf(s)]
-                    print(f'try any unlabeled: {unlabeled_states}')
-                    for unlabeled_s in unlabeled_states:
-                        merged = self.merge_if_sharing_incoming_transition(unlabeled_s, leaf)
-                        if merged:
-                            break
-
-    def merge_if_sharing_incoming_transition(self, state1, state2): # state1: an internal state, state2: a leaf
-        merged = False
-        s1_incoming_transitions = self.apta.get_in_edges(state1)
-        s2_incoming_transitions = self.apta.get_in_edges(state2)
-        for s2_inTrans in s2_incoming_transitions:
-            for s2_inTrans in s1_incoming_transitions:
-                if self.apta.get_edge_label(s2_inTrans) == self.apta.get_edge_label(s2_inTrans):
-                    self.merge_states(state1, [state1, state2])
-                    merged = True
-                    break
-            if merged:
-                break
-        return merged
+    #
+    # def merge_if_sharing_incoming_transition(self, state1, state2): # state1: an internal state, state2: a leaf
+    #     merged = False
+    #     s1_incoming_transitions = self.apta.get_in_edges(state1)
+    #     s2_incoming_transitions = self.apta.get_in_edges(state2)
+    #     for s2_inTrans in s2_incoming_transitions:
+    #         for s2_inTrans in s1_incoming_transitions:
+    #             if self.apta.get_edge_label(s2_inTrans) == self.apta.get_edge_label(s2_inTrans):
+    #                 self.merge_states(state1, [state1, state2])
+    #                 merged = True
+    #                 break
+    #         if merged:
+    #             break
+    #     return merged
