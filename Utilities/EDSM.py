@@ -9,14 +9,13 @@ class EDSM:
     figure_num = 2
     def __init__(self, pta:PTA):
         self.pta = pta
+        self.found_blue = False
+        self.visited = []
+        self.blue_states = []
 
-        red = self.pta.G.initial_state
-        # self.apta.set_color(red, 'red')
-        self.red_states = [red]
-
-        self.found_blue=False
-        self.visited=[]
-        self.blue_states=[]
+        self.pta.G.initial_state.color = 'red'
+        self.red_states = [self.pta.G.initial_state]
+        self.make_children_blue(self.pta.G.initial_state)
 
     def is_all_states_red(self):
         state_list = list(self.pta.G.graph.keys())
@@ -29,16 +28,18 @@ class EDSM:
         self.found_blue = False
         self.blue_states = []
         self.visited = []
-        self.pick_next_blue(self.pta.G.initial_state)
-        # print(f'BLUE_STATES: {self.blue_states}')
+        # self.pick_next_blue(self.pta.G.initial_state)
+        self.update_blue_states()
+        print(f'BLUE_STATES: {self.blue_states}')
         # self.draw()
         # mergable_states is  a list contains all pairs of state that are valid to be merged with their merging scour
         mergable_states=[]
         blue=None
         valid_for_at_least_one_red = False
         for blue in self.blue_states:
+            print(f'RED_STATES: {self.red_states}')
             for red in self.red_states:
-                # print(f'BLUE: {blue} - RED: {red}')
+                print(f'BLUE: {blue} - RED: {red}')
                 # Create a new disjoint set data structure
                 ds = DisjointSet()
                 ds.s1 = red
@@ -46,14 +47,14 @@ class EDSM:
                 self.make_set_for_every_state_rooted_at(ds, red)
                 self.make_set_for_every_state_rooted_at(ds, blue)
 
-                shared_labels = self.pta.G.have_shared_outgoing_transition(red, blue)
+                # shared_labels = self.pta.G.have_shared_outgoing_transition(red, blue)
                 work_to_do = {}
-                if shared_labels:
-                    add_new_state = ds.union(red, blue)
-                    work_to_do[ds.find(red)] = ds.get_set(red)
-                    if add_new_state:
-                        self.compute_classes2(ds,work_to_do)
 
+                add_new_state = ds.union(red, blue)
+                work_to_do[ds.find(red)] = ds.get_set(red)
+                if add_new_state:
+                    self.compute_classes2(ds, work_to_do)
+                ds.print()
                 if self.is_valid_merge(ds):
                     merging_scour = self.compute_scour(ds)
                     ds.merging_scour = merging_scour
@@ -61,19 +62,22 @@ class EDSM:
                     if merging_scour > 0:
                         # ds.print()
                         valid_for_at_least_one_red = True
-                    # print(f'merging scour for {red} & {blue}: {merging_scour}')
                 else:
                     ds.merging_scour = -1
                     # ds.print()
+                print(f'merging scour for {ds.s1} & {ds.s2}: {ds.merging_scour}')
 
-        if not valid_for_at_least_one_red:
-             # the blue_state can't be merged with any red_state
-            self.make_it_red(blue)
-            # self.draw()
-        else:
+            if not valid_for_at_least_one_red:
+                 # the blue_state can't be merged with any red_state
+                self.make_it_red(blue)
+                self.make_children_blue(blue)
+                break
+                # self.draw()
+        if valid_for_at_least_one_red:
             ds_with_highest_scour = self.pick_high_scour_pair(mergable_states)
-            # print(f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
+            print(f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
             self.merge_sets(ds_with_highest_scour)
+            self.pta.G.print_graph()
             # self.draw()
 
         self.update_red_states()
@@ -84,6 +88,21 @@ class EDSM:
             self.blue_states.remove(blue_state)
             blue_state.color = 'red'
             self.red_states.append(blue_state)
+
+    def make_children_blue(self, state):
+        if isinstance(self.pta.G.graph[state], dict):
+            children = self.pta.G.graph[state].keys()
+            for child in children:
+                if child.color != 'red':
+                    child.color = 'blue'
+    def update_blue_states(self):
+        new_list = []
+        for state in self.pta.G.get_all_states():
+            if state.color == 'blue':
+                new_list.append(state)
+
+        self.blue_states = new_list
+
     def pick_next_blue(self, red):
             if self.found_blue:
                 return
@@ -92,14 +111,15 @@ class EDSM:
                 # Get a list of all neighbors of the red state
                 neighbors = self.pta.G.get_children(red)
                 # Exclude red states
-                self.blue_states = [s for s in neighbors if s not in self.red_states]
+                blue_neighbors = [s for s in neighbors if s not in self.red_states]
+                for s in blue_neighbors:
+                    self.blue_states.append(s)
 
                 # self.draw()
                 if self.blue_states:
                     for state in self.blue_states:
                         state.color = 'blue'
                     self.found_blue = True
-                    return
                 else:
                     for vs in self.visited:
                         if vs in neighbors:
@@ -139,18 +159,28 @@ class EDSM:
         for representative, _set in all_sets.items():
             type_compatible, list_type = self.is_compatible_type(_set)
             input_compatible = self.is_input_compatible(_set)
-            if not type_compatible or input_compatible:
+            if not type_compatible or not input_compatible:
                 return False
         return True
 
     def compute_scour(self, ds):
         merging_scour = 0
+        states_count_before_merge = 0
+        states_count_after_merge = 0
         all_sets = ds.get_sets()
         for representative, elements in all_sets.items():
-            if len(elements)>1:
-                merging_scour += (len(elements)-1)
+            states_count_before_merge += len(elements)
+            states_count_after_merge +=1
 
-        return merging_scour -1
+        merging_scour = states_count_before_merge - states_count_after_merge -1
+        # merging_scour = 0
+        # all_sets = ds.get_sets()
+        # for representative, elements in all_sets.items():
+        #     if len(elements)>1:
+        #         merging_scour += (len(elements)-1)
+        # if merging_scour > 0:
+        #     merging_scour -= 1
+        return merging_scour
 
     def merge_sets(self, ds):
         sets = ds.get_sets()
@@ -174,7 +204,7 @@ class EDSM:
                 self.pta.G.initial_state = target
             if source != target:  # this if to solve butterfly problem
                 self.pta.G.delete_state(source)
-            self.pta.G.graph[target].type = list_type
+                target.type = list_type
         return target
 
     def transfer_out_edge(self, source, target):

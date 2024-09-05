@@ -43,7 +43,7 @@ class DisjointSet:
         root1 = self.find(element1)
         root2 = self.find(element2)
         if root1 != root2:
-            self.parent[root2] = root1
+            self.parent[root2]=root1
             return True
         return False
     def get_set(self, node):

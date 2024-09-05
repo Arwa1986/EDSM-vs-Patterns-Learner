@@ -88,6 +88,16 @@ class Graph:
                    out_transitions.append(out_trans)
         return out_transitions
 
+    # returns all transitions of the graph
+    def get_all_transitons(self):
+        all_transitions = []
+        all_states = self.get_all_states()
+        for state in all_states:
+            outgoing_transitions = self.get_outgoing_transitions_for_state(state)
+            for t in outgoing_transitions:
+                all_transitions.append(t)
+        return all_transitions
+
     # Function to get incoming transitions for a given state
     def get_incoming_transitions(self, target_state):
         incoming_transitions = []
@@ -205,6 +215,23 @@ class Graph:
         common_labels = state1_labels.intersection(state2_labels)
 
         return list(common_labels)
+
+    def get_leaves(self):
+        leaves = []
+        all_states = self.get_all_states()
+        for state in all_states:
+            if self.graph[state] == {}:
+                leaves.append(state)
+        return leaves
+
+    def get_states_with_selflopp_only(self):
+        states_with_selflopp_only=[]
+        all_states = self.get_all_states()
+        for state in all_states:
+            if self.get_children(state) == [state]:
+                states_with_selflopp_only.append(state)
+        return states_with_selflopp_only
+
     def print_graph(self):
         for state, transitions in self.graph.items():
             print(f"{state}:")

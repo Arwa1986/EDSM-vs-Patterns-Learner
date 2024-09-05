@@ -1,5 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
+
+from Graph import Graph
 from State import State
 from Transition import Transition
 
@@ -16,20 +18,32 @@ def dictionary_to_networkx(graph_dict):
 
     return G
 
-def draw_multiDigraph(graph):
-    # Extract edge labels for visualization
-    edge_labels = {(u, v): data['transition'].label for u, v, data in graph.edges(data=True)}
+def networkx_to_dictionary(graph_networkx:nx.MultiDiGraph):
+    # Create an empty graph dictionary
+    G = Graph()
 
-    # Position nodes using pygraphviz layout
-    pos = nx.nx_agraph.graphviz_layout(graph, prog='dot')
+    G.set_initial_state(find_initial_state(graph_networkx))
 
-    # Draw the graph
-    plt.figure(figsize=(8, 6))
-    nx.draw(graph, pos, with_labels=True, node_size=2000)
-    nx.draw_networkx_edge_labels(graph, pos, edge_labels=edge_labels)
-    plt.title("Graph Visualization with Edge Labels")
-    plt.savefig("graph_with_labels.png")
-    plt.show()
+    all_states = graph_networkx.nodes()
+    for state in all_states:
+        s = State(state)
+        G.add_state(s)
+
+    all_edges = graph_networkx.out_edges(data=True)
+    for edge in all_edges:
+        if edge[2] == {}:
+            continue
+        G.add_transition(State(edge[0]), State(edge[1]), edge[2]['label'])
+    # G.print_graph()
+    return G
+
+
+def find_initial_state(graph):
+    for node in graph.nodes:
+        if node == 0 or node == 's0' or node == 'S0':
+            return State(node)
+    return None
+
 
 
 if __name__ == "__main__":
@@ -59,4 +73,4 @@ if __name__ == "__main__":
     }
 
     graph_networks = dictionary_to_networkx(graph_dictionary)
-    draw_multiDigraph(graph_networks)
+    # draw_multiDigraph(graph_networks)
