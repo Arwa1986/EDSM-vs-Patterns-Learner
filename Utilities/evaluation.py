@@ -10,20 +10,26 @@ class Evaluation:
         # self.split_dataset(accepted_traces, rejected_traces)
 
     def is_trace_in_G(self, trace): # trace is a set of strings ['a','a', 'b', 'x']
+        # s = self.G.initial_state
+        # for label in trace:
+        #     if s == -1:
+        #         break;
+        #     frm = s
+        #     s = self.G.get_target_state_for_label(s, label)
+        #
+        # if s == -1:
+        #     # print()
+        #     # print(f'trace is not exist: {trace}')
+        #     return False, ""
+        # else:
+        #     # print(self.apta_obj.get_state_type(s))
+        #      return True, s.type
         s = self.G.initial_state
         for label in trace:
-            if s == -1:
-                break;
-            frm = s
             s = self.G.get_target_state_for_label(s, label)
-
-        if s == -1:
-            # print()
-            # print(f'trace is not exist: {trace}')
-            return False, ""
-        else:
-            # print(self.apta_obj.get_state_type(s))
-             return True, s.type
+            if not s:
+                return False, ""
+        return True, s.type
 
     def evaluate(self):
         true_positive =0

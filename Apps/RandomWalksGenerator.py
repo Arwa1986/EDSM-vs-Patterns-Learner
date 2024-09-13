@@ -20,7 +20,7 @@ def generate_random_walks(graph:Graph, max_length, positive_walks_size, negative
     #         current_state = graph.sigmaFunction(current_state, input)
     #     positive_walks.append(walk)
 
-    return positive_walks
+    return positive_walks, negative_walks
 
 def generate_positive_walks(positive_walks_size, max_length, graph):
     positive_walks = []
@@ -50,7 +50,7 @@ def generate_prefixed_closed_negative_walks(negative_walks_size, max_length, gra
         current_state = graph.initial_state
         for j in range(walk_length - 1):
             input = random.choice(graph.input_alphabet)
-            output = graph.get_output(current_state, input, graph)
+            output = graph.get_output(current_state, input)
             transition = input + '/' + output
             walk.append(transition)
             current_state = graph.get_target_state(current_state, input)
@@ -64,7 +64,7 @@ def generate_prefixed_closed_negative_walks(negative_walks_size, max_length, gra
             negative_walks.append(walk)
             i += 1
 
-        return negative_walks
+    return negative_walks
 
 def get_not_exist_output(state, input, graph):
     actual_output = graph.get_output(state, input)

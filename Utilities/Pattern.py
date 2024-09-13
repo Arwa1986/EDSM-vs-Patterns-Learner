@@ -1,7 +1,6 @@
 from Graph import Graph
 from Utilities.EDSM import EDSM
 
-
 def sink_state_pattern(graph:Graph):
     found = False
     sink_states = []
@@ -71,3 +70,94 @@ def violate_identify_state_by_incoming_label_pattern(partial_graph:EDSM, identif
         if len(target_states) > 1:
             violate_states.append((target_states, label))
     return violate_states
+
+def response_pattern(graph:Graph, event_p, event_s):
+    found_event_p = False
+    current_state = graph.initial_state
+    state_with_event_p = dfs_find_states(graph, current_state, event_p)
+    if state_with_event_p:
+        current_state = graph.get_target_state(state_with_event_p, event_p)
+        state_with_event_s = dfs_find_states(graph, current_state, event_s)
+
+        all_outgoing_transitions = graph.get_outgoing_transitions_for_state(current_state)
+        for transition in all_outgoing_transitions:
+            if transition.label == event_s:
+                found_event_p = True
+
+# def depth_first_search(visited, state, graph:Graph, event_p, state_with_event_p):
+#     # Mark the current vertex as visited
+#     visited.append(state)
+#     outgoing_transitions = graph.get_outgoing_transitions_for_state(state)
+#     for t in outgoing_transitions:
+#         if t.label == event_p:
+#             state_with_event_p =  state
+#     # Print the current vertex
+#     # print(state, end=" ")
+#
+#     # Recursively visit all adjacent vertices
+#     # that are not visited yet
+#     for s in graph.get_children(state):
+#         if s not in visited:
+#             depth_first_search(visited, s, graph, event_p, state_with_event_p)
+def dfs_find_states(graph, start_state, target_label):
+    # Stack for DFS
+    stack = [start_state]
+    # Set to track visited states
+    visited = set()
+    # List to store states with the target label in outgoing transitions
+    result_states = None
+    found = False
+    while stack or not found:
+        # Pop the current state from the stack
+        current_state = stack.pop()
+
+        # Skip if the state has already been visited
+        if current_state in visited:
+            continue
+
+        # Mark the current state as visited
+        visited.add(current_state)
+
+        # Check the outgoing transitions of the current state
+        for next_state, transitions in graph.graph.get(current_state, {}).items():
+            # Check each transition for the target label
+            for transition in transitions:
+                if transition.label == target_label:
+                    result_states = current_state
+                    found = True
+                    break  # Stop checking other transitions if one is found
+
+            # Add the next state to the stack for DFS traversal
+            stack.append(next_state)
+            if found:
+                break
+
+    return result_states
+
+def get_actual_output_for_input_sequence(input_sequence, graph:Graph, states_of_interest):
+    expected_output = None
+    for state in states_of_interest:
+        current_state = state
+        for i in range(len(input_sequence)-1):
+            current_state = graph.get_target_state(current_state, input_sequence[i])
+        output = graph.get_output(current_state, input_sequence[-1])
+        if not expected_output:
+            expected_output = output
+        elif output != expected_output:
+            expected_output = None
+            return expected_output
+
+    return expected_output
+
+# def violate_expected_output_for_input_sequence(all_inputSequebce_output_pairs, graph:Graph):
+#     violate = False
+#     for pair in all_inputSequebce_output_pairs:
+#         input_sequence = pair[0]
+#         expected_output = pair[1]
+#         actual_output = expected_output_for_a_sequence_of_input(input_sequence, graph)
+#         if actual_output != expected_output:
+#             print(f' the last merge violates pattern: Expected_output_for_input_sequence')
+#             print(f'This sequence of input should have {expected_output} as the only output')
+#             violate = True
+#
+#     return violate

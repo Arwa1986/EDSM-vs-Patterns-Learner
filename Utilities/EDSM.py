@@ -2,6 +2,7 @@ import copy
 import random
 import networkx as nx
 
+from Patterns.extract_patterns_from_reference_DFA import get_all_input_sequences_with_one_output
 from Utilities.DISJOINTSETS import DisjointSet
 from Utilities.PTA import PTA
 
@@ -65,7 +66,7 @@ class EDSM:
                 else:
                     ds.merging_scour = -1
                     # ds.print()
-                print(f'merging scour for {ds.s1} & {ds.s2}: {ds.merging_scour}')
+                print(f'merging score for {ds.s1} & {ds.s2}: {ds.merging_scour}')
 
             if not valid_for_at_least_one_red:
                  # the blue_state can't be merged with any red_state
@@ -82,6 +83,71 @@ class EDSM:
 
         self.update_red_states()
         self.run_EDSM_learner()
+    def extract_patterns_from_partial_DFA(self):
+        patterns = get_all_input_sequences_with_one_output(self.pta.G, 2)
+        return patterns
+
+    def run_EDSM_with_pattern_learner(self, pattern_list):
+        if self.is_all_states_red():
+            return
+
+        self.found_blue = False
+        self.blue_states = []
+        self.visited = []
+        # self.pick_next_blue(self.pta.G.initial_state)
+        self.update_blue_states()
+        print(f'BLUE_STATES: {self.blue_states}')
+        # self.draw()
+        # mergable_states is  a list contains all pairs of state that are valid to be merged with their merging scour
+        mergable_states=[]
+        blue=None
+        valid_for_at_least_one_red = False
+        for blue in self.blue_states:
+            print(f'RED_STATES: {self.red_states}')
+            for red in self.red_states:
+                print(f'BLUE: {blue} - RED: {red}')
+                # Create a new disjoint set data structure
+                ds = DisjointSet()
+                ds.s1 = red
+                ds.s2 = blue
+                self.make_set_for_every_state_rooted_at(ds, red)
+                self.make_set_for_every_state_rooted_at(ds, blue)
+
+                # shared_labels = self.pta.G.have_shared_outgoing_transition(red, blue)
+                work_to_do = {}
+
+                add_new_state = ds.union(red, blue)
+                work_to_do[ds.find(red)] = ds.get_set(red)
+                if add_new_state:
+                    self.compute_classes2(ds, work_to_do)
+                ds.print()
+                if self.is_valid_merge(ds):
+                    merging_scour = self.compute_score_with_patterns(ds, pattern_list)
+                    ds.merging_scour = merging_scour
+                    mergable_states.append(ds)
+                    if merging_scour > 0:
+                        # ds.print()
+                        valid_for_at_least_one_red = True
+                else:
+                    ds.merging_scour = -1
+                    # ds.print()
+                print(f'merging score for {ds.s1} & {ds.s2}: {ds.merging_scour}')
+
+            if not valid_for_at_least_one_red:
+                 # the blue_state can't be merged with any red_state
+                self.make_it_red(blue)
+                self.make_children_blue(blue)
+                break
+                # self.draw()
+        if valid_for_at_least_one_red:
+            ds_with_highest_scour = self.pick_high_scour_pair(mergable_states)
+            print(f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
+            self.merge_sets(ds_with_highest_scour)
+            self.pta.G.print_graph()
+            # self.draw()
+
+        self.update_red_states()
+        self.run_EDSM_with_pattern_learner()
 
     def make_it_red(self, blue_state):
         if blue_state in self.blue_states:
@@ -96,12 +162,14 @@ class EDSM:
                 if child.color != 'red':
                     child.color = 'blue'
     def update_blue_states(self):
-        new_list = []
-        for state in self.pta.G.get_all_states():
-            if state.color == 'blue':
-                new_list.append(state)
-
-        self.blue_states = new_list
+        blue_states = []
+        for red in self.red_states:
+            children = self.pta.G.get_children(red)
+            for child in children:
+                if child.color != 'red':
+                    child.color = 'blue'
+                    blue_states.append(child)
+        self.blue_states = blue_states
 
     def pick_next_blue(self, red):
             if self.found_blue:
@@ -173,15 +241,19 @@ class EDSM:
             states_count_after_merge +=1
 
         merging_scour = states_count_before_merge - states_count_after_merge -1
-        # merging_scour = 0
-        # all_sets = ds.get_sets()
-        # for representative, elements in all_sets.items():
-        #     if len(elements)>1:
-        #         merging_scour += (len(elements)-1)
-        # if merging_scour > 0:
-        #     merging_scour -= 1
         return merging_scour
+    def compute_score_with_patterns(self, ds, pattern_list):
+        merging_scour = 0
+        states_count_before_merge = 0
+        states_count_after_merge = 0
+        all_sets = ds.get_sets()
+        for representative, elements in all_sets.items():
+            states_count_before_merge += len(elements)
+            states_count_after_merge +=1
 
+        merging_scour = states_count_before_merge - states_count_after_merge -1
+        violate_any_pattern = violate_any_pattern(pattern_list, self.pta.G)
+        return merging_scour
     def merge_sets(self, ds):
         sets = ds.get_sets()
         for set in sets.items():

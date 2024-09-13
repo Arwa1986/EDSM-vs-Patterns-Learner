@@ -173,6 +173,8 @@ class Graph:
 
     # Function to print the graph
     def get_children(self, state):
+        # if self.graph[state] == {}:
+        #     return None
         return list(self.graph[state].keys())
     def get_descendants(self, state):
         # Initialize a set to keep track of visited states and a list for the stack
