@@ -3,10 +3,13 @@ import random
 import networkx as nx
 
 from Patterns.extract_patterns_from_reference_DFA import get_all_input_sequences_with_one_output
+from Patterns.pattern_checker import violate_any_pattern
 from Utilities.DISJOINTSETS import DisjointSet
 from Utilities.PTA import PTA
+from Utilities.write_clear_file import write_to_file
 
-class EDSM:
+
+class Learner:
     figure_num = 2
     def __init__(self, pta:PTA):
         self.pta = pta
@@ -14,13 +17,20 @@ class EDSM:
         self.visited = []
         self.blue_states = []
 
+
+    def setup(self):
         self.pta.G.initial_state.color = 'red'
         self.red_states = [self.pta.G.initial_state]
         self.make_children_blue(self.pta.G.initial_state)
+        self.counter = 1
+
 
     def is_all_states_red(self):
         state_list = list(self.pta.G.graph.keys())
-        return self.red_states == state_list
+        for s in state_list:
+            if s.color != 'red':
+                return False
+        return True
 
     def run_EDSM_learner(self):
         if self.is_all_states_red():
@@ -31,16 +41,16 @@ class EDSM:
         self.visited = []
         # self.pick_next_blue(self.pta.G.initial_state)
         self.update_blue_states()
-        print(f'BLUE_STATES: {self.blue_states}')
+        write_to_file('EDSM_Learner_tracker.txt',f'BLUE_STATES: {self.blue_states}')
         # self.draw()
         # mergable_states is  a list contains all pairs of state that are valid to be merged with their merging scour
         mergable_states=[]
         blue=None
         valid_for_at_least_one_red = False
         for blue in self.blue_states:
-            print(f'RED_STATES: {self.red_states}')
+            write_to_file('EDSM_Learner_tracker.txt', f'RED_STATES: {self.red_states}')
             for red in self.red_states:
-                print(f'BLUE: {blue} - RED: {red}')
+                write_to_file('EDSM_Learner_tracker.txt', f'RED: {red} >< BLUE: {blue} ')
                 # Create a new disjoint set data structure
                 ds = DisjointSet()
                 ds.s1 = red
@@ -55,30 +65,33 @@ class EDSM:
                 work_to_do[ds.find(red)] = ds.get_set(red)
                 if add_new_state:
                     self.compute_classes2(ds, work_to_do)
-                ds.print()
+                # ds.print()
+                write_to_file('EDSM_Learner_tracker.txt', ds.to_string())
                 if self.is_valid_merge(ds):
                     merging_scour = self.compute_scour(ds)
                     ds.merging_scour = merging_scour
                     mergable_states.append(ds)
                     if merging_scour > 0:
-                        # ds.print()
                         valid_for_at_least_one_red = True
                 else:
                     ds.merging_scour = -1
-                    # ds.print()
-                print(f'merging score for {ds.s1} & {ds.s2}: {ds.merging_scour}')
+                write_to_file('EDSM_Learner_tracker.txt',f'merging score for {ds.s1} & {ds.s2}: {ds.merging_scour}')
 
             if not valid_for_at_least_one_red:
                  # the blue_state can't be merged with any red_state
                 self.make_it_red(blue)
                 self.make_children_blue(blue)
                 break
-                # self.draw()
         if valid_for_at_least_one_red:
             ds_with_highest_scour = self.pick_high_scour_pair(mergable_states)
-            print(f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
+            write_to_file('EDSM_Learner_tracker.txt','***********************************************************')
+            write_to_file('EDSM_Learner_tracker.txt',f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
+            write_to_file('EDSM_Learner_tracker.txt','***********************************************************')
             self.merge_sets(ds_with_highest_scour)
+            # write_to_file('EDSM_Learner_tracker.txt' ,self.pta.G.to_string())
+            print(f'merge counter: {self.counter}')
             self.pta.G.print_graph()
+            self.counter +=1
             # self.draw()
 
         self.update_red_states()
@@ -252,7 +265,8 @@ class EDSM:
             states_count_after_merge +=1
 
         merging_scour = states_count_before_merge - states_count_after_merge -1
-        violate_any_pattern = violate_any_pattern(pattern_list, self.pta.G)
+        if violate_any_pattern(pattern_list, self.pta.G):
+            merging_scour = -2
         return merging_scour
     def merge_sets(self, ds):
         sets = ds.get_sets()

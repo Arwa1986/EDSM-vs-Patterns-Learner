@@ -1,5 +1,5 @@
 from Graph import Graph
-from Utilities.EDSM import EDSM
+# from Utilities.Learner import Learner
 
 def sink_state_pattern(graph:Graph):
     found = False
@@ -52,7 +52,7 @@ def identify_state_by_incoming_label_pattern(graph:Graph):
 
 # if there are more than one red label that have incoming transition that identify a state
 # then the partial graph violate the pattern
-def violate_identify_state_by_incoming_label_pattern(partial_graph:EDSM, identifiable_states):
+def violate_identify_state_by_incoming_label_pattern(partial_graph, identifiable_states): #partial_graph: Learner
     violate_states = []
     red_states = partial_graph.red_states
     label_dict = {}

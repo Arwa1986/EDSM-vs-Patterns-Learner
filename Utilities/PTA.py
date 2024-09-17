@@ -27,13 +27,15 @@ class PTA:
         else:
             current_state = self.G.initial_state
             current_index = 0
-            for i in range(len(trace)):
+            i=0
+            while i  < len(trace):
                 if self.G.has_outgoing_transition_for_label(current_state, trace[i]):
                     current_state = self.G.get_target_state_for_label(current_state, trace[i])
                 else:
                     current_index = i
                     break
-            if current_index < len(trace):
+                i+=1
+            if current_index < len(trace) and i<len(trace):
                 for j in range(current_index, len(trace)):
                     #  add transaction
                     self.current_state_id += 1

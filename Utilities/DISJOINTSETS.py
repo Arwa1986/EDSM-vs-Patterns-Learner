@@ -28,6 +28,13 @@ class DisjointSet:
             result = False
         return result
 
+    def to_string(self):
+        all_sets_str = ''
+        all_sets = self.get_sets()
+        for representative, elements in all_sets.items():
+            all_sets_str += f"{representative}: {elements}\n"
+        return all_sets_str
+
     def make_set(self, element):
         # Create a new set with a single element
         self.parent[element] = element
@@ -76,3 +83,5 @@ class DisjointSet:
         all_sets = self.get_sets()
         for representative, elements in all_sets.items():
             print(f"Set with representative {representative}: {elements}")
+
+

@@ -13,7 +13,7 @@ from Utilities.Pattern import get_actual_output_for_input_sequence
 class MyTestCase(unittest.TestCase):
     def setUp(self):
         # 1- dot to MultiDiGraph
-        coffeMahchine_MultiDiGraph = dot_to_multidigraph('coffeemachine.dot')
+        coffeMahchine_MultiDiGraph = dot_to_multidigraph('../coffeemachine.dot')
 
         # 2- MultiDiGraph to Graph (our object)
         self.coffeMachine_Graph = networkx_to_dictionary(coffeMahchine_MultiDiGraph)

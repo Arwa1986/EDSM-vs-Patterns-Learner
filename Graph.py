@@ -13,6 +13,21 @@ class Graph:
             if self.compare_dicts_of_dicts(self.graph, other.graph):
                             equal = True
         return equal
+
+    def to_string(self):
+        graph_str = ''
+        for state, transitions in self.graph.items():
+            graph_str.join(f"{state}:\n")
+            if transitions:
+                for neighbor, transaction in transitions.items():
+                    graph_str.join(f"  -> {neighbor} via {transaction}\n")
+            else:
+                graph_str.join("  No outgoing transitions\n")
+
+            if state.isInitial:
+                graph_str.join("initial state\n")
+        graph_str.join('==================================================================\n')
+        return graph_str
     def compare_dicts_of_dicts(self, graph1, graph2):
         if graph1.keys() != graph2.keys():
             return False
@@ -245,3 +260,4 @@ class Graph:
 
             if state.isInitial:
                 print("initial state")
+        print('==================================================================')

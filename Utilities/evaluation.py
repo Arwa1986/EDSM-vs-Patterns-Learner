@@ -1,10 +1,7 @@
-from Utilities.EDSM import EDSM
-
-
 class Evaluation:
-    def __init__(self, edsm:EDSM, accepted_traces, rejected_traces):
-        self.G = edsm.pta.G
-        self.pta_obj = edsm.pta
+    def __init__(self, learned_graph, accepted_traces, rejected_traces): #learned_graph:Learner
+        self.G = learned_graph.pta.G
+        self.pta_obj = learned_graph.pta
         self.positive_traces = accepted_traces
         self.negative_traces = rejected_traces
         # self.split_dataset(accepted_traces, rejected_traces)
