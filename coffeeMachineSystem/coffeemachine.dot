@@ -1,7 +1,4 @@
 digraph g {
-        __start0 [label="" shape="none"];
-        __start0 -> s0;
-
     	s0 [shape="circle" label="s0"];
     	s1 [shape="circle" label="s1"];
     	s2 [shape="circle" label="s2"];

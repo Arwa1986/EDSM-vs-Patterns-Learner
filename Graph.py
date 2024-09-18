@@ -68,8 +68,14 @@ class Graph:
     def set_input_alphabet(self, input_alphabet):
         self.input_alphabet = input_alphabet
 
+    def get_input_alphabet(self):
+        return self.input_alphabet
+
     def set_output_alphabet(self, output_alphabet):
         self.output_alphabet = output_alphabet
+
+    def get_output_alphabet(self):
+        return self.output_alphabet
 
     def add_state(self, state:State):
         if state not in self.graph:
@@ -81,6 +87,7 @@ class Graph:
 
     def get_all_states(self):
         return list(self.graph.keys())
+
     def get_state_for_label(self, label):
         for state in self.get_all_states():
             if state.label == label:
@@ -138,6 +145,7 @@ class Graph:
 
         new_edge = Transition(from_state, to_state, transitionLabel)
         self.graph[from_state][to_state].append(new_edge)
+        return new_edge
 
     def delete_Transition(self, transition:Transition):
         self.graph[transition.from_state][transition.to_state].remove(transition)

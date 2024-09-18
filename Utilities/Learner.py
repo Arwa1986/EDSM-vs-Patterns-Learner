@@ -133,7 +133,7 @@ class Learner:
                 work_to_do[ds.find(red)] = ds.get_set(red)
                 if add_new_state:
                     self.compute_classes2(ds, work_to_do)
-                ds.print()
+                # ds.print()
                 if self.is_valid_merge(ds):
                     merging_scour = self.compute_score_with_patterns(ds, pattern_list)
                     ds.merging_scour = merging_scour
@@ -160,7 +160,7 @@ class Learner:
             # self.draw()
 
         self.update_red_states()
-        self.run_EDSM_with_pattern_learner()
+        self.run_EDSM_with_pattern_learner(pattern_list)
 
     def make_it_red(self, blue_state):
         if blue_state in self.blue_states:
@@ -256,7 +256,7 @@ class Learner:
         merging_scour = states_count_before_merge - states_count_after_merge -1
         return merging_scour
     def compute_score_with_patterns(self, ds, pattern_list):
-        merging_scour = 0
+        merging_score = 0
         states_count_before_merge = 0
         states_count_after_merge = 0
         all_sets = ds.get_sets()
@@ -264,10 +264,11 @@ class Learner:
             states_count_before_merge += len(elements)
             states_count_after_merge +=1
 
-        merging_scour = states_count_before_merge - states_count_after_merge -1
-        if violate_any_pattern(pattern_list, self.pta.G):
-            merging_scour = -2
-        return merging_scour
+        merging_score = states_count_before_merge - states_count_after_merge -1
+        if violate_any_pattern(pattern_list, self.pta.G, self.red_states):
+            # print('VALID merge was BLOCKED')
+            merging_score = -2
+        return merging_score
     def merge_sets(self, ds):
         sets = ds.get_sets()
         for set in sets.items():

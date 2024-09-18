@@ -10,6 +10,8 @@ class PTA:
         self.current_state_id = 0
 
     def add_trace(self, trace):
+        input_alphabet_set = set()
+        output_alphabet_set = set()
         # if the graph is empty add the first trace
         if self.G.is_empty() :
             current_state = State(self.current_state_id)
@@ -21,7 +23,9 @@ class PTA:
                 self.current_state_id += 1
                 to_state = State(self.current_state_id)
                 self.G.add_state(to_state)
-                self.G.add_transition(current_state, to_state, trace[i])
+                new_transition = self.G.add_transition(current_state, to_state, trace[i])
+                input_alphabet_set.add(new_transition.input)
+                output_alphabet_set.add(new_transition.output)
                 # the distination now become the source for the next transaction
                 current_state = to_state
         else:
@@ -41,13 +45,23 @@ class PTA:
                     self.current_state_id += 1
                     to_state = State(self.current_state_id)
                     self.G.add_state(to_state)
-                    self.G.add_transition(current_state, to_state, trace[j])
+                    new_transition = self.G.add_transition(current_state, to_state, trace[j])
+                    input_alphabet_set.add(new_transition.input)
+                    output_alphabet_set.add(new_transition.output)
                     # the distination now become the source for the next transaction
                     current_state = to_state
+        return input_alphabet_set, output_alphabet_set
 
     def build_pta(self, positive_traces):
+        all_input = set()
+        all_output = set()
         for t in positive_traces:
-            self.add_trace(t)
+            input_set, output_set = self.add_trace(t)
+            for i in input_set:
+                all_input.add(i)
+            for o in output_set:
+                all_output.add(o)
+        return list(all_input), list(all_output)
 
 if __name__ == "__main__":
     pta = PTA()
