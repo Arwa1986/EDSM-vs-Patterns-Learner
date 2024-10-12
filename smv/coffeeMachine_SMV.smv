@@ -1,0 +1,40 @@
+MODULE main
+VAR
+	state: {0,1,2,3,4,5};
+	input : {clean/ok, pod/ok, water/ok, button/ok, clean/error, pod/error, water/error, button/error};
+ASSIGN
+	init(state):= 0;
+	init(input):={clean/ok, pod/ok, water/ok, button/error};
+	next(state):= case
+		state = 0 & input = clean/ok : state;
+		state = 0 & input = water/ok : 4;
+		state = 0 & input = button/error : 1;
+		state = 0 & input = pod/ok : 2;
+
+		state = 1 & input = clean/error : state;
+		state = 1 & input = water/error : state;
+		state = 1 & input = button/error : state;
+		state = 1 & input = pod/error : state;
+
+		state = 2 & input = clean/ok : 0;
+		state = 2 & input = water/ok : 3;
+		state = 2 & input = button/error : 1;
+		state = 2 & input = pod/ok : state;
+
+		state = 3 & input = clean/ok : 0;
+		state = 3 & input = water/ok : state;
+		state = 3 & input = button/coffee! : 5;
+		state = 3 & input = pod/ok : state;
+
+		state = 4 & input = clean/ok : 0;
+		state = 4 & input = water/ok : state;
+		state = 4 & input = button/error : 1;
+		state = 4 & input = pod/ok : 3;
+
+		state = 5 & input = clean/ok : 0;
+		state = 5 & input = water/error : 1;
+		state = 5 & input = button/error : 1;
+		state = 5 & input = pod/error : 1;
+
+		esac;
+LTLSPEC AG !(input=button/coffee!) U (input=pod/ok & !(input=button/coffee!));

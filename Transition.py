@@ -4,6 +4,8 @@ class Transition:
         self.from_state = from_state
         self.to_state = to_state
         self.label = label
+        self.input = ''
+        self.output = ''
         self.set_input_output()
 
 
@@ -16,10 +18,10 @@ class Transition:
         return False
 
     def set_input_output(self):
-        index = self.label.find('/')
+        index = self.label.find(' / ')
         if index != -1:
             self.input = self.label[:index]
-            self.output = self.label[index + 1:]
+            self.output = self.label[index + 3:]
 
     def is_self_loop(self):
         return self.from_state == self.to_state

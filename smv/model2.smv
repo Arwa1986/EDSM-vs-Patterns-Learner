@@ -1,0 +1,24 @@
+MODULE main
+VAR
+    state:{0, 1, 2, 3};
+    input:{a, b};
+    output:{1, 2};
+    ASSIGN
+    init(state):=State(0);
+    next(state):=case
+            state = 0 & input = a : 1;
+            state = 0 & input = b : 0;
+            state = 1 & input = a : 2;
+            state = 1 & input = b : 5;
+            state = 2 & input = b : 3;
+            state = 3 & input = b : 4;
+            esac;
+   next(output):=case
+           state = 0 & input = a : 1;
+           state = 0 & input = b : 1;
+           state = 1 & input = a : 2;
+           state = 1 & input = b : 1;
+           state = 2 & input = b : 1;
+           state = 3 & input = b : 1;
+           esac;
+   SPEC AF (input = a ->X state = 1);

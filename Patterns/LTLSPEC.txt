@@ -1,0 +1,66 @@
+-- P is false before R
+F R -> (!P U R)
+
+-- P is false after R
+G(Q -> G(!P))
+
+--P is false between Q and R
+G((Q & !R & F R) -> (!P U R))
+
+--P is false after Q until R
+G(Q & !R -> (!P W R))
+
+--P becomes true before R
+!R W (P & !R)
+
+--P becomes true after Q
+G (!Q) | F (Q & F P))
+
+--P becomes true between Q and R
+G (Q & !R -> (!R W (P & !R)))
+
+--P becomes true after Q until R
+G (Q & !R -> (!R U (P & !R)))
+
+--P is true before R
+F R -> (P U R)
+
+--P is true after Q
+G (Q -> G(P))
+
+--P is true between Q and R
+G ((Q & !R & F R) -> (P U R))
+
+--P is true after Q until R
+G (Q & !R -> (P W R))
+
+--S precedes P  Globally
+!P W S
+
+-- S precedes P before R
+F R -> (!P U (S | R))
+
+-- S precedes P after Q
+G !Q | F (Q & (!P W S))
+
+--S precedes P between Q and R
+G ((Q & !R & F R) -> (!P U (S | R)))
+
+--S precedes P after Q until R
+G (Q & !R -> (!P W (S | R)))
+
+-- S responds to P globally
+G (P -> F S)
+
+-- S responds to P before R
+F R -> (P -> (!R U (S & !R))) U R
+
+-- S responds to P after Q
+G (Q -> G(P -> F S))
+
+-- S responds to P between Q and R
+G ((Q & !R & F R) -> (P -> (!R U (S & !R))) U R)
+
+-- S responds to P after Q until R
+G (Q & !R -> ((P -> (!R U (S & !R))) W R)
+

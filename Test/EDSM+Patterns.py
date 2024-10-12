@@ -1,14 +1,10 @@
 import unittest
 
-from Graph import Graph
-from Patterns.extract_patterns_from_reference_DFA import get_all_input_sequences_with_one_output, get_combinations
-from Patterns.output_for_input_sequence_pattern import Output_for_input_sequence_pattern
 from State import State
 from Transition import Transition
 from Utilities.Dictionary_Networkx_Converter import networkx_to_dictionary
 from Utilities.DotFile_Networks_converter import dot_to_multidigraph
 from Utilities.PTA import PTA
-from Utilities.Pattern import get_actual_output_for_input_sequence
 
 
 class MyTestCase(unittest.TestCase):

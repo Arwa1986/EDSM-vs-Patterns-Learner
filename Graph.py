@@ -1,3 +1,6 @@
+from numpy.ma.core import append
+from orca.object_properties import RELATION_DETAILS_FOR
+
 from State import State
 from Transition import Transition
 
@@ -119,6 +122,12 @@ class Graph:
             for t in outgoing_transitions:
                 all_transitions.append(t)
         return all_transitions
+
+    def get_transitions_labels_set(self):
+        transitions_set = set()
+        for transition in self.get_all_transitons():
+            transitions_set.add(tuple([transition.input, transition.output]))
+        return transitions_set
 
     # Function to get incoming transitions for a given state
     def get_incoming_transitions(self, target_state):
@@ -269,3 +278,68 @@ class Graph:
             if state.isInitial:
                 print("initial state")
         print('==================================================================')
+
+    def to_nusmv(self, red_states, patterns):
+        transitions_to_blue_states = []
+        transitions_to_red_states  = []
+        for t in self.get_outgoing_transitions_for_list_of_states(None, red_states):
+            if t.to_state in red_states:
+                transitions_to_red_states.append(t)
+            else:
+                transitions_to_blue_states.append(t)
+
+        contents = 'MODULE main\nVAR\nstate:{'
+
+        for s in range(len(red_states)):
+            contents += f'{red_states[s].label}'
+            if s < len(red_states) - 1:
+                contents += ', '
+        contents += f'}};\n'
+
+        contents += f'IVAR\n'
+        contents += f'input:{{'
+        inputs = self.get_input_alphabet()
+        for i in range(len(inputs)):
+            contents += f'{inputs[i]}'
+            if i < len(inputs) - 1:
+                contents += ', '
+        contents += f'}};\n'
+
+        contents += f'output:{{'
+        outputs = self.get_output_alphabet()
+        for o in range(len(outputs)):
+            contents += f'{outputs[o]}'
+            if o < len(outputs) - 1:
+                contents += ', '
+        contents += f'}};\n'
+
+
+        contents += f'ASSIGN\n'\
+                    'init(state):={self.initial_state.label};\n'\
+                    'next(state):=case\n'
+        for t in transitions_to_red_states:
+            contents += f'state = {t.from_state.label} & input = {t.input} : {t.to_state.label};\n'
+        contents += f'TRUE : state;\n'
+        contents += f'esac;\n'
+
+        # block any transitions to blue states
+        contents += f'TRANS\n'
+        for i in range(len(transitions_to_blue_states)):
+            contents += f'!(state = {transitions_to_blue_states[i].from_state.label} & input = {transitions_to_blue_states[i].input})'
+            if i < len(transitions_to_blue_states) - 1:
+                contents += f' &\n'
+            else:
+                contents += f';\n'
+
+        for i in range(len(transitions_to_red_states)):
+            contents += (f'!(state = {transitions_to_red_states[i].from_state.label} & input = {transitions_to_red_states[i].input} '
+                         f'-> output = {transitions_to_red_states[i].output})')
+            if i < len(transitions_to_blue_states) - 1:
+                contents += f' &\n'
+            else:
+                contents += f';\n'
+
+        for p in patterns:
+            contents += f'LTLSPEC {p};\n'
+
+        return contents

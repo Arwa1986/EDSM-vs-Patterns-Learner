@@ -3,7 +3,7 @@ import random
 import networkx as nx
 
 from Patterns.extract_patterns_from_reference_DFA import get_all_input_sequences_with_one_output
-from Patterns.pattern_checker import violate_any_pattern
+from Patterns.pattern_checker import violate_any_pattern, violate_any_pattern2
 from Utilities.DISJOINTSETS import DisjointSet
 from Utilities.PTA import PTA
 from Utilities.write_clear_file import write_to_file
@@ -109,16 +109,16 @@ class Learner:
         self.visited = []
         # self.pick_next_blue(self.pta.G.initial_state)
         self.update_blue_states()
-        print(f'BLUE_STATES: {self.blue_states}')
+        # print(f'BLUE_STATES: {self.blue_states}')
         # self.draw()
         # mergable_states is  a list contains all pairs of state that are valid to be merged with their merging scour
         mergable_states=[]
         blue=None
         valid_for_at_least_one_red = False
         for blue in self.blue_states:
-            print(f'RED_STATES: {self.red_states}')
+            # print(f'RED_STATES: {self.red_states}')
             for red in self.red_states:
-                print(f'BLUE: {blue} - RED: {red}')
+                # print(f'BLUE: {blue} - RED: {red}')
                 # Create a new disjoint set data structure
                 ds = DisjointSet()
                 ds.s1 = red
@@ -144,7 +144,7 @@ class Learner:
                 else:
                     ds.merging_scour = -1
                     # ds.print()
-                print(f'merging score for {ds.s1} & {ds.s2}: {ds.merging_scour}')
+                # print(f'merging score for {ds.s1} & {ds.s2}: {ds.merging_scour}')
 
             if not valid_for_at_least_one_red:
                  # the blue_state can't be merged with any red_state
@@ -154,9 +154,9 @@ class Learner:
                 # self.draw()
         if valid_for_at_least_one_red:
             ds_with_highest_scour = self.pick_high_scour_pair(mergable_states)
-            print(f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
+            # print(f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
             self.merge_sets(ds_with_highest_scour)
-            self.pta.G.print_graph()
+            # self.pta.G.print_graph()
             # self.draw()
 
         self.update_red_states()
@@ -255,6 +255,7 @@ class Learner:
 
         merging_scour = states_count_before_merge - states_count_after_merge -1
         return merging_scour
+
     def compute_score_with_patterns(self, ds, pattern_list):
         merging_score = 0
         states_count_before_merge = 0
@@ -265,8 +266,8 @@ class Learner:
             states_count_after_merge +=1
 
         merging_score = states_count_before_merge - states_count_after_merge -1
-        if violate_any_pattern(pattern_list, self.pta.G, self.red_states):
-            # print('VALID merge was BLOCKED')
+        if violate_any_pattern2(pattern_list, self.pta.G, self.red_states):
+            print('VALID merge was BLOCKED')
             merging_score = -2
         return merging_score
     def merge_sets(self, ds):

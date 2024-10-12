@@ -2,7 +2,6 @@ from Apps.RandomWalksGenerator import generate_random_walks
 from State import State
 from Utilities.Dictionary_Networkx_Converter import networkx_to_dictionary
 from Utilities.DotFile_Networks_converter import dot_to_multidigraph
-from Utilities.Draw_graph import draw_multiDigraph, draw_multidigraph_with_labels
 from Utilities.Learner import Learner
 from Utilities.PTA import PTA
 from Utilities.evaluation import Evaluation

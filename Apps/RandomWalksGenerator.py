@@ -32,7 +32,7 @@ def generate_positive_walks(positive_walks_size, max_length, graph):
         for j in range(walk_length):
             input = random.choice(graph.input_alphabet)
             output = graph.get_output(current_state, input)
-            transition = input + '/' + output
+            transition = input + ' / ' + output
             walk.append(transition)
             current_state = graph.get_target_state(current_state, input)
         if walk not in positive_walks:
@@ -51,7 +51,7 @@ def generate_prefixed_closed_negative_walks(negative_walks_size, max_length, gra
         for j in range(walk_length - 1):
             input = random.choice(graph.input_alphabet)
             output = graph.get_output(current_state, input)
-            transition = input + '/' + output
+            transition = input + ' / ' + output
             walk.append(transition)
             current_state = graph.get_target_state(current_state, input)
         # generate the last transition that makes the walk negative. (add not exsitiing transition to the walk)

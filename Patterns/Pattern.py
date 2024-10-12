@@ -5,6 +5,9 @@ class Pattern:
     def violated_by_partial_graph(self, partial_graph, red_states):
         pass
 
+    def get_name_in_LTL(self):
+        pass
+
     # def exist_in_the_refrence_automata(self):
     #     pass
     def print(self):
