@@ -10,14 +10,16 @@ def design_group1_patterns(P, R):
     R_input = R[0]
     R_output = R[1]
 
+    P_event = f'(input = {P_input} & output = {P_output})'
+    R_event = f'(input = {R_input} & output = {R_output})'
     # ~~~ ONE EVENT ~~~
     # -- P is false before R
-    #  LTLSPEC F (P) -> (!(P) U (R))
-    p1 = f'F (input = {P_input} & output = {P_output}) -> (!(input = {P_input} & output = {P_output}) U (input = {R_input} & output = {R_output}))'
+    #  LTLSPEC F (R) -> (!(P) U (R))
+    p1 = f'F {R_event} -> (!{P_event} U {R_event})'
 
     # -- P is false after R
     # LTLSPEC G((R) -> G(!(P)))
-    # p2 = f'G((input = {R_input} & output = {R_output}) -> G(!(input = {P_input} & output = {P_output})))'
+    p2 = f'G({R_event} -> G(!{P_event}))'
 
     # --P becomes true before R
     # LTLSPEC !(R) W ((P) & !(R))
