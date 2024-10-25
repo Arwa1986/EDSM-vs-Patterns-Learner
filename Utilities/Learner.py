@@ -90,7 +90,7 @@ class Learner:
             self.merge_sets(ds_with_highest_scour)
             # write_to_file('EDSM_Learner_tracker.txt' ,self.pta.G.to_string())
             print(f'merge counter: {self.counter}')
-            self.pta.G.print_graph()
+            # self.pta.G.print_graph()
             self.counter +=1
             # self.draw()
 
@@ -109,16 +109,16 @@ class Learner:
         self.visited = []
         # self.pick_next_blue(self.pta.G.initial_state)
         self.update_blue_states()
-        # print(f'BLUE_STATES: {self.blue_states}')
+        print(f'BLUE_STATES: {self.blue_states}')
         # self.draw()
         # mergable_states is  a list contains all pairs of state that are valid to be merged with their merging scour
         mergable_states=[]
         blue=None
         valid_for_at_least_one_red = False
         for blue in self.blue_states:
-            # print(f'RED_STATES: {self.red_states}')
+            print(f'RED_STATES: {self.red_states}')
             for red in self.red_states:
-                # print(f'BLUE: {blue} - RED: {red}')
+                print(f'BLUE: {blue} - RED: {red}')
                 # Create a new disjoint set data structure
                 ds = DisjointSet()
                 ds.s1 = red
@@ -135,7 +135,18 @@ class Learner:
                     self.compute_classes2(ds, work_to_do)
                 # ds.print()
                 if self.is_valid_merge(ds):
-                    merging_scour = self.compute_score_with_patterns(ds, pattern_list)
+                    Graph_dic_before_merging = self.pta.G.graph.copy()
+                    merging_scour = self.compute_scour(ds)
+                    self.merge_sets(ds)
+                    graph_violate_pattern, violated_patterns = violate_any_pattern2(pattern_list, self.pta.G)
+                    if graph_violate_pattern:
+                        print('block VALID merge')
+                        print(f'violated patterns:')
+                        for vp in violated_patterns:
+                            print(vp)
+                        merging_scour = -2
+                    # undo the merge
+                    self.pta.G.graph = Graph_dic_before_merging
                     ds.merging_scour = merging_scour
                     mergable_states.append(ds)
                     if merging_scour > 0:
@@ -144,7 +155,7 @@ class Learner:
                 else:
                     ds.merging_scour = -1
                     # ds.print()
-                # print(f'merging score for {ds.s1} & {ds.s2}: {ds.merging_scour}')
+                print(f'merging score for {ds.s1} & {ds.s2}: {ds.merging_scour}')
 
             if not valid_for_at_least_one_red:
                  # the blue_state can't be merged with any red_state
@@ -154,7 +165,7 @@ class Learner:
                 # self.draw()
         if valid_for_at_least_one_red:
             ds_with_highest_scour = self.pick_high_scour_pair(mergable_states)
-            # print(f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
+            print(f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
             self.merge_sets(ds_with_highest_scour)
             # self.pta.G.print_graph()
             # self.draw()

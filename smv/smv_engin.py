@@ -74,16 +74,16 @@ def run_nusmv(input_model):
   return output, err
 
 def close_nusmv():
-    smv.sendline("quit")
+    # smv.sendline('exit')
     smv.close()
 
 def parse_output(output, err):
 
-  if err:
-    print(output)
-    print("---------- Error ----------")
-    print(err)
-    exit()
+  # if err:
+  #   print(output)
+  #   print("---------- Error ----------")
+  #   print(err)
+  #   exit()
 
   output = output.replace("\r\n", "\n")
   output = output.replace("-- specification", "#####\n-- specification")

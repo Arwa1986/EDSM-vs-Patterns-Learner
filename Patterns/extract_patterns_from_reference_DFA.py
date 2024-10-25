@@ -49,7 +49,7 @@ def get_group1_patterns(event, labels):
     # patterns_violate_reference_graph = check_for_violations (graph, patterns)
 
 def check_for_violations (graph, patterns):
-    graph_SMV = graph.to_nusmv(graph.get_all_states(), patterns)
+    graph_SMV = graph.to_nusmv(patterns)
 
     output, err = run_nusmv(graph_SMV)
     specs = parse_output(output, err)
@@ -57,11 +57,12 @@ def check_for_violations (graph, patterns):
 
     patterns_violate_reference_graph = []
     for p in specs:
-        if not p.success:
+        if p.success:
             patterns_violate_reference_graph.append(p.condition)
     return patterns_violate_reference_graph
 
 def get_negative_patterns(graph):
     group1_patterns = extract_patterns_for_group1(graph)
+    print('number of group1 patterns = ', len(group1_patterns))
     negative_patterns_list = check_for_violations(graph, group1_patterns)
     return negative_patterns_list

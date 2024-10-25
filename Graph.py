@@ -1,3 +1,5 @@
+from gc import enable
+
 from numpy.ma.core import append
 from orca.object_properties import RELATION_DETAILS_FOR
 
@@ -279,20 +281,15 @@ class Graph:
                 print("initial state")
         print('==================================================================')
 
-    def to_nusmv(self, red_states, patterns):
-        transitions_to_blue_states = []
-        transitions_to_red_states  = []
-        for t in self.get_outgoing_transitions_for_list_of_states(None, red_states):
-            if t.to_state in red_states:
-                transitions_to_red_states.append(t)
-            else:
-                transitions_to_blue_states.append(t)
+    def to_nusmv(self, patterns):
+        states = self.get_all_states()
+        transitions =  self.get_outgoing_transitions_for_list_of_states(None, states)
 
         contents = 'MODULE main\nVAR\nstate:{'
 
-        for s in range(len(red_states)):
-            contents += f'{red_states[s].label}'
-            if s < len(red_states) - 1:
+        for s in range(len(states)):
+            contents += f'{states[s].label}'
+            if s < len(states) - 1:
                 contents += ', '
         contents += f'}};\n'
 
@@ -312,29 +309,36 @@ class Graph:
             if o < len(outputs) - 1:
                 contents += ', '
         contents += f'}};\n'
-
-
+        states_input_map = {}
         contents += f'ASSIGN\n'\
-                    'init(state):={self.initial_state.label};\n'\
+                    f'init(state):={self.initial_state.label};\n'\
                     'next(state):=case\n'
-        for t in transitions_to_red_states:
+        for t in transitions:
             contents += f'state = {t.from_state.label} & input = {t.input} : {t.to_state.label};\n'
+            # if t.to_state not in states_input_map:
+            #     states_input_map[t.to_state] = [t]
+            # else:
+            #     states_input_map[t.from_state].append(t)
         contents += f'TRUE : state;\n'
         contents += f'esac;\n'
 
         # block any transitions to blue states
-        contents += f'TRANS\n'
-        for i in range(len(transitions_to_blue_states)):
-            contents += f'!(state = {transitions_to_blue_states[i].from_state.label} & input = {transitions_to_blue_states[i].input})'
-            if i < len(transitions_to_blue_states) - 1:
-                contents += f' &\n'
-            else:
-                contents += f';\n'
+        states_input_map, is_graph_input_enabled = self.is_graph_input_enabled()
+        if not is_graph_input_enabled:
+            contents += f'TRANS\n'
+            for state, not_enabled_input in states_input_map.items():
+                for input in not_enabled_input:
+                    contents += f'!(state = {state.label} & input = {input}) &\n'
+            # replace the last & with ;
+            contents = contents.rsplit('&', 1)
+            contents = ';'.join(contents)
 
-        for i in range(len(transitions_to_red_states)):
-            contents += (f'!(state = {transitions_to_red_states[i].from_state.label} & input = {transitions_to_red_states[i].input} '
-                         f'-> output = {transitions_to_red_states[i].output})')
-            if i < len(transitions_to_blue_states) - 1:
+        # Defining the output for each state/input
+        contents += f'TRANS\n'
+        for i in range(len(transitions)):
+            contents += (f'(state = {transitions[i].from_state.label} & input = {transitions[i].input} '
+                         f'-> output = {transitions[i].output})')
+            if i < len(transitions) - 1:
                 contents += f' &\n'
             else:
                 contents += f';\n'
@@ -343,3 +347,21 @@ class Graph:
             contents += f'LTLSPEC {p};\n'
 
         return contents
+
+    def is_graph_input_enabled(self):
+        input_enabled = True
+        states_input_map = {} # map of states to the inputs that are not enabled
+        for s in self.get_all_states():
+            s_trans = self.get_outgoing_transitions_for_state(s)
+            if len(s_trans) != len(self.get_input_alphabet()):
+                input_enabled =  False
+                enabled_input = [] # list of enabled inputs: inputs that have transitions from the state
+                for t in s_trans:
+                    enabled_input.append(t.input)
+                for i in self.get_input_alphabet():
+                    if i not in enabled_input:
+                        if s not in states_input_map:
+                            states_input_map[s] = [i]
+                        else:
+                            states_input_map[s].append(i)
+        return states_input_map, input_enabled

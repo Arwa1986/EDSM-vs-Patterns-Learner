@@ -1,23 +1,8 @@
-import subprocess
-import os
+# 3- delete any transition that has an error output
+from Form_Converters.GraphObj_DotFile_converter import dot_to_Graph
+from Patterns.extract_patterns_from_reference_DFA import get_negative_patterns
 
-# Ensure the NuSMV executable is in the PATH
-nusmv_path = "/home/arwa/Programs/NuSMV-2.6.0-linux64/NuSMV-2.6.0-Linux/bin/NuSMV"  # Replace with the actual path to NuSMV
-
-# Full path to the input file
-input_file = "/smv/model.smv"
-
-# Print the current working directory
-print("Current working directory:", os.getcwd())
-
-# Check if the input file exists
-if not os.path.exists(input_file):
-    print(f"Error: The file {input_file} does not exist.")
-else:
-    # Run the command
-
-    result = subprocess.run([nusmv_path, input_file], capture_output=True, text=True)
-
-    # Print the output and error
-    print("STDOUT:", result.stdout)
-    print("STDERR:", result.stderr)
+CM_Graph_without_error_output = dot_to_Graph('coffeeMachineSystem/coffeemachine_without_error.dot')
+# 4- Extract Patterns from Reference DFA
+negative_patterns_list = get_negative_patterns(CM_Graph_without_error_output)
+print(f'number of negative patterns = {len(negative_patterns_list)}')

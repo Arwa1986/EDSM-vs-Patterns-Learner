@@ -1,12 +1,11 @@
 from Apps.RandomWalksGenerator import generate_random_walks
 from Form_Converters.GraphObj_DotFile_converter import dot_to_Graph
-# from State import State
-# from Form_Converters.Dictionary_Networkx_Converter import networkx_to_dictionary
-# from Form_Converters.DotFile_Networks_converter import dot_to_multidigraph
+from Patterns.extract_patterns_from_reference_DFA import get_negative_patterns
 from Utilities.Learner import Learner
 from Utilities.PTA import PTA
 from Utilities.evaluation import Evaluation
 from Utilities.write_clear_file import write_to_file, clear_file
+from smv.smv_engin import close_nusmv
 
 # clear files:
 clear_file('EDSM_Learner_Traces')
@@ -40,8 +39,8 @@ coffeMachine_pta.build_pta(Training_CM_pos_walks)
 # run EDSM learner
 coffeMachine_edsm = Learner(coffeMachine_pta)
 coffeMachine_edsm.setup()
-print('-------PTA--------')
-coffeMachine_edsm.pta.G.print_graph()
+# print('-------PTA--------')
+# coffeMachine_edsm.pta.G.print_graph()
 coffeMachine_edsm.run_EDSM_learner()
 
 # evaluate the learned automata
@@ -61,6 +60,7 @@ for walk in evalutation_CM_neg_walks:
             walk_str += ', '
       write_to_file('EDSM_Learner_Traces', walk_str)
 
+print('~~~~~~~~ EDSM ~~~~~~~~~')
 e = Evaluation(coffeMachine_edsm, evaluation_CM_pos_walks, evalutation_CM_neg_walks)
 true_positive, true_negative, false_positive, false_negative, precision, recall, specificity, F_measure, Accuracy, BCR = e.evaluate()
 print(f'true_positive = {true_positive}\n'
@@ -72,4 +72,35 @@ print(f'true_positive = {true_positive}\n'
       f'specificity = {specificity}\n'
       f'F_measure = {F_measure}\n'
       f'Accuracy = {Accuracy}\n'
+      f'BCR = {BCR}\n')
+
+# 4- Extract Patterns from Reference DFA
+negative_patterns_list = get_negative_patterns(CM_Graph)
+print(f'number of negative patterns = {len(negative_patterns_list)}')
+
+# 5- build PTA
+coffeMachine_pta = PTA()
+input_list, output_list = coffeMachine_pta.build_pta(Training_CM_pos_walks)
+coffeMachine_pta.G.set_input_alphabet(input_list)
+coffeMachine_pta.G.set_output_alphabet(output_list)
+
+# run EDSM learner
+coffeMachine_edsmPattens = Learner(coffeMachine_pta)
+coffeMachine_edsmPattens.setup()
+
+coffeMachine_edsmPattens.run_EDSM_with_pattern_learner(negative_patterns_list)
+close_nusmv()
+
+print('~~~~~~~~~ EDSM+PATTERNS ~~~~~~~~~')
+e = Evaluation(coffeMachine_edsmPattens, evaluation_CM_pos_walks, evalutation_CM_neg_walks)
+true_positive, true_negative, false_positive, false_negative, precision, recall, specificity, F_measure, Accuracy, BCR = e.evaluate()
+print(f'true_positive = {true_positive}\n'
+      f'true_negative = {true_negative}\n,'
+      f'false_positive = {false_positive}\n,'
+      f'false_negative = {false_negative}\n,'
+      f'precision = {precision}\n,'
+      f'recall = {recall}\n,'
+      f'specificity = {specificity}\n,'
+      f'F_measure = {F_measure}\n,'
+      f'Accuracy = {Accuracy}\n,'
       f'BCR = {BCR}\n')

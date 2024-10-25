@@ -17,7 +17,7 @@ def design_group1_patterns(P, R):
 
     # -- P is false after R
     # LTLSPEC G((R) -> G(!(P)))
-    p2 = f'G((input = {R_input} & output = {R_output}) -> G(!(input = {P_input} & output = {P_output})))'
+    # p2 = f'G((input = {R_input} & output = {R_output}) -> G(!(input = {P_input} & output = {P_output})))'
 
     # --P becomes true before R
     # LTLSPEC !(R) W ((P) & !(R))
@@ -25,17 +25,17 @@ def design_group1_patterns(P, R):
 
     # --P becomes true after R
     # LTLSPEC G (!(R)) | F ((R) & F (P)))
-    p4 = f'G (!(input = {R_input} & output = {R_output})) | F ((input = {R_input} & output = {R_output}) & F (input = {P_input} & output = {P_output}))'
+    # p4 = f'G (!(input = {R_input} & output = {R_output})) | F ((input = {R_input} & output = {R_output}) & F (input = {P_input} & output = {P_output}))'
 
     # --P is true before R
     # LTLSPEC F (R) -> ((P) U (R))
-    p5 = f'F (input = {R_input} & output = {R_output}) -> ((input = {P_input} & output = {P_output}) U (input = {R_input} & output = {R_output}))'
+    # p5 = f'F (input = {R_input} & output = {R_output}) -> ((input = {P_input} & output = {P_output}) U (input = {R_input} & output = {R_output}))'
 
     # --P is true after R
     # LTLSPEC G ((R) -> G((P)))
-    p6 = f'G ((input = {R_input} & output = {R_output}) -> G((input = {P_input} & output = {P_output})))'
+    # p6 = f'G ((input = {R_input} & output = {R_output}) -> G((input = {P_input} & output = {P_output})))'
 
-    group1_patterns = [p1, p2, p4, p5, p6]
+    group1_patterns = [p1]
     return group1_patterns
 
 # ~~~ TWO EVENTS ~~~
