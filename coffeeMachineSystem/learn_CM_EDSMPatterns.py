@@ -10,17 +10,17 @@ from Utilities.evaluation import Evaluation
 from smv.smv_engin import close_nusmv
 
 # 1- dot to Dictionary
-# CM_Graph = dot_to_Graph('coffeemachine.dot')
+CM_Graph = dot_to_Graph('coffeemachine.dot')
 
 # 3- generate random walks
-# Training_CM_pos_walks, evalutation_CM_neg_walks = generate_random_walks(CM_Graph, 10, 80, 30)
+Training_CM_pos_walks, evalutation_CM_neg_walks = generate_random_walks(CM_Graph, 10, 80, 30)
 # split the positive traces into traning and evaluation traces
-# evaluation_CM_pos_walks=[]
-# for i in range(len(Training_CM_pos_walks) - 50):
-#       # evaluation traces
-#       evaluation_CM_pos_walks.append(Training_CM_pos_walks[i])
-#       # remove the evaluation traces
-#       Training_CM_pos_walks.remove(Training_CM_pos_walks[i])
+evaluation_CM_pos_walks=[]
+for i in range(len(Training_CM_pos_walks) - 50):
+      # evaluation traces
+      evaluation_CM_pos_walks.append(Training_CM_pos_walks[i])
+      # remove the evaluation traces
+      Training_CM_pos_walks.remove(Training_CM_pos_walks[i])
 #
 # print('__________Learning______________')
 # print('__________Positive Traces_________')
@@ -99,18 +99,18 @@ coffeMachine_edsmPattens = Learner(coffeMachine_pta)
 coffeMachine_edsmPattens.setup()
 
 coffeMachine_edsmPattens.run_EDSM_with_pattern_learner(negative_patterns_list)
-close_nusmv()
+# close_nusmv()
 #
-# e = Evaluation(coffeMachine_edsmPattens, evaluation_CM_pos_walks, evalutation_CM_neg_walks)
-# true_positive, true_negative, false_positive, false_negative, precision, recall, specificity, F_measure, Accuracy, BCR = e.evaluate()
-# print(f'true_positive = {true_positive}\n'
-#       f'true_negative = {true_negative}\n,'
-#       f'false_positive = {false_positive}\n,'
-#       f'false_negative = {false_negative}\n,'
-#       f'precision = {precision}\n,'
-#       f'recall = {recall}\n,'
-#       f'specificity = {specificity}\n,'
-#       f'F_measure = {F_measure}\n,'
-#       f'Accuracy = {Accuracy}\n,'
-#       f'BCR = {BCR}\n')
+e = Evaluation(coffeMachine_edsmPattens, evaluation_CM_pos_walks, evalutation_CM_neg_walks)
+true_positive, true_negative, false_positive, false_negative, precision, recall, specificity, F_measure, Accuracy, BCR = e.evaluate()
+print(f'true_positive = {true_positive}\n'
+      f'true_negative = {true_negative}\n,'
+      f'false_positive = {false_positive}\n,'
+      f'false_negative = {false_negative}\n,'
+      f'precision = {precision}\n,'
+      f'recall = {recall}\n,'
+      f'specificity = {specificity}\n,'
+      f'F_measure = {F_measure}\n,'
+      f'Accuracy = {Accuracy}\n,'
+      f'BCR = {BCR}\n')
 #

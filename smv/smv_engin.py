@@ -12,9 +12,58 @@ class Spec:
     self.condition = condition
     self.success = success
     self.counterExample = counterExample
+    # self.name = self.get_name()
+
+    # get_name() is a helper function to get the name of the specification
+
+  def get_name(self):
+    # Extract event values
+    event_pattern = r'(input\s*=\s*.*?\s*&\s*output\s*=\s*.*?\d)'
+    events = re.findall(event_pattern, self.condition)
+    event_set = set(events)
+    events_list = list(event_set)
+
+    if len(events) < 2:
+      print("Not enough events found")
+      return 'Unknown pattern'
+
+    # Debug: Print extracted events
+    print(f"Extracted events: {events_list}")
+
+    # Build patterns dynamically
+    patterns = {}
+    if len(events_list) == 3:
+      patterns = {
+        # f'G(({S_event}  & ! {R_event} & F {R_event}) -> (!{P_event} U {R_event}))'
+        rf'G(({events_list[0]} & ! {events_list[1]} & F {events_list[1]}) -> (!{events_list[2] } U {events_list[1]}))': 'P_event "{P_event}" is false between S_event "{S_event}" and R_event "{R_event}"',
+        # f'G({S_event} & !{R_event} -> (G (!{P_event}) | (!{P_event} U {R_event})))'
+        rf'G({events_list[0]} & !{events_list[1]} -> (G (!{events_list[2]}) | (!{events_list[1]} U {events_list[1]})))': 'P_event "{P_event}" is false after S_event "{S_event}" until R_event "{R_event}"',
+
+      }
+    elif len(events_list) == 2:
+      patterns = {
+        # f'F {R_event} -> (!{P_event} U {R_event})'
+        rf'F {events_list[0]} -> (!{events_list[1]} U{events_list[0]})': 'P_event "{P_event}" is false before R_event "{R_event}"',
+        # f'G({R_event} -> G(!{P_event}))'
+        rf'G({events_list[1]} -> G(!{events_list[0]}))': 'P_event "{P_event}" is false after R_event "{R_event}"'
+      }
+
+    # Debug: Print built patterns
+    for pattern in patterns:
+      print(f"Pattern: {pattern}")
+
+    for pattern, name in patterns.items():
+      match = re.match(pattern, self.condition)
+      if match:
+        # Debug: Print matched pattern
+        print(f"Matched pattern: {pattern}")
+        return name.format(**match.groupdict())
+
+    print("No pattern matched")
+    return 'Unknown pattern'
 
   def __str__(self):
-    return f"Condition: {self.condition}\nSuccess: {self.success}\nCounter Example: {self.counterExample}"
+    return f"Condition: {self.condition}\n"#Success: {self.success}\nCounter Example: {self.counterExample}"
   
 
 def check_nusmv_model(input_model):
@@ -52,7 +101,7 @@ def check_nusmv_model(input_model):
 def run_nusmv(input_model):
   # x = os.system( f"nusmv model.smv" )
 
-  print("----- 🚀 run_nusmv  -----")
+  # print("----- 🚀 run_nusmv  -----")
   path = ''
   if os.path.exists("ram-dir"):
     path = 'ram-dir/'
@@ -79,11 +128,11 @@ def close_nusmv():
 
 def parse_output(output, err):
 
-  # if err:
-  #   print(output)
-  #   print("---------- Error ----------")
-  #   print(err)
-  #   exit()
+  if err:
+    print(output)
+    print("---------- Error ----------")
+    print(err)
+    exit()
 
   output = output.replace("\r\n", "\n")
   output = output.replace("-- specification", "#####\n-- specification")
@@ -92,7 +141,7 @@ def parse_output(output, err):
   ptrn = r"-- specification (.*?)  is (true|false)\n(#####|.*?Type: Counterexample(.*?)#####)"
   match = re.search(ptrn, output, re.DOTALL + re.MULTILINE)
   specs = []
-  
+
   if not match:
     print(output)
     print(err)
@@ -108,7 +157,48 @@ def parse_output(output, err):
   return specs
 
 
+import re
 
+
+def parse_nusmv_output(nusmv_output):
+  elist = []
+
+  # Regular expression to capture specifications and their results
+  spec_pattern = re.compile(r"-- specification\s+(.*?)\s+is\s+(true|false)", re.DOTALL)
+
+  # Find all specifications and their results
+  for match in spec_pattern.finditer(nusmv_output):
+    specification = match.group(1).strip()
+    result = match.group(2).strip() == "true"  # Convert result to boolean
+    counterexample = None
+
+    # Debugging output
+    # print(f"Found specification: {specification}, Result: {result}")
+
+    # If the result is false, find the corresponding counterexample
+    if not result:
+      counterexample_search_start = match.end()
+      counterexample_search = nusmv_output[counterexample_search_start:]
+
+      # Find the counterexample based on the pattern
+      counterexample_pattern = re.compile(
+        r"Trace Description: LTL Counterexample.*?(\n.*?)*?(?=\n-- specification|$)", re.DOTALL)
+      counterexample_match = counterexample_pattern.search(counterexample_search)
+
+      if counterexample_match:
+        counterexample = counterexample_match.group(0).strip()
+        # print(f"Counterexample found for {specification}: {counterexample}")
+      # else:
+        # print(f"No counterexample found for {specification}")
+
+    # Create a Spec object and append it to elist
+    spec_object = Spec(specification, result, counterexample)
+    elist.append(spec_object)
+
+  # Return the list only if there are false specifications
+  # false_specs = [spec for spec in elist if not spec.success]
+  # return false_specs if false_specs else []
+  return elist
 def print_output(specs):
 
   for sp in specs:

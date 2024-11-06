@@ -5,6 +5,7 @@ class State:
             self.type = type
             self.isInitial = isInitial
             self.color = "white"
+            self.ref_state = None
 
     def __hash__(self):
         return hash(self.label)
@@ -22,3 +23,9 @@ class State:
 
     def getOutgoingTransitions(self):
         pass
+
+    def set_reference_state(self, ref_state):
+        self.ref_state = ref_state
+
+    def get_reference_state(self):
+        return self.ref_state

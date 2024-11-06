@@ -1,8 +1,15 @@
-# 3- delete any transition that has an error output
-from Form_Converters.GraphObj_DotFile_converter import dot_to_Graph
-from Patterns.extract_patterns_from_reference_DFA import get_negative_patterns
+from State import State
+from Transition import Transition
 
-CM_Graph_without_error_output = dot_to_Graph('coffeeMachineSystem/coffeemachine_without_error.dot')
-# 4- Extract Patterns from Reference DFA
-negative_patterns_list = get_negative_patterns(CM_Graph_without_error_output)
-print(f'number of negative patterns = {len(negative_patterns_list)}')
+dictionary = {State(0): {
+        State(1): [Transition(State(0), State(1), "open / 1")],
+        State(4): [Transition(State(0), State(4), "load / 1")]
+    },
+    State(1): {
+        State(2): [Transition(State(1), State(2), "edit / 1")]
+    }
+}
+
+for state, transitions in dictionary.items():
+    if state.label in [0,4,6,9] and state.color=='white':
+        print (state.label)

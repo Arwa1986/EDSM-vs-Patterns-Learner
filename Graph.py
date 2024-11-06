@@ -365,3 +365,22 @@ class Graph:
                         else:
                             states_input_map[s].append(i)
         return states_input_map, input_enabled
+
+    def is_disconnected(self):
+        disconnected = False
+        for s in self.get_all_states():
+            if s!= self.initial_state and not self.get_incoming_transitions(s):
+                disconnected = True
+
+    def get_missing_transitions(self, graph_before_merge, target_state, set_to_merge):
+        missing_transitions = []
+        for s in set_to_merge:
+            incoming_transitions = graph_before_merge.get_incoming_transitions(s)
+            for i_t in incoming_transitions:
+                if not self.has_incoming_transition_label(target_state, i_t):
+                    missing_transitions.append((s, i_t))
+            outgoing_transitions = graph_before_merge.get_outgoing_transitions_for_state(s)
+            for o_t in outgoing_transitions:
+                if not self.has_outgoing_transition_for_label(target_state, o_t.label):
+                    missing_transitions.append((s, o_t))
+        return missing_transitions

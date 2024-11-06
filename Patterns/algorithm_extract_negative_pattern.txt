@@ -1,0 +1,27 @@
+Extract negative patterns from a reference automata.
+1- the negative patterns are the ones that does not belong to the reference automata.
+    This means the pattern can't be matched with any execution trace of the reference automata.
+    For example, in the text editor example, between "edit" and "save" there is no "open" action. Hence "edit, open, save" is a negative pattern.
+2- a list of a library of negative patterns is created. This library is used to generate negative patterns for the learning automata.
+    The library is a collection of patterns that has negative meaning. Those patterns are taken from this paper: https://matthewbdwyer.github.io/psp/patterns/ltl.html
+3- the algorithm starts by collecting all labels from the reference automata. a label is a pair of input and output actions.
+4- a list of all possible negative patterns is created. we take a label and pattern form the library and combine them to create a negative pattern.
+    if the pattern required more than one label then we take a combination of every possible pair of labels.
+    for example, if the library pattern is "P is false before R" and the labels are "open, edit, save" then the negative patterns are:
+    list of possible negative patterns:
+    open is false before open
+    open is false before edit
+    open is false before save
+    edit is false before save
+    edit is false before open
+    edit is false before edit
+    save is false before open
+    save is false before edit
+    save is false before save
+5- the algorithm checks if the negative pattern is a valid pattern. a pattern is valid if it can't be matched with any execution trace of the reference automata.
+to check the validity of the pattern, we use the NuSMV model checker. we create a NuSMV model that has the reference automata as a module and the negative pattern as a property.
+if the model checker returns a counterexample then the pattern is invalid and true otherwise.
+all the patterns that are satisfied by the model checker are added to the list of negative patterns.
+For example, the pattern "edit is false before open" if the model checker returns true, then "edit before open" is a negative pattern.
+
+

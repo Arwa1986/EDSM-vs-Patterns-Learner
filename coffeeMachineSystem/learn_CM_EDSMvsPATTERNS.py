@@ -75,7 +75,10 @@ print(f'true_positive = {true_positive}\n'
       f'BCR = {BCR}\n')
 
 # 4- Extract Patterns from Reference DFA
-negative_patterns_list = get_negative_patterns(CM_Graph)
+# 4-1- dot to Dictionary
+CM_Graph_reduced_transitions = dot_to_Graph('coffeemachine_without_error.dot.dot')
+
+negative_patterns_list = get_negative_patterns(CM_Graph_reduced_transitions)
 print(f'number of negative patterns = {len(negative_patterns_list)}')
 
 # 5- build PTA
@@ -89,7 +92,7 @@ coffeMachine_edsmPattens = Learner(coffeMachine_pta)
 coffeMachine_edsmPattens.setup()
 
 coffeMachine_edsmPattens.run_EDSM_with_pattern_learner(negative_patterns_list)
-close_nusmv()
+# close_nusmv()
 
 print('~~~~~~~~~ EDSM+PATTERNS ~~~~~~~~~')
 e = Evaluation(coffeMachine_edsmPattens, evaluation_CM_pos_walks, evalutation_CM_neg_walks)

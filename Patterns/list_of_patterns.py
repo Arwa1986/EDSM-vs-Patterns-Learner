@@ -12,14 +12,17 @@ def design_group1_patterns(P, R):
 
     P_event = f'(input = {P_input} & output = {P_output})'
     R_event = f'(input = {R_input} & output = {R_output})'
+    group1_patterns = []
     # ~~~ ONE EVENT ~~~
     # -- P is false before R
     #  LTLSPEC F (R) -> (!(P) U (R))
-    p1 = f'F {R_event} -> (!{P_event} U {R_event})'
-
+    if P != R:
+        p1 = f'F {R_event} -> (!{P_event} U {R_event})'
+        group1_patterns.append(p1)
     # -- P is false after R
     # LTLSPEC G((R) -> G(!(P)))
     p2 = f'G({R_event} -> G(!{P_event}))'
+    group1_patterns.append(p2)
 
     # --P becomes true before R
     # LTLSPEC !(R) W ((P) & !(R))
@@ -37,8 +40,34 @@ def design_group1_patterns(P, R):
     # LTLSPEC G ((R) -> G((P)))
     # p6 = f'G ((input = {R_input} & output = {R_output}) -> G((input = {P_input} & output = {P_output})))'
 
-    group1_patterns = [p1]
+
     return group1_patterns
+
+def design_group2_patterns(P, S, R):
+    P_input = P[0]
+    P_output = P[1]
+
+    R_input = R[0]
+    R_output = R[1]
+
+    S_input = S[0]
+    S_output = S[1]
+
+    P_event = f'(input = {P_input} & output = {P_output})'
+    R_event = f'(input = {R_input} & output = {R_output})'
+    S_event = f'(input = {S_input} & output = {S_output})'
+    group2_patterns = []
+
+    if S != R and R != P:
+        # --P is false between S and R
+        # G ((S & !R & <>R) -> (!P U R))
+        p1 = f'G(({S_event}  & ! {R_event} & F {R_event}) -> (!{P_event} U {R_event}))'
+        group2_patterns.append(p1)
+        # --P is false after Q until R
+        # G(Q & !R -> (G (!P) | (!P U R)))
+        p2 = f'G({S_event} & !{R_event} -> (G (!{P_event}) | (!{P_event} U {R_event})))'
+        group2_patterns.append(p2)
+    return group2_patterns
 
 # ~~~ TWO EVENTS ~~~
 # --S precedes P  Globally
@@ -48,11 +77,6 @@ f'!{P} W {S}'
 f'G ({P} -> F {S})'
 
 # ~~~ THREE EVENTS ~~~
-# --P is false between Q and R
-f'G(({Q} & !{R} & F {R}) -> (!{P} U {R}))'
-
-# --P is false after Q until R
-f'G({Q} & !{R} -> (!{P} W {R}))'
 
 # --P becomes true between Q and R
 f'G ({Q} & !{R} -> (!{R} W ({P} & !{R})))'

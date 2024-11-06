@@ -58,12 +58,20 @@ class Evaluation:
             elif not result or lastStateType=="rejected":
                 true_negative += 1
                 true_negative_list.append(trace)
-
-        precision = true_positive/(true_positive+false_positive)
-        recall = true_positive/(true_positive+false_negative)
-        specificity = true_negative/(true_negative+false_positive)
-
-        F_measure = round((2*precision*recall)/(precision+recall),1)
+        if true_positive+false_positive == 0:
+            precision = 0
+            specificity = 0
+        else:
+            precision = true_positive/(true_positive+false_positive)
+            specificity = true_negative/(true_negative+false_positive)
+        if true_positive+false_negative == 0:
+            recall = 0
+        else:
+            recall = true_positive / (true_positive + false_negative)
+        if precision+recall == 0:
+            F_measure = 0
+        else:
+            F_measure = round((2*precision*recall)/(precision+recall),1)
         Accuracy = round((true_positive + true_negative) / (len(self.positive_traces) + len(self.negative_traces)),1)
         BCR = round(0.5 * (recall+specificity),1)
 

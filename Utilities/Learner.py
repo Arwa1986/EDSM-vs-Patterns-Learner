@@ -87,9 +87,14 @@ class Learner:
             write_to_file('EDSM_Learner_tracker.txt','***********************************************************')
             write_to_file('EDSM_Learner_tracker.txt',f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
             write_to_file('EDSM_Learner_tracker.txt','***********************************************************')
+            print(
+                f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
             self.merge_sets(ds_with_highest_scour)
             # write_to_file('EDSM_Learner_tracker.txt' ,self.pta.G.to_string())
             print(f'merge counter: {self.counter}')
+            if ds_with_highest_scour.s1.get_reference_state() != ds_with_highest_scour.s2.get_reference_state():
+                print(f'Incorrect merge: {ds_with_highest_scour.s1} & {ds_with_highest_scour.s2}')
+
             # self.pta.G.print_graph()
             self.counter +=1
             # self.draw()
@@ -109,16 +114,18 @@ class Learner:
         self.visited = []
         # self.pick_next_blue(self.pta.G.initial_state)
         self.update_blue_states()
-        print(f'BLUE_STATES: {self.blue_states}')
+        # print(f'BLUE_STATES: {self.blue_states}')
+        write_to_file('EDSM+Patterns_Learner_tracker.txt', f'BLUE_STATES: {self.blue_states}')
         # self.draw()
         # mergable_states is  a list contains all pairs of state that are valid to be merged with their merging scour
         mergable_states=[]
         blue=None
         valid_for_at_least_one_red = False
         for blue in self.blue_states:
-            print(f'RED_STATES: {self.red_states}')
+            # print(f'RED_STATES: {self.red_states}')
+            write_to_file('EDSM+Patterns_Learner_tracker.txt', f'RED_STATES: {self.red_states}')
             for red in self.red_states:
-                print(f'BLUE: {blue} - RED: {red}')
+                # print(f'BLUE: {blue} - RED: {red}')
                 # Create a new disjoint set data structure
                 ds = DisjointSet()
                 ds.s1 = red
@@ -135,27 +142,32 @@ class Learner:
                     self.compute_classes2(ds, work_to_do)
                 # ds.print()
                 if self.is_valid_merge(ds):
-                    Graph_dic_before_merging = self.pta.G.graph.copy()
+                    Graph_dic_before_merging = copy.deepcopy(self.pta.G.graph)
                     merging_scour = self.compute_scour(ds)
                     self.merge_sets(ds)
                     graph_violate_pattern, violated_patterns = violate_any_pattern2(pattern_list, self.pta.G)
                     if graph_violate_pattern:
-                        print('block VALID merge')
-                        print(f'violated patterns:')
+                        # print(f'block INCORRECT merge: {ds.s1} & {ds.s2} => score: {merging_scour}')
+                        write_to_file('EDSM+Patterns_Learner_tracker.txt', f'block INCORRECT merge: {ds.s1} & {ds.s2} => score: {merging_scour}')
+                        # print(f'violated patterns:')
+                        write_to_file('EDSM+Patterns_Learner_tracker.txt', f'violated patterns:')
                         for vp in violated_patterns:
-                            print(vp)
+                            # print(vp)
+                            write_to_file('EDSM+Patterns_Learner_tracker.txt', f'{vp}')
                         merging_scour = -2
                     # undo the merge
                     self.pta.G.graph = Graph_dic_before_merging
                     ds.merging_scour = merging_scour
                     mergable_states.append(ds)
-                    if merging_scour > 0:
+                    if merging_scour >= 0:
                         # ds.print()
                         valid_for_at_least_one_red = True
                 else:
                     ds.merging_scour = -1
                     # ds.print()
-                print(f'merging score for {ds.s1} & {ds.s2}: {ds.merging_scour}')
+
+                # print(f'BLUE: {blue} - RED: {red}=> {ds.merging_scour}')
+                write_to_file('EDSM+Patterns_Learner_tracker.txt', f'BLUE: {blue} - RED: {red}=> {ds.merging_scour}')
 
             if not valid_for_at_least_one_red:
                  # the blue_state can't be merged with any red_state
@@ -163,10 +175,19 @@ class Learner:
                 self.make_children_blue(blue)
                 break
                 # self.draw()
+        incorrect_merges = False
         if valid_for_at_least_one_red:
             ds_with_highest_scour = self.pick_high_scour_pair(mergable_states)
             print(f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
+            if ds_with_highest_scour.s1.get_reference_state() != ds_with_highest_scour.s2.get_reference_state():
+                print(f'Incorrect merge: {ds_with_highest_scour.s1} & {ds_with_highest_scour.s2}')
+                write_to_file('EDSM+Patterns_Learner_tracker.txt', f'Incorrect merge: {ds_with_highest_scour.s1} & {ds_with_highest_scour.s2}')
+                incorrect_merges = True
             self.merge_sets(ds_with_highest_scour)
+            # if incorrect_merges:
+            self.pta.G.print_graph()
+            print(f'merge counter: {self.counter}')
+            self.counter += 1
             # self.pta.G.print_graph()
             # self.draw()
 
@@ -289,6 +310,7 @@ class Learner:
                 self.merge_states(represinitive, states)
 
     def merge_states(self, target, merge_list):
+        graph_before_merge = copy.deepcopy(self.pta.G)
         list_type = self. get_list_type(merge_list)
         if any (state.color == 'red' for state in merge_list):
             target.color = 'red'
@@ -304,6 +326,13 @@ class Learner:
             if source != target:  # this if to solve butterfly problem
                 self.pta.G.delete_state(source)
                 target.type = list_type
+        # check if the graph is disconnected after the merge
+        if self.pta.G.is_disconnected():
+            print(f'Graph is disconnected after merging {target} with {merge_list}')
+        #     compare the graph before and after the merge
+
+
+
         return target
 
     def transfer_out_edge(self, source, target):
