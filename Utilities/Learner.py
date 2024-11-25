@@ -142,10 +142,13 @@ class Learner:
                     self.compute_classes2(ds, work_to_do)
                 # ds.print()
                 if self.is_valid_merge(ds):
-                    Graph_dic_before_merging = copy.deepcopy(self.pta.G.graph)
                     merging_scour = self.compute_scour(ds)
-                    self.merge_sets(ds)
-                    graph_violate_pattern, violated_patterns = violate_any_pattern2(pattern_list, self.pta.G)
+                    # make a copy of the learner to check if the merge is valid with the patterns
+                    # the actual merge will be done on the copy and the original will remain unchanged
+                    # this way we don't have to unmerge. we just discard the copy
+                    temp_learner = copy.deepcopy(self)
+                    temp_learner.merge_sets(ds)
+                    graph_violate_pattern, violated_patterns = violate_any_pattern2(pattern_list, temp_learner.pta.G)
                     if graph_violate_pattern:
                         # print(f'block INCORRECT merge: {ds.s1} & {ds.s2} => score: {merging_scour}')
                         write_to_file('EDSM+Patterns_Learner_tracker.txt', f'block INCORRECT merge: {ds.s1} & {ds.s2} => score: {merging_scour}')
@@ -155,8 +158,7 @@ class Learner:
                             # print(vp)
                             write_to_file('EDSM+Patterns_Learner_tracker.txt', f'{vp}')
                         merging_scour = -2
-                    # undo the merge
-                    self.pta.G.graph = Graph_dic_before_merging
+
                     ds.merging_scour = merging_scour
                     mergable_states.append(ds)
                     if merging_scour >= 0:
