@@ -1,0 +1,727 @@
+BLUE_STATES: [State(1), State(9), State(14), State(35), State(38)]
+RED_STATES: [State(0)]
+BLUE: State(1) - RED: State(0)=> -1
+BLUE_STATES: [State(9), State(14), State(35), State(38), State(2), State(3), State(54), State(82), State(334)]
+RED_STATES: [State(0), State(1)]
+BLUE: State(9) - RED: State(0)=> -1
+BLUE: State(9) - RED: State(1)=> -1
+BLUE_STATES: [State(14), State(35), State(38), State(2), State(3), State(54), State(82), State(334), State(10), State(23), State(31), State(44), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(14) - RED: State(0)=> -1
+BLUE: State(14) - RED: State(1)=> 58
+BLUE: State(14) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(35) - RED: State(0)=> -1
+BLUE: State(35) - RED: State(1)=> 55
+BLUE: State(35) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(38) - RED: State(0)=> 99
+BLUE: State(38) - RED: State(1)=> -1
+BLUE: State(38) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(2) - RED: State(0)=> -1
+BLUE: State(2) - RED: State(1)=> 28
+BLUE: State(2) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(3) - RED: State(0)=> -1
+BLUE: State(3) - RED: State(1)=> 19
+BLUE: State(3) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(54) - RED: State(0)=> -1
+BLUE: State(54) - RED: State(1)=> 23
+BLUE: State(54) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(82) - RED: State(0)=> -1
+BLUE: State(82) - RED: State(1)=> 19
+BLUE: State(82) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(334) - RED: State(0)=> -1
+BLUE: State(334) - RED: State(1)=> 24
+BLUE: State(334) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(1)=> 21
+BLUE: State(10) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 16
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(1)=> 22
+BLUE: State(31) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(44) - RED: State(0)=> 37
+BLUE: State(44) - RED: State(1)=> -1
+BLUE: State(44) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(0) & State(38) has the highest scour : 99
+BLUE_STATES: [State(14), State(35), State(2), State(3), State(54), State(82), State(334), State(10), State(23), State(31), State(44), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(14) - RED: State(0)=> -1
+BLUE: State(14) - RED: State(1)=> 66
+BLUE: State(14) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(35) - RED: State(0)=> -1
+BLUE: State(35) - RED: State(1)=> 66
+BLUE: State(35) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(2) - RED: State(0)=> -1
+BLUE: State(2) - RED: State(1)=> 28
+BLUE: State(2) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(3) - RED: State(0)=> -1
+BLUE: State(3) - RED: State(1)=> 19
+BLUE: State(3) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(54) - RED: State(0)=> -1
+BLUE: State(54) - RED: State(1)=> 25
+BLUE: State(54) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(82) - RED: State(0)=> -1
+BLUE: State(82) - RED: State(1)=> 25
+BLUE: State(82) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(334) - RED: State(0)=> -1
+BLUE: State(334) - RED: State(1)=> 29
+BLUE: State(334) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(1)=> 21
+BLUE: State(10) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 22
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(1)=> 26
+BLUE: State(31) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(44) - RED: State(0)=> 46
+BLUE: State(44) - RED: State(1)=> -1
+BLUE: State(44) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(1) & State(14) has the highest scour : 66
+BLUE_STATES: [State(35), State(2), State(3), State(54), State(82), State(334), State(10), State(23), State(31), State(44), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(35) - RED: State(0)=> -1
+BLUE: State(35) - RED: State(1)=> 95
+BLUE: State(35) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(2) - RED: State(0)=> -1
+BLUE: State(2) - RED: State(1)=> 57
+BLUE: State(2) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(3) - RED: State(0)=> -1
+BLUE: State(3) - RED: State(1)=> 52
+BLUE: State(3) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(54) - RED: State(0)=> -1
+BLUE: State(54) - RED: State(1)=> 46
+BLUE: State(54) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(82) - RED: State(0)=> -1
+BLUE: State(82) - RED: State(1)=> 51
+BLUE: State(82) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(334) - RED: State(0)=> -1
+BLUE: State(334) - RED: State(1)=> 42
+BLUE: State(334) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(1)=> 29
+BLUE: State(10) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 23
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(1)=> 35
+BLUE: State(31) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(44) - RED: State(0)=> 47
+BLUE: State(44) - RED: State(1)=> -1
+BLUE: State(44) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(1) & State(35) has the highest scour : 95
+BLUE_STATES: [State(2), State(3), State(54), State(82), State(334), State(10), State(23), State(31), State(44), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(2) - RED: State(0)=> -1
+BLUE: State(2) - RED: State(1)=> 81
+BLUE: State(2) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(3) - RED: State(0)=> -1
+BLUE: State(3) - RED: State(1)=> 77
+BLUE: State(3) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(54) - RED: State(0)=> -1
+BLUE: State(54) - RED: State(1)=> 62
+BLUE: State(54) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(82) - RED: State(0)=> -1
+BLUE: State(82) - RED: State(1)=> 70
+BLUE: State(82) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(334) - RED: State(0)=> -1
+BLUE: State(334) - RED: State(1)=> 55
+BLUE: State(334) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(1)=> 29
+BLUE: State(10) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 26
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(1)=> 39
+BLUE: State(31) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(44) - RED: State(0)=> 50
+BLUE: State(44) - RED: State(1)=> -1
+BLUE: State(44) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(1) & State(2) has the highest scour : 81
+BLUE_STATES: [State(3), State(54), State(82), State(334), State(10), State(23), State(31), State(44), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(3) - RED: State(0)=> -1
+BLUE: State(3) - RED: State(1)=> 106
+BLUE: State(3) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(54) - RED: State(0)=> -1
+BLUE: State(54) - RED: State(1)=> 92
+BLUE: State(54) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(82) - RED: State(0)=> -1
+BLUE: State(82) - RED: State(1)=> 98
+BLUE: State(82) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(334) - RED: State(0)=> -1
+BLUE: State(334) - RED: State(1)=> 84
+BLUE: State(334) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(1)=> 35
+BLUE: State(10) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 31
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(1)=> 44
+BLUE: State(31) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(44) - RED: State(0)=> 51
+BLUE: State(44) - RED: State(1)=> -1
+BLUE: State(44) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(1) & State(3) has the highest scour : 106
+BLUE_STATES: [State(54), State(82), State(334), State(10), State(23), State(31), State(44), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(54) - RED: State(0)=> -1
+BLUE: State(54) - RED: State(1)=> 142
+BLUE: State(54) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(82) - RED: State(0)=> -1
+BLUE: State(82) - RED: State(1)=> 127
+BLUE: State(82) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(334) - RED: State(0)=> -1
+BLUE: State(334) - RED: State(1)=> 103
+BLUE: State(334) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(1)=> 39
+BLUE: State(10) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 35
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(1)=> 47
+BLUE: State(31) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(44) - RED: State(0)=> 51
+BLUE: State(44) - RED: State(1)=> -1
+BLUE: State(44) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(1) & State(54) has the highest scour : 142
+BLUE_STATES: [State(82), State(334), State(10), State(23), State(31), State(44), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(82) - RED: State(0)=> -1
+BLUE: State(82) - RED: State(1)=> 180
+BLUE: State(82) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(334) - RED: State(0)=> -1
+BLUE: State(334) - RED: State(1)=> 170
+BLUE: State(334) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(1)=> 45
+BLUE: State(10) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 39
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(1)=> 64
+BLUE: State(31) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(44) - RED: State(0)=> 54
+BLUE: State(44) - RED: State(1)=> -1
+BLUE: State(44) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(1) & State(82) has the highest scour : 180
+BLUE_STATES: [State(334), State(10), State(23), State(31), State(44), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(334) - RED: State(0)=> -1
+BLUE: State(334) - RED: State(1)=> 236
+BLUE: State(334) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(1)=> 48
+BLUE: State(10) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 41
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(1)=> 74
+BLUE: State(31) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(44) - RED: State(0)=> 66
+BLUE: State(44) - RED: State(1)=> -1
+BLUE: State(44) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(1) & State(334) has the highest scour : 236
+BLUE_STATES: [State(10), State(23), State(31), State(44), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(1)=> 57
+BLUE: State(10) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 54
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(1)=> 95
+BLUE: State(31) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(44) - RED: State(0)=> 69
+BLUE: State(44) - RED: State(1)=> -1
+BLUE: State(44) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(1) & State(31) has the highest scour : 95
+BLUE_STATES: [State(10), State(23), State(44), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(1)=> 57
+BLUE: State(10) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 54
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(44) - RED: State(0)=> 71
+BLUE: State(44) - RED: State(1)=> -1
+BLUE: State(44) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(0) & State(44) has the highest scour : 71
+BLUE_STATES: [State(10), State(23), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(1)=> 57
+BLUE: State(10) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 54
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(1) & State(10) has the highest scour : 57
+BLUE_STATES: [State(23), State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(23) - RED: State(0)=> -1
+BLUE: State(23) - RED: State(1)=> 54
+BLUE: State(23) - RED: State(9)=> -1
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+State(1) & State(23) has the highest scour : 54
+BLUE_STATES: [State(84)]
+RED_STATES: [State(0), State(1), State(9)]
+BLUE: State(84) - RED: State(0)=> -1
+BLUE: State(84) - RED: State(1)=> -1
+BLUE: State(84) - RED: State(9)=> -1
+BLUE_STATES: [State(85), State(401), State(1140), State(1145), State(1340)]
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(85) - RED: State(0)=> -1
+Violate a Pattern: State(1) & State(85) => score: 21
+violated patterns:
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(85) - RED: State(1)=> 19
+BLUE: State(85) - RED: State(9)=> -1
+BLUE: State(85) - RED: State(84)=> -1
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(401) - RED: State(0)=> -1
+Violate a Pattern: State(1) & State(401) => score: 8
+violated patterns:
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(401) - RED: State(1)=> 6
+BLUE: State(401) - RED: State(9)=> -1
+BLUE: State(401) - RED: State(84)=> -1
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1140) - RED: State(0)=> -1
+BLUE: State(1140) - RED: State(1)=> -1
+Violate a Pattern: State(9) & State(1140) => score: 6
+violated patterns:
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 0)) &  X ( X !(input = load & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = exit & output = 0)) &  X ( X !(input = exit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 0)) &  X ( X !(input = edit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1140) - RED: State(9)=> 4
+BLUE: State(1140) - RED: State(84)=> -1
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1145) - RED: State(0)=> -1
+BLUE: State(1145) - RED: State(1)=> -1
+BLUE: State(1145) - RED: State(9)=> -1
+BLUE: State(1145) - RED: State(84)=> 3
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1340) - RED: State(0)=> -1
+Violate a Pattern: State(1) & State(1340) => score: 4
+violated patterns:
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1340) - RED: State(1)=> 2
+Violate a Pattern: State(9) & State(1340) => score: 4
+violated patterns:
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = open & output = 1)) &  X ( X !(input = open & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1340) - RED: State(9)=> 2
+Violate a Pattern: State(84) & State(1340) => score: 1
+violated patterns:
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+BLUE: State(1340) - RED: State(84)=> -1
+State(1) & State(85) has the highest scour : 19
+BLUE_STATES: [State(401), State(1140), State(1145), State(1340)]
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(401) - RED: State(0)=> -1
+Violate a Pattern: State(1) & State(401) => score: 8
+violated patterns:
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(401) - RED: State(1)=> 6
+BLUE: State(401) - RED: State(9)=> -1
+BLUE: State(401) - RED: State(84)=> -1
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1140) - RED: State(0)=> -1
+BLUE: State(1140) - RED: State(1)=> -1
+Violate a Pattern: State(9) & State(1140) => score: 6
+violated patterns:
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 0)) &  X ( X !(input = load & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = exit & output = 0)) &  X ( X !(input = exit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 0)) &  X ( X !(input = edit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1140) - RED: State(9)=> 4
+BLUE: State(1140) - RED: State(84)=> -1
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1145) - RED: State(0)=> -1
+BLUE: State(1145) - RED: State(1)=> -1
+BLUE: State(1145) - RED: State(9)=> -1
+Violate a Pattern: State(84) & State(1145) => score: 3
+violated patterns:
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1145) - RED: State(84)=> 1
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1340) - RED: State(0)=> -1
+Violate a Pattern: State(1) & State(1340) => score: 4
+violated patterns:
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1340) - RED: State(1)=> 2
+Violate a Pattern: State(9) & State(1340) => score: 4
+violated patterns:
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = open & output = 1)) &  X ( X !(input = open & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1340) - RED: State(9)=> 2
+Violate a Pattern: State(84) & State(1340) => score: 1
+violated patterns:
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1340) - RED: State(84)=> -1
+State(1) & State(401) has the highest scour : 6
+BLUE_STATES: [State(1140), State(1145), State(1340)]
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1140) - RED: State(0)=> -1
+BLUE: State(1140) - RED: State(1)=> -1
+Violate a Pattern: State(9) & State(1140) => score: 6
+violated patterns:
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 0)) &  X ( X !(input = load & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = exit & output = 0)) &  X ( X !(input = exit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 0)) &  X ( X !(input = edit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1140) - RED: State(9)=> 4
+BLUE: State(1140) - RED: State(84)=> -1
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1145) - RED: State(0)=> -1
+BLUE: State(1145) - RED: State(1)=> -1
+BLUE: State(1145) - RED: State(9)=> -1
+Violate a Pattern: State(84) & State(1145) => score: 3
+violated patterns:
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1145) - RED: State(84)=> 1
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1340) - RED: State(0)=> -1
+Violate a Pattern: State(1) & State(1340) => score: 4
+violated patterns:
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1340) - RED: State(1)=> 2
+Violate a Pattern: State(9) & State(1340) => score: 4
+violated patterns:
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = open & output = 1)) &  X ( X !(input = open & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1340) - RED: State(9)=> 2
+Violate a Pattern: State(84) & State(1340) => score: 4
+violated patterns:
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1340) - RED: State(84)=> 2
+State(9) & State(1140) has the highest scour : 4
+BLUE_STATES: [State(1145), State(1340)]
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1145) - RED: State(0)=> -1
+BLUE: State(1145) - RED: State(1)=> -1
+BLUE: State(1145) - RED: State(9)=> -1
+Violate a Pattern: State(84) & State(1145) => score: 3
+violated patterns:
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 0)) &  X ( X !(input = load & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = exit & output = 0)) &  X ( X !(input = exit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 0)) &  X ( X !(input = edit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1145) - RED: State(84)=> 1
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1340) - RED: State(0)=> -1
+Violate a Pattern: State(1) & State(1340) => score: 4
+violated patterns:
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 0)) &  X ( X !(input = load & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = exit & output = 0)) &  X ( X !(input = exit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 0)) &  X ( X !(input = edit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1340) - RED: State(1)=> 2
+Violate a Pattern: State(9) & State(1340) => score: 4
+violated patterns:
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = open & output = 1)) &  X ( X !(input = open & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 0)) &  X ( X !(input = load & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = exit & output = 0)) &  X ( X !(input = exit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 0)) &  X ( X !(input = edit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1340) - RED: State(9)=> 2
+Violate a Pattern: State(84) & State(1340) => score: 4
+violated patterns:
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))))
+
+Condition: G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 0)) &  X ( X !(input = load & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = exit & output = 0)) &  X ( X !(input = exit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 0)) &  X ( X !(input = edit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1340) - RED: State(84)=> 2
+State(1) & State(1340) has the highest scour : 2
+BLUE_STATES: [State(1145)]
+RED_STATES: [State(0), State(1), State(9), State(84)]
+BLUE: State(1145) - RED: State(0)=> -1
+BLUE: State(1145) - RED: State(1)=> -1
+BLUE: State(1145) - RED: State(9)=> -1
+Violate a Pattern: State(84) & State(1145) => score: 3
+violated patterns:
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 0)) &  X ( X !(input = load & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = exit & output = 0)) &  X ( X !(input = exit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 0)) &  X ( X !(input = edit & output = 0))))
+
+Condition: G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))))
+
+Condition: G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))))
+
+BLUE: State(1145) - RED: State(84)=> 1
+State(84) & State(1145) has the highest scour : 1

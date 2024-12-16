@@ -1,0 +1,256 @@
+BLUE_STATES: [State(1), State(3), State(10), State(15), State(19)]
+RED_STATES: [State(0)]
+BLUE: State(1) - RED: State(0)=> 5
+RED_STATES: [State(0)]
+BLUE: State(3) - RED: State(0)=> -1
+RED_STATES: [State(0)]
+BLUE: State(10) - RED: State(0)=> -1
+RED_STATES: [State(0)]
+BLUE: State(15) - RED: State(0)=> -1
+RED_STATES: [State(0)]
+BLUE: State(19) - RED: State(0)=> -1
+BLUE_STATES: [State(3), State(10), State(15), State(19)]
+RED_STATES: [State(0)]
+BLUE: State(3) - RED: State(0)=> -1
+BLUE_STATES: [State(10), State(15), State(19), State(4), State(7), State(34)]
+RED_STATES: [State(0), State(3)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(3)=> 1
+RED_STATES: [State(0), State(3)]
+BLUE: State(15) - RED: State(0)=> -1
+BLUE: State(15) - RED: State(3)=> -1
+RED_STATES: [State(0), State(3)]
+BLUE: State(19) - RED: State(0)=> -1
+BLUE: State(19) - RED: State(3)=> 3
+RED_STATES: [State(0), State(3)]
+BLUE: State(4) - RED: State(0)=> 0
+BLUE: State(4) - RED: State(3)=> 0
+RED_STATES: [State(0), State(3)]
+BLUE: State(7) - RED: State(0)=> -1
+BLUE: State(7) - RED: State(3)=> 2
+RED_STATES: [State(0), State(3)]
+BLUE: State(34) - RED: State(0)=> -1
+BLUE: State(34) - RED: State(3)=> 2
+BLUE_STATES: [State(10), State(15), State(4), State(7), State(34)]
+RED_STATES: [State(0), State(3)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(3)=> 1
+RED_STATES: [State(0), State(3)]
+BLUE: State(15) - RED: State(0)=> -1
+BLUE: State(15) - RED: State(3)=> -1
+RED_STATES: [State(0), State(3)]
+BLUE: State(4) - RED: State(0)=> 1
+BLUE: State(4) - RED: State(3)=> 0
+RED_STATES: [State(0), State(3)]
+BLUE: State(7) - RED: State(0)=> -1
+BLUE: State(7) - RED: State(3)=> 2
+RED_STATES: [State(0), State(3)]
+BLUE: State(34) - RED: State(0)=> -1
+BLUE: State(34) - RED: State(3)=> 3
+BLUE_STATES: [State(10), State(15), State(4), State(7), State(21)]
+RED_STATES: [State(0), State(3)]
+BLUE: State(10) - RED: State(0)=> -1
+BLUE: State(10) - RED: State(3)=> 2
+RED_STATES: [State(0), State(3)]
+BLUE: State(15) - RED: State(0)=> -1
+BLUE: State(15) - RED: State(3)=> -1
+RED_STATES: [State(0), State(3)]
+BLUE: State(4) - RED: State(0)=> 1
+BLUE: State(4) - RED: State(3)=> 1
+RED_STATES: [State(0), State(3)]
+BLUE: State(7) - RED: State(0)=> -1
+BLUE: State(7) - RED: State(3)=> 2
+RED_STATES: [State(0), State(3)]
+BLUE: State(21) - RED: State(0)=> 2
+BLUE: State(21) - RED: State(3)=> 1
+BLUE_STATES: [State(15), State(4), State(7), State(21)]
+RED_STATES: [State(0), State(3)]
+BLUE: State(15) - RED: State(0)=> -1
+BLUE: State(15) - RED: State(3)=> -1
+BLUE_STATES: [State(4), State(7), State(21), State(16), State(24), State(43)]
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(4) - RED: State(0)=> -1
+BLUE: State(4) - RED: State(3)=> 3
+BLUE: State(4) - RED: State(15)=> 1
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(7) - RED: State(0)=> -1
+BLUE: State(7) - RED: State(3)=> 2
+BLUE: State(7) - RED: State(15)=> 2
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(21) - RED: State(0)=> 2
+BLUE: State(21) - RED: State(3)=> 1
+BLUE: State(21) - RED: State(15)=> -1
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(16) - RED: State(0)=> -1
+BLUE: State(16) - RED: State(3)=> 2
+BLUE: State(16) - RED: State(15)=> 1
+RED_STATES: [State(0), State(3), State(15)]
+block INCORRECT merge: State(0) & State(24) => score: 3
+violated patterns:
+Condition: G (((input = open & output = 1) & !(input = exit & output = 2)) -> ( G !(input = load & output = 1) | (!(input = load & output = 1) U (input = exit & output = 2))))
+
+BLUE: State(24) - RED: State(0)=> -2
+BLUE: State(24) - RED: State(3)=> 2
+BLUE: State(24) - RED: State(15)=> 1
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(43) - RED: State(0)=> -1
+BLUE: State(43) - RED: State(3)=> -1
+BLUE: State(43) - RED: State(15)=> -1
+BLUE_STATES: [State(7), State(21), State(16), State(24), State(43)]
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(7) - RED: State(0)=> -1
+BLUE: State(7) - RED: State(3)=> 2
+BLUE: State(7) - RED: State(15)=> 2
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(21) - RED: State(0)=> -1
+BLUE: State(21) - RED: State(3)=> 2
+BLUE: State(21) - RED: State(15)=> -1
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(16) - RED: State(0)=> -1
+BLUE: State(16) - RED: State(3)=> 2
+BLUE: State(16) - RED: State(15)=> 1
+RED_STATES: [State(0), State(3), State(15)]
+block INCORRECT merge: State(0) & State(24) => score: 3
+violated patterns:
+Condition: G (((input = open & output = 1) & !(input = exit & output = 2)) -> ( G !(input = load & output = 1) | (!(input = load & output = 1) U (input = exit & output = 2))))
+
+BLUE: State(24) - RED: State(0)=> -2
+BLUE: State(24) - RED: State(3)=> 2
+BLUE: State(24) - RED: State(15)=> 1
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(43) - RED: State(0)=> -1
+BLUE: State(43) - RED: State(3)=> -1
+BLUE: State(43) - RED: State(15)=> -1
+BLUE_STATES: [State(21), State(31), State(16), State(24), State(43)]
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(21) - RED: State(0)=> -1
+BLUE: State(21) - RED: State(3)=> 3
+BLUE: State(21) - RED: State(15)=> -1
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(3)=> 2
+BLUE: State(31) - RED: State(15)=> 1
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(16) - RED: State(0)=> -1
+BLUE: State(16) - RED: State(3)=> 2
+BLUE: State(16) - RED: State(15)=> 1
+RED_STATES: [State(0), State(3), State(15)]
+block INCORRECT merge: State(0) & State(24) => score: 4
+violated patterns:
+Condition: G (((input = open & output = 1) & !(input = exit & output = 2)) -> ( G !(input = load & output = 1) | (!(input = load & output = 1) U (input = exit & output = 2))))
+
+BLUE: State(24) - RED: State(0)=> -2
+BLUE: State(24) - RED: State(3)=> 4
+BLUE: State(24) - RED: State(15)=> 1
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(43) - RED: State(0)=> -1
+BLUE: State(43) - RED: State(3)=> -1
+BLUE: State(43) - RED: State(15)=> -1
+BLUE_STATES: [State(21), State(31), State(16), State(43)]
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(21) - RED: State(0)=> -1
+BLUE: State(21) - RED: State(3)=> 3
+BLUE: State(21) - RED: State(15)=> -1
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(3)=> 2
+BLUE: State(31) - RED: State(15)=> 2
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(16) - RED: State(0)=> -1
+BLUE: State(16) - RED: State(3)=> 2
+BLUE: State(16) - RED: State(15)=> 2
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(43) - RED: State(0)=> -1
+BLUE: State(43) - RED: State(3)=> -1
+BLUE: State(43) - RED: State(15)=> -1
+BLUE_STATES: [State(31), State(16), State(43)]
+RED_STATES: [State(0), State(3), State(15), State(33)]
+BLUE: State(31) - RED: State(0)=> -1
+BLUE: State(31) - RED: State(3)=> 3
+BLUE: State(31) - RED: State(15)=> 2
+BLUE: State(31) - RED: State(33)=> 0
+RED_STATES: [State(0), State(3), State(15), State(33)]
+BLUE: State(16) - RED: State(0)=> -1
+BLUE: State(16) - RED: State(3)=> 2
+BLUE: State(16) - RED: State(15)=> 2
+BLUE: State(16) - RED: State(33)=> 0
+RED_STATES: [State(0), State(3), State(15), State(33)]
+BLUE: State(43) - RED: State(0)=> -1
+BLUE: State(43) - RED: State(3)=> -1
+BLUE: State(43) - RED: State(15)=> -1
+BLUE: State(43) - RED: State(33)=> 0
+BLUE_STATES: [State(16), State(43)]
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(16) - RED: State(0)=> -1
+BLUE: State(16) - RED: State(3)=> 2
+BLUE: State(16) - RED: State(15)=> 2
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(43) - RED: State(0)=> -1
+BLUE: State(43) - RED: State(3)=> -1
+BLUE: State(43) - RED: State(15)=> -1
+BLUE_STATES: [State(43)]
+RED_STATES: [State(0), State(3), State(15)]
+BLUE: State(43) - RED: State(0)=> -1
+BLUE: State(43) - RED: State(3)=> -1
+BLUE: State(43) - RED: State(15)=> -1
+BLUE_STATES: [State(28), State(45)]
+RED_STATES: [State(0), State(3), State(15), State(43)]
+block INCORRECT merge: State(0) & State(28) => score: 0
+violated patterns:
+Condition: G (((input = edit & output = 1) & !(input = save & output = 1)) -> ( G !(input = open & output = 1) | (!(input = open & output = 1) U (input = save & output = 1))))
+
+Condition: G (((input = edit & output = 1) & !(input = exit & output = 2)) -> ( G !(input = open & output = 1) | (!(input = open & output = 1) U (input = exit & output = 2))))
+
+Condition: G (((input = edit & output = 1) & !(input = save & output = 1)) -> ( G !(input = load & output = 1) | (!(input = load & output = 1) U (input = save & output = 1))))
+
+Condition: G (((input = edit & output = 1) & !(input = exit & output = 2)) -> ( G !(input = load & output = 1) | (!(input = load & output = 1) U (input = exit & output = 2))))
+
+Condition: G (((input = open & output = 1) & !(input = exit & output = 2)) -> ( G !(input = load & output = 1) | (!(input = load & output = 1) U (input = exit & output = 2))))
+
+BLUE: State(28) - RED: State(0)=> -2
+BLUE: State(28) - RED: State(3)=> 0
+BLUE: State(28) - RED: State(15)=> 0
+BLUE: State(28) - RED: State(43)=> 0
+RED_STATES: [State(0), State(3), State(15), State(43)]
+BLUE: State(45) - RED: State(0)=> -1
+BLUE: State(45) - RED: State(3)=> -1
+BLUE: State(45) - RED: State(15)=> 0
+BLUE: State(45) - RED: State(43)=> -1
+BLUE_STATES: [State(45)]
+RED_STATES: [State(0), State(3), State(15), State(43)]
+BLUE: State(45) - RED: State(0)=> -1
+BLUE: State(45) - RED: State(3)=> -1
+BLUE: State(45) - RED: State(15)=> 0
+BLUE: State(45) - RED: State(43)=> -1
+BLUE_STATES: [State(46)]
+RED_STATES: [State(0), State(3), State(15), State(43)]
+BLUE: State(46) - RED: State(0)=> 0
+BLUE: State(46) - RED: State(3)=> 0
+block INCORRECT merge: State(15) & State(46) => score: 0
+violated patterns:
+Condition: G (((input = exit & output = 2) & !(input = open & output = 1)) -> ( G !(input = save & output = 1) | (!(input = save & output = 1) U (input = open & output = 1))))
+
+Condition: G (((input = exit & output = 2) & !(input = open & output = 1)) -> ( G !(input = edit & output = 1) | (!(input = edit & output = 1) U (input = open & output = 1))))
+
+BLUE: State(46) - RED: State(15)=> -2
+block INCORRECT merge: State(43) & State(46) => score: 0
+violated patterns:
+Condition: ( F (input = edit & output = 1) -> (!(input = save & output = 1) U (input = edit & output = 1)))
+
+Condition: G ((((input = open & output = 1) & !(input = edit & output = 1)) &  F (input = edit & output = 1)) -> (!(input = save & output = 1) U (input = edit & output = 1)))
+
+Condition: G (((input = open & output = 1) & !(input = edit & output = 1)) -> ( G !(input = save & output = 1) | (!(input = save & output = 1) U (input = edit & output = 1))))
+
+Condition: G ((((input = exit & output = 2) & !(input = edit & output = 1)) &  F (input = edit & output = 1)) -> (!(input = save & output = 1) U (input = edit & output = 1)))
+
+Condition: G (((input = exit & output = 2) & !(input = edit & output = 1)) -> ( G !(input = save & output = 1) | (!(input = save & output = 1) U (input = edit & output = 1))))
+
+Condition: G (((input = exit & output = 2) & !(input = open & output = 1)) -> ( G !(input = save & output = 1) | (!(input = save & output = 1) U (input = open & output = 1))))
+
+Condition: G ((((input = load & output = 1) & !(input = edit & output = 1)) &  F (input = edit & output = 1)) -> (!(input = save & output = 1) U (input = edit & output = 1)))
+
+Condition: G (((input = load & output = 1) & !(input = edit & output = 1)) -> ( G !(input = save & output = 1) | (!(input = save & output = 1) U (input = edit & output = 1))))
+
+Condition: G (((input = exit & output = 2) & !(input = open & output = 1)) -> ( G !(input = edit & output = 1) | (!(input = edit & output = 1) U (input = open & output = 1))))
+
+BLUE: State(46) - RED: State(43)=> -2

@@ -1,0 +1,96 @@
+MODULE main
+VAR
+state:{0, 1, 9, 84};
+IVAR
+input:{open, exit, edit, to_be_continued, load, save};
+output:{2, 1, 0, add_transition};
+ASSIGN
+init(state):=0;
+next(state):=case
+state = 0 & input = exit : 1;
+state = 0 & input = edit : 1;
+state = 0 & input = save : 1;
+state = 0 & input = open : 9;
+state = 0 & input = to_be_continued : 0;
+state = 0 & input = load : 0;
+state = 1 & input = to_be_continued : 1;
+state = 1 & input = load : 1;
+state = 1 & input = open : 1;
+state = 1 & input = exit : 1;
+state = 1 & input = edit : 1;
+state = 1 & input = save : 1;
+state = 9 & input = edit : 84;
+state = 9 & input = to_be_continued : 9;
+state = 9 & input = open : 1;
+state = 9 & input = save : 1;
+state = 9 & input = load : 1;
+state = 9 & input = exit : 0;
+state = 84 & input = to_be_continued : 84;
+state = 84 & input = edit : 84;
+state = 84 & input = exit : 1;
+state = 84 & input = open : 1;
+state = 84 & input = load : 1;
+state = 84 & input = save : 9;
+TRUE : state;
+esac;
+TRANS
+(state = 0 & input = exit -> output = 0) &
+(state = 0 & input = edit -> output = 0) &
+(state = 0 & input = save -> output = 0) &
+(state = 0 & input = open -> output = 1) &
+(state = 0 & input = to_be_continued -> output = add_transition) &
+(state = 0 & input = load -> output = 1) &
+(state = 1 & input = to_be_continued -> output = add_transition) &
+(state = 1 & input = load -> output = 0) &
+(state = 1 & input = open -> output = 0) &
+(state = 1 & input = exit -> output = 0) &
+(state = 1 & input = edit -> output = 0) &
+(state = 1 & input = save -> output = 0) &
+(state = 9 & input = edit -> output = 1) &
+(state = 9 & input = to_be_continued -> output = add_transition) &
+(state = 9 & input = open -> output = 0) &
+(state = 9 & input = save -> output = 0) &
+(state = 9 & input = load -> output = 0) &
+(state = 9 & input = exit -> output = 2) &
+(state = 84 & input = to_be_continued -> output = add_transition) &
+(state = 84 & input = edit -> output = 1) &
+(state = 84 & input = exit -> output = 0) &
+(state = 84 & input = open -> output = 0) &
+(state = 84 & input = load -> output = 0) &
+(state = 84 & input = save -> output = 1);
+LTLSPEC G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = open & output = 1)) &  X ( X !(input = open & output = 1))));
+LTLSPEC G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))));
+LTLSPEC G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))));
+LTLSPEC G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))));
+LTLSPEC G (!(input = load & output = 0) | (((input = load & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))));
+LTLSPEC G (!(input = load & output = 1) | (((input = load & output = 1) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))));
+LTLSPEC G (!(input = save & output = 0) | (((input = save & output = 0) ->  X !(input = open & output = 1)) &  X ( X !(input = open & output = 1))));
+LTLSPEC G (!(input = save & output = 0) | (((input = save & output = 0) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))));
+LTLSPEC G (!(input = save & output = 0) | (((input = save & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))));
+LTLSPEC G (!(input = save & output = 0) | (((input = save & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))));
+LTLSPEC G (!(input = save & output = 0) | (((input = save & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))));
+LTLSPEC G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 0)) &  X ( X !(input = load & output = 0))));
+LTLSPEC G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))));
+LTLSPEC G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))));
+LTLSPEC G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = exit & output = 0)) &  X ( X !(input = exit & output = 0))));
+LTLSPEC G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 0)) &  X ( X !(input = edit & output = 0))));
+LTLSPEC G (!(input = save & output = 1) | (((input = save & output = 1) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))));
+LTLSPEC G (!(input = exit & output = 0) | (((input = exit & output = 0) ->  X !(input = open & output = 1)) &  X ( X !(input = open & output = 1))));
+LTLSPEC G (!(input = exit & output = 0) | (((input = exit & output = 0) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))));
+LTLSPEC G (!(input = exit & output = 0) | (((input = exit & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))));
+LTLSPEC G (!(input = exit & output = 0) | (((input = exit & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))));
+LTLSPEC G (!(input = exit & output = 0) | (((input = exit & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))));
+LTLSPEC G (!(input = edit & output = 0) | (((input = edit & output = 0) ->  X !(input = open & output = 1)) &  X ( X !(input = open & output = 1))));
+LTLSPEC G (!(input = edit & output = 0) | (((input = edit & output = 0) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))));
+LTLSPEC G (!(input = edit & output = 0) | (((input = edit & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))));
+LTLSPEC G (!(input = edit & output = 0) | (((input = edit & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))));
+LTLSPEC G (!(input = edit & output = 0) | (((input = edit & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))));
+LTLSPEC G (!(input = exit & output = 2) | (((input = exit & output = 2) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))));
+LTLSPEC G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = open & output = 1)) &  X ( X !(input = open & output = 1))));
+LTLSPEC G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))));
+LTLSPEC G (!(input = edit & output = 1) | (((input = edit & output = 1) ->  X !(input = save & output = 0)) &  X ( X !(input = save & output = 0))));
+LTLSPEC G (!(input = open & output = 0) | (((input = open & output = 0) ->  X !(input = open & output = 1)) &  X ( X !(input = open & output = 1))));
+LTLSPEC G (!(input = open & output = 0) | (((input = open & output = 0) ->  X !(input = load & output = 1)) &  X ( X !(input = load & output = 1))));
+LTLSPEC G (!(input = open & output = 0) | (((input = open & output = 0) ->  X !(input = save & output = 1)) &  X ( X !(input = save & output = 1))));
+LTLSPEC G (!(input = open & output = 0) | (((input = open & output = 0) ->  X !(input = exit & output = 2)) &  X ( X !(input = exit & output = 2))));
+LTLSPEC G (!(input = open & output = 0) | (((input = open & output = 0) ->  X !(input = edit & output = 1)) &  X ( X !(input = edit & output = 1))));

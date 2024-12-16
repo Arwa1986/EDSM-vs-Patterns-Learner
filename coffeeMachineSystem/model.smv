@@ -1,0 +1,1079 @@
+MODULE main
+VAR
+state:{3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 19, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 36, 40, 41, 42, 43, 44, 51, 52, 53, 56, 57, 58, 59, 60, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 135, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 164, 165, 166, 167, 168, 169, 177, 181, 186, 187, 188, 189, 190, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202};
+IVAR
+input:{WATER, POD, BUTTON, CLEAN};
+output:{ok, error, coffee};
+ASSIGN
+init(state):=87;
+next(state):=case
+state = 3 & input = CLEAN : 4;
+state = 4 & input = POD : 5;
+state = 5 & input = POD : 87;
+state = 6 & input = CLEAN : 87;
+state = 6 & input = BUTTON : 94;
+state = 6 & input = WATER : 200;
+state = 7 & input = CLEAN : 7;
+state = 7 & input = WATER : 7;
+state = 7 & input = BUTTON : 7;
+state = 7 & input = POD : 10;
+state = 8 & input = CLEAN : 190;
+state = 8 & input = BUTTON : 190;
+state = 8 & input = POD : 7;
+state = 8 & input = WATER : 7;
+state = 10 & input = WATER : 94;
+state = 10 & input = CLEAN : 87;
+state = 10 & input = POD : 10;
+state = 10 & input = BUTTON : 190;
+state = 11 & input = POD : 12;
+state = 11 & input = CLEAN : 24;
+state = 11 & input = BUTTON : 51;
+state = 12 & input = CLEAN : 94;
+state = 13 & input = WATER : 14;
+state = 13 & input = POD : 123;
+state = 13 & input = CLEAN : 52;
+state = 13 & input = BUTTON : 113;
+state = 14 & input = WATER : 94;
+state = 14 & input = CLEAN : 94;
+state = 19 & input = CLEAN : 87;
+state = 19 & input = POD : 87;
+state = 19 & input = BUTTON : 94;
+state = 19 & input = WATER : 190;
+state = 22 & input = BUTTON : 23;
+state = 24 & input = CLEAN : 94;
+state = 25 & input = CLEAN : 26;
+state = 25 & input = POD : 85;
+state = 25 & input = BUTTON : 142;
+state = 25 & input = WATER : 87;
+state = 26 & input = BUTTON : 27;
+state = 26 & input = POD : 66;
+state = 27 & input = CLEAN : 28;
+state = 28 & input = BUTTON : 29;
+state = 31 & input = WATER : 126;
+state = 32 & input = BUTTON : 33;
+state = 33 & input = POD : 34;
+state = 36 & input = BUTTON : 94;
+state = 36 & input = CLEAN : 94;
+state = 36 & input = WATER : 94;
+state = 36 & input = POD : 36;
+state = 40 & input = BUTTON : 41;
+state = 40 & input = WATER : 148;
+state = 40 & input = CLEAN : 94;
+state = 41 & input = WATER : 42;
+state = 42 & input = WATER : 43;
+state = 43 & input = POD : 44;
+state = 51 & input = WATER : 30;
+state = 53 & input = CLEAN : 7;
+state = 53 & input = WATER : 7;
+state = 53 & input = BUTTON : 7;
+state = 57 & input = WATER : 7;
+state = 66 & input = BUTTON : 67;
+state = 66 & input = CLEAN : 161;
+state = 68 & input = WATER : 69;
+state = 69 & input = BUTTON : 70;
+state = 70 & input = CLEAN : 71;
+state = 71 & input = BUTTON : 72;
+state = 72 & input = POD : 73;
+state = 74 & input = CLEAN : 75;
+state = 75 & input = BUTTON : 76;
+state = 77 & input = WATER : 78;
+state = 79 & input = POD : 80;
+state = 80 & input = POD : 81;
+state = 82 & input = WATER : 83;
+state = 83 & input = WATER : 84;
+state = 85 & input = POD : 86;
+state = 85 & input = WATER : 116;
+state = 87 & input = POD : 19;
+state = 87 & input = WATER : 87;
+state = 87 & input = CLEAN : 87;
+state = 87 & input = BUTTON : 94;
+state = 92 & input = BUTTON : 93;
+state = 94 & input = BUTTON : 94;
+state = 94 & input = CLEAN : 94;
+state = 94 & input = POD : 94;
+state = 94 & input = WATER : 94;
+state = 95 & input = BUTTON : 96;
+state = 96 & input = CLEAN : 97;
+state = 97 & input = WATER : 98;
+state = 99 & input = BUTTON : 100;
+state = 99 & input = POD : 110;
+state = 99 & input = CLEAN : 150;
+state = 99 & input = WATER : 68;
+state = 100 & input = BUTTON : 101;
+state = 101 & input = BUTTON : 102;
+state = 102 & input = POD : 103;
+state = 109 & input = POD : 181;
+state = 110 & input = BUTTON : 111;
+state = 111 & input = WATER : 112;
+state = 113 & input = CLEAN : 114;
+state = 114 & input = CLEAN : 115;
+state = 117 & input = WATER : 118;
+state = 119 & input = CLEAN : 7;
+state = 123 & input = WATER : 94;
+state = 124 & input = WATER : 94;
+state = 124 & input = POD : 94;
+state = 124 & input = BUTTON : 94;
+state = 124 & input = CLEAN : 94;
+state = 128 & input = CLEAN : 129;
+state = 129 & input = BUTTON : 130;
+state = 130 & input = POD : 131;
+state = 130 & input = BUTTON : 77;
+state = 131 & input = POD : 132;
+state = 135 & input = POD : 92;
+state = 135 & input = CLEAN : 109;
+state = 142 & input = CLEAN : 143;
+state = 143 & input = CLEAN : 144;
+state = 145 & input = CLEAN : 146;
+state = 146 & input = POD : 147;
+state = 148 & input = WATER : 94;
+state = 149 & input = WATER : 167;
+state = 149 & input = POD : 32;
+state = 150 & input = WATER : 151;
+state = 150 & input = CLEAN : 155;
+state = 151 & input = POD : 152;
+state = 152 & input = POD : 153;
+state = 153 & input = CLEAN : 154;
+state = 155 & input = CLEAN : 156;
+state = 156 & input = CLEAN : 157;
+state = 157 & input = CLEAN : 158;
+state = 158 & input = CLEAN : 159;
+state = 159 & input = CLEAN : 160;
+state = 165 & input = WATER : 166;
+state = 167 & input = BUTTON : 168;
+state = 167 & input = CLEAN : 127;
+state = 168 & input = POD : 169;
+state = 188 & input = WATER : 189;
+state = 190 & input = CLEAN : 190;
+state = 190 & input = POD : 190;
+state = 190 & input = WATER : 8;
+state = 192 & input = CLEAN : 193;
+state = 193 & input = POD : 194;
+state = 194 & input = POD : 195;
+state = 195 & input = BUTTON : 196;
+state = 196 & input = POD : 197;
+state = 197 & input = POD : 198;
+state = 198 & input = BUTTON : 199;
+state = 200 & input = WATER : 201;
+state = 201 & input = POD : 202;
+TRUE : state;
+esac;
+TRANS
+!(state = 3 & input = WATER) &
+!(state = 3 & input = POD) &
+!(state = 3 & input = BUTTON) &
+!(state = 4 & input = WATER) &
+!(state = 4 & input = BUTTON) &
+!(state = 4 & input = CLEAN) &
+!(state = 5 & input = WATER) &
+!(state = 5 & input = BUTTON) &
+!(state = 5 & input = CLEAN) &
+!(state = 6 & input = POD) &
+!(state = 9 & input = WATER) &
+!(state = 9 & input = POD) &
+!(state = 9 & input = BUTTON) &
+!(state = 9 & input = CLEAN) &
+!(state = 11 & input = WATER) &
+!(state = 12 & input = WATER) &
+!(state = 12 & input = POD) &
+!(state = 12 & input = BUTTON) &
+!(state = 14 & input = POD) &
+!(state = 14 & input = BUTTON) &
+!(state = 22 & input = WATER) &
+!(state = 22 & input = POD) &
+!(state = 22 & input = CLEAN) &
+!(state = 23 & input = WATER) &
+!(state = 23 & input = POD) &
+!(state = 23 & input = BUTTON) &
+!(state = 23 & input = CLEAN) &
+!(state = 24 & input = WATER) &
+!(state = 24 & input = POD) &
+!(state = 24 & input = BUTTON) &
+!(state = 26 & input = WATER) &
+!(state = 26 & input = CLEAN) &
+!(state = 27 & input = WATER) &
+!(state = 27 & input = POD) &
+!(state = 27 & input = BUTTON) &
+!(state = 28 & input = WATER) &
+!(state = 28 & input = POD) &
+!(state = 28 & input = CLEAN) &
+!(state = 29 & input = WATER) &
+!(state = 29 & input = POD) &
+!(state = 29 & input = BUTTON) &
+!(state = 29 & input = CLEAN) &
+!(state = 30 & input = WATER) &
+!(state = 30 & input = POD) &
+!(state = 30 & input = BUTTON) &
+!(state = 30 & input = CLEAN) &
+!(state = 31 & input = POD) &
+!(state = 31 & input = BUTTON) &
+!(state = 31 & input = CLEAN) &
+!(state = 32 & input = WATER) &
+!(state = 32 & input = POD) &
+!(state = 32 & input = CLEAN) &
+!(state = 33 & input = WATER) &
+!(state = 33 & input = BUTTON) &
+!(state = 33 & input = CLEAN) &
+!(state = 34 & input = WATER) &
+!(state = 34 & input = POD) &
+!(state = 34 & input = BUTTON) &
+!(state = 34 & input = CLEAN) &
+!(state = 40 & input = POD) &
+!(state = 41 & input = POD) &
+!(state = 41 & input = BUTTON) &
+!(state = 41 & input = CLEAN) &
+!(state = 42 & input = POD) &
+!(state = 42 & input = BUTTON) &
+!(state = 42 & input = CLEAN) &
+!(state = 43 & input = WATER) &
+!(state = 43 & input = BUTTON) &
+!(state = 43 & input = CLEAN) &
+!(state = 44 & input = WATER) &
+!(state = 44 & input = POD) &
+!(state = 44 & input = BUTTON) &
+!(state = 44 & input = CLEAN) &
+!(state = 51 & input = POD) &
+!(state = 51 & input = BUTTON) &
+!(state = 51 & input = CLEAN) &
+!(state = 52 & input = WATER) &
+!(state = 52 & input = POD) &
+!(state = 52 & input = BUTTON) &
+!(state = 52 & input = CLEAN) &
+!(state = 53 & input = POD) &
+!(state = 56 & input = WATER) &
+!(state = 56 & input = POD) &
+!(state = 56 & input = BUTTON) &
+!(state = 56 & input = CLEAN) &
+!(state = 57 & input = POD) &
+!(state = 57 & input = BUTTON) &
+!(state = 57 & input = CLEAN) &
+!(state = 58 & input = WATER) &
+!(state = 58 & input = POD) &
+!(state = 58 & input = BUTTON) &
+!(state = 58 & input = CLEAN) &
+!(state = 59 & input = WATER) &
+!(state = 59 & input = POD) &
+!(state = 59 & input = BUTTON) &
+!(state = 59 & input = CLEAN) &
+!(state = 60 & input = WATER) &
+!(state = 60 & input = POD) &
+!(state = 60 & input = BUTTON) &
+!(state = 60 & input = CLEAN) &
+!(state = 66 & input = WATER) &
+!(state = 66 & input = POD) &
+!(state = 67 & input = WATER) &
+!(state = 67 & input = POD) &
+!(state = 67 & input = BUTTON) &
+!(state = 67 & input = CLEAN) &
+!(state = 68 & input = POD) &
+!(state = 68 & input = BUTTON) &
+!(state = 68 & input = CLEAN) &
+!(state = 69 & input = WATER) &
+!(state = 69 & input = POD) &
+!(state = 69 & input = CLEAN) &
+!(state = 70 & input = WATER) &
+!(state = 70 & input = POD) &
+!(state = 70 & input = BUTTON) &
+!(state = 71 & input = WATER) &
+!(state = 71 & input = POD) &
+!(state = 71 & input = CLEAN) &
+!(state = 72 & input = WATER) &
+!(state = 72 & input = BUTTON) &
+!(state = 72 & input = CLEAN) &
+!(state = 73 & input = WATER) &
+!(state = 73 & input = POD) &
+!(state = 73 & input = BUTTON) &
+!(state = 73 & input = CLEAN) &
+!(state = 74 & input = WATER) &
+!(state = 74 & input = POD) &
+!(state = 74 & input = BUTTON) &
+!(state = 75 & input = WATER) &
+!(state = 75 & input = POD) &
+!(state = 75 & input = CLEAN) &
+!(state = 76 & input = WATER) &
+!(state = 76 & input = POD) &
+!(state = 76 & input = BUTTON) &
+!(state = 76 & input = CLEAN) &
+!(state = 77 & input = POD) &
+!(state = 77 & input = BUTTON) &
+!(state = 77 & input = CLEAN) &
+!(state = 78 & input = WATER) &
+!(state = 78 & input = POD) &
+!(state = 78 & input = BUTTON) &
+!(state = 78 & input = CLEAN) &
+!(state = 79 & input = WATER) &
+!(state = 79 & input = BUTTON) &
+!(state = 79 & input = CLEAN) &
+!(state = 80 & input = WATER) &
+!(state = 80 & input = BUTTON) &
+!(state = 80 & input = CLEAN) &
+!(state = 81 & input = WATER) &
+!(state = 81 & input = POD) &
+!(state = 81 & input = BUTTON) &
+!(state = 81 & input = CLEAN) &
+!(state = 82 & input = POD) &
+!(state = 82 & input = BUTTON) &
+!(state = 82 & input = CLEAN) &
+!(state = 83 & input = POD) &
+!(state = 83 & input = BUTTON) &
+!(state = 83 & input = CLEAN) &
+!(state = 84 & input = WATER) &
+!(state = 84 & input = POD) &
+!(state = 84 & input = BUTTON) &
+!(state = 84 & input = CLEAN) &
+!(state = 85 & input = BUTTON) &
+!(state = 85 & input = CLEAN) &
+!(state = 86 & input = WATER) &
+!(state = 86 & input = POD) &
+!(state = 86 & input = BUTTON) &
+!(state = 86 & input = CLEAN) &
+!(state = 92 & input = WATER) &
+!(state = 92 & input = POD) &
+!(state = 92 & input = CLEAN) &
+!(state = 93 & input = WATER) &
+!(state = 93 & input = POD) &
+!(state = 93 & input = BUTTON) &
+!(state = 93 & input = CLEAN) &
+!(state = 95 & input = WATER) &
+!(state = 95 & input = POD) &
+!(state = 95 & input = CLEAN) &
+!(state = 96 & input = WATER) &
+!(state = 96 & input = POD) &
+!(state = 96 & input = BUTTON) &
+!(state = 97 & input = POD) &
+!(state = 97 & input = BUTTON) &
+!(state = 97 & input = CLEAN) &
+!(state = 98 & input = WATER) &
+!(state = 98 & input = POD) &
+!(state = 98 & input = BUTTON) &
+!(state = 98 & input = CLEAN) &
+!(state = 100 & input = WATER) &
+!(state = 100 & input = POD) &
+!(state = 100 & input = CLEAN) &
+!(state = 101 & input = WATER) &
+!(state = 101 & input = POD) &
+!(state = 101 & input = CLEAN) &
+!(state = 102 & input = WATER) &
+!(state = 102 & input = BUTTON) &
+!(state = 102 & input = CLEAN) &
+!(state = 103 & input = WATER) &
+!(state = 103 & input = POD) &
+!(state = 103 & input = BUTTON) &
+!(state = 103 & input = CLEAN) &
+!(state = 109 & input = WATER) &
+!(state = 109 & input = BUTTON) &
+!(state = 109 & input = CLEAN) &
+!(state = 110 & input = WATER) &
+!(state = 110 & input = POD) &
+!(state = 110 & input = CLEAN) &
+!(state = 111 & input = POD) &
+!(state = 111 & input = BUTTON) &
+!(state = 111 & input = CLEAN) &
+!(state = 112 & input = WATER) &
+!(state = 112 & input = POD) &
+!(state = 112 & input = BUTTON) &
+!(state = 112 & input = CLEAN) &
+!(state = 113 & input = WATER) &
+!(state = 113 & input = POD) &
+!(state = 113 & input = BUTTON) &
+!(state = 114 & input = WATER) &
+!(state = 114 & input = POD) &
+!(state = 114 & input = BUTTON) &
+!(state = 115 & input = WATER) &
+!(state = 115 & input = POD) &
+!(state = 115 & input = BUTTON) &
+!(state = 115 & input = CLEAN) &
+!(state = 116 & input = WATER) &
+!(state = 116 & input = POD) &
+!(state = 116 & input = BUTTON) &
+!(state = 116 & input = CLEAN) &
+!(state = 117 & input = POD) &
+!(state = 117 & input = BUTTON) &
+!(state = 117 & input = CLEAN) &
+!(state = 118 & input = WATER) &
+!(state = 118 & input = POD) &
+!(state = 118 & input = BUTTON) &
+!(state = 118 & input = CLEAN) &
+!(state = 119 & input = WATER) &
+!(state = 119 & input = POD) &
+!(state = 119 & input = BUTTON) &
+!(state = 120 & input = WATER) &
+!(state = 120 & input = POD) &
+!(state = 120 & input = BUTTON) &
+!(state = 120 & input = CLEAN) &
+!(state = 122 & input = WATER) &
+!(state = 122 & input = POD) &
+!(state = 122 & input = BUTTON) &
+!(state = 122 & input = CLEAN) &
+!(state = 123 & input = POD) &
+!(state = 123 & input = BUTTON) &
+!(state = 123 & input = CLEAN) &
+!(state = 125 & input = WATER) &
+!(state = 125 & input = POD) &
+!(state = 125 & input = BUTTON) &
+!(state = 125 & input = CLEAN) &
+!(state = 126 & input = WATER) &
+!(state = 126 & input = POD) &
+!(state = 126 & input = BUTTON) &
+!(state = 126 & input = CLEAN) &
+!(state = 127 & input = WATER) &
+!(state = 127 & input = POD) &
+!(state = 127 & input = BUTTON) &
+!(state = 127 & input = CLEAN) &
+!(state = 128 & input = WATER) &
+!(state = 128 & input = POD) &
+!(state = 128 & input = BUTTON) &
+!(state = 129 & input = WATER) &
+!(state = 129 & input = POD) &
+!(state = 129 & input = CLEAN) &
+!(state = 130 & input = WATER) &
+!(state = 130 & input = CLEAN) &
+!(state = 131 & input = WATER) &
+!(state = 131 & input = BUTTON) &
+!(state = 131 & input = CLEAN) &
+!(state = 132 & input = WATER) &
+!(state = 132 & input = POD) &
+!(state = 132 & input = BUTTON) &
+!(state = 132 & input = CLEAN) &
+!(state = 133 & input = WATER) &
+!(state = 133 & input = POD) &
+!(state = 133 & input = BUTTON) &
+!(state = 133 & input = CLEAN) &
+!(state = 135 & input = WATER) &
+!(state = 135 & input = BUTTON) &
+!(state = 142 & input = WATER) &
+!(state = 142 & input = POD) &
+!(state = 142 & input = BUTTON) &
+!(state = 143 & input = WATER) &
+!(state = 143 & input = POD) &
+!(state = 143 & input = BUTTON) &
+!(state = 144 & input = WATER) &
+!(state = 144 & input = POD) &
+!(state = 144 & input = BUTTON) &
+!(state = 144 & input = CLEAN) &
+!(state = 145 & input = WATER) &
+!(state = 145 & input = POD) &
+!(state = 145 & input = BUTTON) &
+!(state = 146 & input = WATER) &
+!(state = 146 & input = BUTTON) &
+!(state = 146 & input = CLEAN) &
+!(state = 147 & input = WATER) &
+!(state = 147 & input = POD) &
+!(state = 147 & input = BUTTON) &
+!(state = 147 & input = CLEAN) &
+!(state = 148 & input = POD) &
+!(state = 148 & input = BUTTON) &
+!(state = 148 & input = CLEAN) &
+!(state = 149 & input = BUTTON) &
+!(state = 149 & input = CLEAN) &
+!(state = 150 & input = POD) &
+!(state = 150 & input = BUTTON) &
+!(state = 151 & input = WATER) &
+!(state = 151 & input = BUTTON) &
+!(state = 151 & input = CLEAN) &
+!(state = 152 & input = WATER) &
+!(state = 152 & input = BUTTON) &
+!(state = 152 & input = CLEAN) &
+!(state = 153 & input = WATER) &
+!(state = 153 & input = POD) &
+!(state = 153 & input = BUTTON) &
+!(state = 154 & input = WATER) &
+!(state = 154 & input = POD) &
+!(state = 154 & input = BUTTON) &
+!(state = 154 & input = CLEAN) &
+!(state = 155 & input = WATER) &
+!(state = 155 & input = POD) &
+!(state = 155 & input = BUTTON) &
+!(state = 156 & input = WATER) &
+!(state = 156 & input = POD) &
+!(state = 156 & input = BUTTON) &
+!(state = 157 & input = WATER) &
+!(state = 157 & input = POD) &
+!(state = 157 & input = BUTTON) &
+!(state = 158 & input = WATER) &
+!(state = 158 & input = POD) &
+!(state = 158 & input = BUTTON) &
+!(state = 159 & input = WATER) &
+!(state = 159 & input = POD) &
+!(state = 159 & input = BUTTON) &
+!(state = 160 & input = WATER) &
+!(state = 160 & input = POD) &
+!(state = 160 & input = BUTTON) &
+!(state = 160 & input = CLEAN) &
+!(state = 161 & input = WATER) &
+!(state = 161 & input = POD) &
+!(state = 161 & input = BUTTON) &
+!(state = 161 & input = CLEAN) &
+!(state = 164 & input = WATER) &
+!(state = 164 & input = POD) &
+!(state = 164 & input = BUTTON) &
+!(state = 164 & input = CLEAN) &
+!(state = 165 & input = POD) &
+!(state = 165 & input = BUTTON) &
+!(state = 165 & input = CLEAN) &
+!(state = 166 & input = WATER) &
+!(state = 166 & input = POD) &
+!(state = 166 & input = BUTTON) &
+!(state = 166 & input = CLEAN) &
+!(state = 167 & input = WATER) &
+!(state = 167 & input = POD) &
+!(state = 168 & input = WATER) &
+!(state = 168 & input = BUTTON) &
+!(state = 168 & input = CLEAN) &
+!(state = 169 & input = WATER) &
+!(state = 169 & input = POD) &
+!(state = 169 & input = BUTTON) &
+!(state = 169 & input = CLEAN) &
+!(state = 177 & input = WATER) &
+!(state = 177 & input = POD) &
+!(state = 177 & input = BUTTON) &
+!(state = 177 & input = CLEAN) &
+!(state = 181 & input = WATER) &
+!(state = 181 & input = POD) &
+!(state = 181 & input = BUTTON) &
+!(state = 181 & input = CLEAN) &
+!(state = 186 & input = WATER) &
+!(state = 186 & input = POD) &
+!(state = 186 & input = BUTTON) &
+!(state = 186 & input = CLEAN) &
+!(state = 187 & input = WATER) &
+!(state = 187 & input = POD) &
+!(state = 187 & input = BUTTON) &
+!(state = 187 & input = CLEAN) &
+!(state = 188 & input = POD) &
+!(state = 188 & input = BUTTON) &
+!(state = 188 & input = CLEAN) &
+!(state = 189 & input = WATER) &
+!(state = 189 & input = POD) &
+!(state = 189 & input = BUTTON) &
+!(state = 189 & input = CLEAN) &
+!(state = 190 & input = BUTTON) &
+!(state = 192 & input = WATER) &
+!(state = 192 & input = POD) &
+!(state = 192 & input = BUTTON) &
+!(state = 193 & input = WATER) &
+!(state = 193 & input = BUTTON) &
+!(state = 193 & input = CLEAN) &
+!(state = 194 & input = WATER) &
+!(state = 194 & input = BUTTON) &
+!(state = 194 & input = CLEAN) &
+!(state = 195 & input = WATER) &
+!(state = 195 & input = POD) &
+!(state = 195 & input = CLEAN) &
+!(state = 196 & input = WATER) &
+!(state = 196 & input = BUTTON) &
+!(state = 196 & input = CLEAN) &
+!(state = 197 & input = WATER) &
+!(state = 197 & input = BUTTON) &
+!(state = 197 & input = CLEAN) &
+!(state = 198 & input = WATER) &
+!(state = 198 & input = POD) &
+!(state = 198 & input = CLEAN) &
+!(state = 199 & input = WATER) &
+!(state = 199 & input = POD) &
+!(state = 199 & input = BUTTON) &
+!(state = 199 & input = CLEAN) &
+!(state = 200 & input = POD) &
+!(state = 200 & input = BUTTON) &
+!(state = 200 & input = CLEAN) &
+!(state = 201 & input = WATER) &
+!(state = 201 & input = BUTTON) &
+!(state = 201 & input = CLEAN) &
+!(state = 202 & input = WATER) &
+!(state = 202 & input = POD) &
+!(state = 202 & input = BUTTON) &
+!(state = 202 & input = CLEAN) ;
+TRANS
+(state = 3 & input = CLEAN -> output = ok) &
+(state = 4 & input = POD -> output = ok) &
+(state = 5 & input = POD -> output = ok) &
+(state = 6 & input = CLEAN -> output = ok) &
+(state = 6 & input = BUTTON -> output = error) &
+(state = 6 & input = WATER -> output = ok) &
+(state = 7 & input = CLEAN -> output = ok) &
+(state = 7 & input = WATER -> output = ok) &
+(state = 7 & input = BUTTON -> output = error) &
+(state = 7 & input = POD -> output = error) &
+(state = 8 & input = CLEAN -> output = ok) &
+(state = 8 & input = BUTTON -> output = coffee) &
+(state = 8 & input = POD -> output = ok) &
+(state = 8 & input = WATER -> output = ok) &
+(state = 10 & input = WATER -> output = error) &
+(state = 10 & input = CLEAN -> output = ok) &
+(state = 10 & input = POD -> output = ok) &
+(state = 10 & input = BUTTON -> output = error) &
+(state = 11 & input = POD -> output = error) &
+(state = 11 & input = CLEAN -> output = error) &
+(state = 11 & input = BUTTON -> output = error) &
+(state = 12 & input = CLEAN -> output = error) &
+(state = 13 & input = WATER -> output = error) &
+(state = 13 & input = POD -> output = error) &
+(state = 13 & input = CLEAN -> output = error) &
+(state = 13 & input = BUTTON -> output = error) &
+(state = 14 & input = WATER -> output = error) &
+(state = 14 & input = CLEAN -> output = error) &
+(state = 19 & input = CLEAN -> output = ok) &
+(state = 19 & input = POD -> output = ok) &
+(state = 19 & input = BUTTON -> output = error) &
+(state = 19 & input = WATER -> output = ok) &
+(state = 22 & input = BUTTON -> output = error) &
+(state = 24 & input = CLEAN -> output = error) &
+(state = 25 & input = CLEAN -> output = ok) &
+(state = 25 & input = POD -> output = ok) &
+(state = 25 & input = BUTTON -> output = error) &
+(state = 25 & input = WATER -> output = ok) &
+(state = 26 & input = BUTTON -> output = error) &
+(state = 26 & input = POD -> output = ok) &
+(state = 27 & input = CLEAN -> output = error) &
+(state = 28 & input = BUTTON -> output = error) &
+(state = 31 & input = WATER -> output = error) &
+(state = 32 & input = BUTTON -> output = error) &
+(state = 33 & input = POD -> output = error) &
+(state = 36 & input = BUTTON -> output = error) &
+(state = 36 & input = CLEAN -> output = error) &
+(state = 36 & input = WATER -> output = error) &
+(state = 36 & input = POD -> output = error) &
+(state = 40 & input = BUTTON -> output = error) &
+(state = 40 & input = WATER -> output = error) &
+(state = 40 & input = CLEAN -> output = error) &
+(state = 41 & input = WATER -> output = error) &
+(state = 42 & input = WATER -> output = error) &
+(state = 43 & input = POD -> output = error) &
+(state = 51 & input = WATER -> output = error) &
+(state = 53 & input = CLEAN -> output = ok) &
+(state = 53 & input = WATER -> output = ok) &
+(state = 53 & input = BUTTON -> output = error) &
+(state = 57 & input = WATER -> output = error) &
+(state = 66 & input = BUTTON -> output = error) &
+(state = 66 & input = CLEAN -> output = ok) &
+(state = 68 & input = WATER -> output = error) &
+(state = 69 & input = BUTTON -> output = error) &
+(state = 70 & input = CLEAN -> output = error) &
+(state = 71 & input = BUTTON -> output = error) &
+(state = 72 & input = POD -> output = error) &
+(state = 74 & input = CLEAN -> output = error) &
+(state = 75 & input = BUTTON -> output = error) &
+(state = 77 & input = WATER -> output = error) &
+(state = 79 & input = POD -> output = error) &
+(state = 80 & input = POD -> output = error) &
+(state = 82 & input = WATER -> output = error) &
+(state = 83 & input = WATER -> output = error) &
+(state = 85 & input = POD -> output = ok) &
+(state = 85 & input = WATER -> output = ok) &
+(state = 87 & input = POD -> output = ok) &
+(state = 87 & input = WATER -> output = ok) &
+(state = 87 & input = CLEAN -> output = ok) &
+(state = 87 & input = BUTTON -> output = error) &
+(state = 92 & input = BUTTON -> output = error) &
+(state = 94 & input = BUTTON -> output = error) &
+(state = 94 & input = CLEAN -> output = error) &
+(state = 94 & input = POD -> output = error) &
+(state = 94 & input = WATER -> output = error) &
+(state = 95 & input = BUTTON -> output = error) &
+(state = 96 & input = CLEAN -> output = error) &
+(state = 97 & input = WATER -> output = error) &
+(state = 99 & input = BUTTON -> output = error) &
+(state = 99 & input = POD -> output = error) &
+(state = 99 & input = CLEAN -> output = error) &
+(state = 99 & input = WATER -> output = error) &
+(state = 100 & input = BUTTON -> output = error) &
+(state = 101 & input = BUTTON -> output = error) &
+(state = 102 & input = POD -> output = error) &
+(state = 109 & input = POD -> output = ok) &
+(state = 110 & input = BUTTON -> output = error) &
+(state = 111 & input = WATER -> output = error) &
+(state = 113 & input = CLEAN -> output = error) &
+(state = 114 & input = CLEAN -> output = error) &
+(state = 117 & input = WATER -> output = ok) &
+(state = 119 & input = CLEAN -> output = ok) &
+(state = 123 & input = WATER -> output = error) &
+(state = 124 & input = WATER -> output = error) &
+(state = 124 & input = POD -> output = error) &
+(state = 124 & input = BUTTON -> output = error) &
+(state = 124 & input = CLEAN -> output = error) &
+(state = 128 & input = CLEAN -> output = error) &
+(state = 129 & input = BUTTON -> output = error) &
+(state = 130 & input = POD -> output = error) &
+(state = 130 & input = BUTTON -> output = error) &
+(state = 131 & input = POD -> output = error) &
+(state = 135 & input = POD -> output = ok) &
+(state = 135 & input = CLEAN -> output = ok) &
+(state = 142 & input = CLEAN -> output = error) &
+(state = 143 & input = CLEAN -> output = error) &
+(state = 145 & input = CLEAN -> output = error) &
+(state = 146 & input = POD -> output = error) &
+(state = 148 & input = WATER -> output = error) &
+(state = 149 & input = WATER -> output = error) &
+(state = 149 & input = POD -> output = error) &
+(state = 150 & input = WATER -> output = error) &
+(state = 150 & input = CLEAN -> output = error) &
+(state = 151 & input = POD -> output = error) &
+(state = 152 & input = POD -> output = error) &
+(state = 153 & input = CLEAN -> output = error) &
+(state = 155 & input = CLEAN -> output = error) &
+(state = 156 & input = CLEAN -> output = error) &
+(state = 157 & input = CLEAN -> output = error) &
+(state = 158 & input = CLEAN -> output = error) &
+(state = 159 & input = CLEAN -> output = error) &
+(state = 165 & input = WATER -> output = error) &
+(state = 167 & input = BUTTON -> output = error) &
+(state = 167 & input = CLEAN -> output = error) &
+(state = 168 & input = POD -> output = error) &
+(state = 188 & input = WATER -> output = ok) &
+(state = 190 & input = CLEAN -> output = ok) &
+(state = 190 & input = POD -> output = ok) &
+(state = 190 & input = WATER -> output = ok) &
+(state = 192 & input = CLEAN -> output = error) &
+(state = 193 & input = POD -> output = error) &
+(state = 194 & input = POD -> output = error) &
+(state = 195 & input = BUTTON -> output = error) &
+(state = 196 & input = POD -> output = error) &
+(state = 197 & input = POD -> output = error) &
+(state = 198 & input = BUTTON -> output = error) &
+(state = 200 & input = WATER -> output = ok) &
+(state = 201 & input = POD -> output = ok);
+LTLSPEC G ((input = WATER & output = error) ->  G !(input = CLEAN & output = ok));
+LTLSPEC G ((((input = WATER & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = CLEAN & output = ok) U (input = POD & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = POD & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = POD & output = error))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = CLEAN & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = WATER & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = CLEAN & output = ok) U (input = POD & output = ok)));
+LTLSPEC G (((input = WATER & output = error) & !(input = POD & output = ok)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = POD & output = ok))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = CLEAN & output = ok) U (input = WATER & output = ok)));
+LTLSPEC G (((input = WATER & output = error) & !(input = WATER & output = ok)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = CLEAN & output = ok) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = BUTTON & output = error))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = CLEAN & output = ok) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = CLEAN & output = error))));
+LTLSPEC G ((input = POD & output = error) ->  G !(input = CLEAN & output = ok));
+LTLSPEC G ((((input = POD & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = CLEAN & output = ok) U (input = WATER & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = WATER & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = WATER & output = error))));
+LTLSPEC G ((((input = POD & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = CLEAN & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = POD & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = POD & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = CLEAN & output = ok) U (input = POD & output = ok)));
+LTLSPEC G (((input = POD & output = error) & !(input = POD & output = ok)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = POD & output = ok))));
+LTLSPEC G ((((input = POD & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = CLEAN & output = ok) U (input = WATER & output = ok)));
+LTLSPEC G (((input = POD & output = error) & !(input = WATER & output = ok)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = POD & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = CLEAN & output = ok) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = BUTTON & output = error))));
+LTLSPEC G ((((input = POD & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = CLEAN & output = ok) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = CLEAN & output = error))));
+LTLSPEC G ((input = BUTTON & output = error) ->  G !(input = CLEAN & output = ok));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = CLEAN & output = ok) U (input = WATER & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = WATER & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = WATER & output = error))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = CLEAN & output = ok) U (input = POD & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = POD & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = POD & output = error))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = CLEAN & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = CLEAN & output = ok) U (input = POD & output = ok)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = POD & output = ok)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = POD & output = ok))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = CLEAN & output = ok) U (input = WATER & output = ok)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = WATER & output = ok)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = CLEAN & output = ok) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = CLEAN & output = error))));
+LTLSPEC G ((input = CLEAN & output = error) ->  G !(input = CLEAN & output = ok));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = CLEAN & output = ok) U (input = WATER & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = WATER & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = WATER & output = error))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = CLEAN & output = ok) U (input = POD & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = POD & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = POD & output = error))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = CLEAN & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = CLEAN & output = ok) U (input = POD & output = ok)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = POD & output = ok)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = POD & output = ok))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = CLEAN & output = ok) U (input = WATER & output = ok)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = WATER & output = ok)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = CLEAN & output = ok) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = CLEAN & output = ok) | (!(input = CLEAN & output = ok) U (input = BUTTON & output = error))));
+LTLSPEC ( F (input = CLEAN & output = ok) -> (!(input = WATER & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = WATER & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = WATER & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = WATER & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = WATER & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = WATER & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = WATER & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = WATER & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = POD & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = WATER & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = WATER & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = BUTTON & output = coffee) -> (!(input = WATER & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = WATER & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = WATER & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = POD & output = ok) -> (!(input = WATER & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = WATER & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = WATER & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = WATER & output = ok) -> (!(input = WATER & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = WATER & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = WATER & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = WATER & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = WATER & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = WATER & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = WATER & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = WATER & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = WATER & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = CLEAN & output = ok) -> (!(input = POD & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = POD & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = POD & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = POD & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = POD & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = POD & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = POD & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = POD & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = POD & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = POD & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = POD & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = BUTTON & output = coffee) -> (!(input = POD & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = POD & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = POD & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = POD & output = ok) -> (!(input = POD & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = POD & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = POD & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = WATER & output = ok) -> (!(input = POD & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = POD & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = POD & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = POD & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = POD & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = POD & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = POD & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = POD & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = POD & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = POD & output = ok)));
+LTLSPEC G (((input = CLEAN & output = ok) & !(input = POD & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = POD & output = ok))));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = WATER & output = ok)));
+LTLSPEC G (((input = CLEAN & output = ok) & !(input = WATER & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = WATER & output = ok))));
+LTLSPEC G ((input = WATER & output = error) ->  G !(input = BUTTON & output = coffee));
+LTLSPEC G ((((input = WATER & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = WATER & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = BUTTON & output = coffee) U (input = POD & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = POD & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = POD & output = error))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = POD & output = ok)));
+LTLSPEC G (((input = WATER & output = error) & !(input = POD & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = POD & output = ok))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = WATER & output = ok)));
+LTLSPEC G (((input = WATER & output = error) & !(input = WATER & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = BUTTON & output = coffee) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = BUTTON & output = error))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = BUTTON & output = coffee) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = CLEAN & output = error))));
+LTLSPEC G ((input = POD & output = error) ->  G !(input = BUTTON & output = coffee));
+LTLSPEC G ((((input = POD & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = POD & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = POD & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = BUTTON & output = coffee) U (input = WATER & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = WATER & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = WATER & output = error))));
+LTLSPEC G ((((input = POD & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = POD & output = ok)));
+LTLSPEC G (((input = POD & output = error) & !(input = POD & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = POD & output = ok))));
+LTLSPEC G ((((input = POD & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = WATER & output = ok)));
+LTLSPEC G (((input = POD & output = error) & !(input = WATER & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = POD & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = BUTTON & output = coffee) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = BUTTON & output = error))));
+LTLSPEC G ((((input = POD & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = BUTTON & output = coffee) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = CLEAN & output = error))));
+LTLSPEC ( F (input = POD & output = ok) -> (!(input = BUTTON & output = coffee) U (input = POD & output = ok)));
+LTLSPEC ( F (input = WATER & output = ok) -> (!(input = BUTTON & output = coffee) U (input = WATER & output = ok)));
+LTLSPEC G ((input = BUTTON & output = error) ->  G !(input = BUTTON & output = coffee));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = BUTTON & output = coffee) U (input = WATER & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = WATER & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = WATER & output = error))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = BUTTON & output = coffee) U (input = POD & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = POD & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = POD & output = error))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = POD & output = ok)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = POD & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = POD & output = ok))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = WATER & output = ok)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = WATER & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = BUTTON & output = coffee) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = CLEAN & output = error))));
+LTLSPEC G ((input = CLEAN & output = error) ->  G !(input = BUTTON & output = coffee));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = BUTTON & output = coffee) U (input = WATER & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = WATER & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = WATER & output = error))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = BUTTON & output = coffee) U (input = POD & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = POD & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = POD & output = error))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = POD & output = ok)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = POD & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = POD & output = ok))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = coffee) U (input = WATER & output = ok)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = WATER & output = ok)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = BUTTON & output = coffee) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = BUTTON & output = coffee) | (!(input = BUTTON & output = coffee) U (input = BUTTON & output = error))));
+LTLSPEC G ((input = WATER & output = error) ->  G !(input = POD & output = ok));
+LTLSPEC G ((((input = WATER & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = ok) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = WATER & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = POD & output = ok) U (input = POD & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = POD & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = POD & output = error))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = POD & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = WATER & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = POD & output = ok) U (input = WATER & output = ok)));
+LTLSPEC G (((input = WATER & output = error) & !(input = WATER & output = ok)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = POD & output = ok) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = BUTTON & output = error))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = POD & output = ok) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = CLEAN & output = error))));
+LTLSPEC G ((input = POD & output = error) ->  G !(input = POD & output = ok));
+LTLSPEC G ((((input = POD & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = ok) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = POD & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = POD & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = POD & output = ok) U (input = WATER & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = WATER & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = WATER & output = error))));
+LTLSPEC G ((((input = POD & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = POD & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = POD & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = POD & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = POD & output = ok) U (input = WATER & output = ok)));
+LTLSPEC G (((input = POD & output = error) & !(input = WATER & output = ok)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = POD & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = POD & output = ok) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = BUTTON & output = error))));
+LTLSPEC G ((((input = POD & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = POD & output = ok) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = CLEAN & output = error))));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = ok) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = BUTTON & output = coffee) & !(input = CLEAN & output = ok)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = CLEAN & output = ok))));
+LTLSPEC G ((input = BUTTON & output = error) ->  G !(input = POD & output = ok));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = ok) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = POD & output = ok) U (input = WATER & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = WATER & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = WATER & output = error))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = POD & output = ok) U (input = POD & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = POD & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = POD & output = error))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = POD & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = POD & output = ok) U (input = WATER & output = ok)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = WATER & output = ok)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = POD & output = ok) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = CLEAN & output = error))));
+LTLSPEC G ((input = CLEAN & output = error) ->  G !(input = POD & output = ok));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = POD & output = ok) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = POD & output = ok) U (input = WATER & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = WATER & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = WATER & output = error))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = POD & output = ok) U (input = POD & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = POD & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = POD & output = error))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = POD & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = POD & output = ok) U (input = WATER & output = ok)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = WATER & output = ok)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = WATER & output = ok))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = POD & output = ok) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = POD & output = ok) | (!(input = POD & output = ok) U (input = BUTTON & output = error))));
+LTLSPEC G ((input = WATER & output = error) ->  G !(input = WATER & output = ok));
+LTLSPEC G ((((input = WATER & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = ok) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = WATER & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = WATER & output = ok) U (input = POD & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = POD & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = POD & output = error))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = WATER & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = WATER & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = WATER & output = ok) U (input = POD & output = ok)));
+LTLSPEC G (((input = WATER & output = error) & !(input = POD & output = ok)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = POD & output = ok))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = WATER & output = ok) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = BUTTON & output = error))));
+LTLSPEC G ((((input = WATER & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = WATER & output = ok) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = WATER & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = CLEAN & output = error))));
+LTLSPEC G ((input = POD & output = error) ->  G !(input = WATER & output = ok));
+LTLSPEC G ((((input = POD & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = ok) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = POD & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = POD & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = WATER & output = ok) U (input = WATER & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = WATER & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = WATER & output = error))));
+LTLSPEC G ((((input = POD & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = WATER & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = POD & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = POD & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = WATER & output = ok) U (input = POD & output = ok)));
+LTLSPEC G (((input = POD & output = error) & !(input = POD & output = ok)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = POD & output = ok))));
+LTLSPEC G ((((input = POD & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = WATER & output = ok) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = BUTTON & output = error))));
+LTLSPEC G ((((input = POD & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = WATER & output = ok) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = POD & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = CLEAN & output = error))));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = ok) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = BUTTON & output = coffee) & !(input = CLEAN & output = ok)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = CLEAN & output = ok))));
+LTLSPEC G ((input = BUTTON & output = error) ->  G !(input = WATER & output = ok));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = ok) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = WATER & output = ok) U (input = WATER & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = WATER & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = WATER & output = error))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = WATER & output = ok) U (input = POD & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = POD & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = POD & output = error))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = WATER & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = WATER & output = ok) U (input = POD & output = ok)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = POD & output = ok)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = POD & output = ok))));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = CLEAN & output = error)) &  F (input = CLEAN & output = error)) -> (!(input = WATER & output = ok) U (input = CLEAN & output = error)));
+LTLSPEC G (((input = BUTTON & output = error) & !(input = CLEAN & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = CLEAN & output = error))));
+LTLSPEC G ((input = CLEAN & output = error) ->  G !(input = WATER & output = ok));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = WATER & output = ok) U (input = CLEAN & output = ok)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = CLEAN & output = ok)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = CLEAN & output = ok))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = WATER & output = error)) &  F (input = WATER & output = error)) -> (!(input = WATER & output = ok) U (input = WATER & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = WATER & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = WATER & output = error))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = POD & output = error)) &  F (input = POD & output = error)) -> (!(input = WATER & output = ok) U (input = POD & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = POD & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = POD & output = error))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = WATER & output = ok) U (input = BUTTON & output = coffee)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = BUTTON & output = coffee)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = BUTTON & output = coffee))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = WATER & output = ok) U (input = POD & output = ok)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = POD & output = ok)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = POD & output = ok))));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = BUTTON & output = error)) &  F (input = BUTTON & output = error)) -> (!(input = WATER & output = ok) U (input = BUTTON & output = error)));
+LTLSPEC G (((input = CLEAN & output = error) & !(input = BUTTON & output = error)) -> ( G !(input = WATER & output = ok) | (!(input = WATER & output = ok) U (input = BUTTON & output = error))));
+LTLSPEC ( F (input = CLEAN & output = ok) -> (!(input = BUTTON & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = BUTTON & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = BUTTON & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = BUTTON & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = BUTTON & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = BUTTON & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = POD & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = BUTTON & output = coffee) -> (!(input = BUTTON & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = BUTTON & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = POD & output = ok) -> (!(input = BUTTON & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = BUTTON & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = BUTTON & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = WATER & output = ok) -> (!(input = BUTTON & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = BUTTON & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = BUTTON & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = BUTTON & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = BUTTON & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = BUTTON & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = BUTTON & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = BUTTON & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = BUTTON & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = CLEAN & output = ok) -> (!(input = CLEAN & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = CLEAN & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = CLEAN & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = ok) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = CLEAN & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = CLEAN & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = CLEAN & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = CLEAN & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = WATER & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = CLEAN & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = CLEAN & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = CLEAN & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = POD & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = CLEAN & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = POD & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = CLEAN & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = BUTTON & output = coffee) -> (!(input = CLEAN & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = CLEAN & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = CLEAN & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = coffee) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = CLEAN & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = POD & output = ok) -> (!(input = CLEAN & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = CLEAN & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = CLEAN & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = POD & output = ok) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = CLEAN & output = error) U (input = WATER & output = ok)));
+LTLSPEC ( F (input = WATER & output = ok) -> (!(input = CLEAN & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = CLEAN & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = CLEAN & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = WATER & output = ok) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = CLEAN & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = CLEAN & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = CLEAN & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = CLEAN & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = BUTTON & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = CLEAN & output = error) U (input = WATER & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = CLEAN & output = ok)) &  F (input = CLEAN & output = ok)) -> (!(input = CLEAN & output = error) U (input = CLEAN & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = BUTTON & output = coffee)) &  F (input = BUTTON & output = coffee)) -> (!(input = CLEAN & output = error) U (input = BUTTON & output = coffee)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = POD & output = ok)) &  F (input = POD & output = ok)) -> (!(input = CLEAN & output = error) U (input = POD & output = ok)));
+LTLSPEC G ((((input = CLEAN & output = error) & !(input = WATER & output = ok)) &  F (input = WATER & output = ok)) -> (!(input = CLEAN & output = error) U (input = WATER & output = ok)));
