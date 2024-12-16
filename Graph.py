@@ -98,6 +98,13 @@ class Graph:
             if state.label == label:
                 return state
 
+    def get_outgoing_transitions_for_state_with_input(self, state:State, input):
+        if state in self.graph:
+            for neighbor, transitions in self.graph[state].items():
+                for tran in transitions:
+                    if tran.input == input:
+                        return tran
+
     def get_outgoing_transitions_for_state(self, state:State):
         list_of_outgoing_transitions = []
         if state in self.graph:
@@ -125,6 +132,7 @@ class Graph:
                 all_transitions.append(t)
         return all_transitions
 
+    # returns all transitions of the graph as a set defined by the input/output pair
     def get_transitions_labels_set(self):
         transitions_set = set()
         for transition in self.get_all_transitons():

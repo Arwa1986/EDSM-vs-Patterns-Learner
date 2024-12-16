@@ -16,6 +16,8 @@ class Transition:
         if isinstance(other, Transition):
             return self.label == other.label and self.from_state == other.from_state and self.to_state == other.to_state
         return False
+    def __hash__(self):
+        return hash((self.from_state, self.to_state, self.label))
 
     def set_input_output(self):
         index = self.label.find(' / ')

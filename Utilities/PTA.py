@@ -50,6 +50,12 @@ class PTA:
                     output_alphabet_set.add(new_transition.output)
                     # the distination now become the source for the next transaction
                     current_state = to_state
+        # add a special self-loop transition at the end of each trace.
+        # this transition is used for the porspose of NuSMS model checker.
+        # NuSMV generates a counterexample if there is an infinite sequence of events.
+        new_transition = self.G.add_transition(current_state, current_state, 'to_be_continued / add_transition')
+        input_alphabet_set.add(new_transition.input)
+        output_alphabet_set.add(new_transition.output)
         return input_alphabet_set, output_alphabet_set
 
     def build_pta(self, positive_traces):
@@ -115,6 +121,12 @@ class PTA:
                     # the distination now become the source for the next transaction
                     current_state = to_state
                     currentStateRefDFA = RefDFA_to_state
+        # add a special self-loop transition at the end of each trace.
+        # this transition is used for the porspose of NuSMS model checker.
+        # NuSMV generates a counterexample if there is an infinite sequence of events.
+        new_transition = self.G.add_transition(current_state, current_state, 'to_be_continued / add_transition')
+        input_alphabet_set.add(new_transition.input)
+        output_alphabet_set.add(new_transition.output)
         return input_alphabet_set, output_alphabet_set
 
     def build_labeled_pta(self,RefDFA, positive_traces):
