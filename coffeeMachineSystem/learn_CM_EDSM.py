@@ -6,7 +6,7 @@ from Form_Converters.GraphObj_DotFile_converter import dot_to_Graph
 from Utilities.Learner import Learner
 from Utilities.PTA import PTA
 from Utilities.evaluation import Evaluation
-from Utilities.write_clear_file import write_to_file, clear_file
+from Utilities.write_clear_file import write_to_file_in_new_line, clear_file
 
 # clear files:
 clear_file('EDSM_Learner_Traces')
@@ -25,14 +25,14 @@ for i in range(len(Training_CM_pos_walks) - 50):
       # remove the evaluation traces
       Training_CM_pos_walks.remove(Training_CM_pos_walks[i])
 
-write_to_file('EDSM_Learner_Traces', '__________Learning______________')
-write_to_file('EDSM_Learner_Traces','__________Positive Traces_________')
+write_to_file_in_new_line('EDSM_Learner_Traces', '__________Learning______________')
+write_to_file_in_new_line('EDSM_Learner_Traces', '__________Positive Traces_________')
 for walk in Training_CM_pos_walks:
       walk_str = ''
       for label in walk:
             walk_str+=label
             walk_str+=', '
-      write_to_file('EDSM_Learner_Traces',walk_str)
+      write_to_file_in_new_line('EDSM_Learner_Traces', walk_str)
 # 4- build PTA
 coffeMachine_pta = PTA()
 coffeMachine_pta.build_pta(Training_CM_pos_walks)
@@ -45,21 +45,21 @@ coffeMachine_edsm.pta.G.print_graph()
 coffeMachine_edsm.run_EDSM_learner()
 
 # evaluate the learned automata
-write_to_file('EDSM_Learner_Traces','__________EVALUATION______________')
-write_to_file('EDSM_Learner_Traces','__________Positive Traces_________')
+write_to_file_in_new_line('EDSM_Learner_Traces', '__________EVALUATION______________')
+write_to_file_in_new_line('EDSM_Learner_Traces', '__________Positive Traces_________')
 for walk in evaluation_CM_pos_walks:
       walk_str = ''
       for label in walk:
             walk_str += label
             walk_str += ', '
-      write_to_file('EDSM_Learner_Traces', walk_str)
-write_to_file('EDSM_Learner_Traces','__________Negative Traces_________')
+      write_to_file_in_new_line('EDSM_Learner_Traces', walk_str)
+write_to_file_in_new_line('EDSM_Learner_Traces', '__________Negative Traces_________')
 for walk in evalutation_CM_neg_walks:
       walk_str = ''
       for label in walk:
             walk_str += label
             walk_str += ', '
-      write_to_file('EDSM_Learner_Traces', walk_str)
+      write_to_file_in_new_line('EDSM_Learner_Traces', walk_str)
 
 e = Evaluation(coffeMachine_edsm, evaluation_CM_pos_walks, evalutation_CM_neg_walks)
 true_positive, true_negative, false_positive, false_negative, precision, recall, specificity, F_measure, Accuracy, BCR = e.evaluate()

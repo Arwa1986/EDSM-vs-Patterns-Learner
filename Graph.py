@@ -1,7 +1,7 @@
-from gc import enable
-
-from numpy.ma.core import append
-from orca.object_properties import RELATION_DETAILS_FOR
+# from gc import enable
+#
+# from numpy.ma.core import append
+# from orca.object_properties import RELATION_DETAILS_FOR
 
 from State import State
 from Transition import Transition

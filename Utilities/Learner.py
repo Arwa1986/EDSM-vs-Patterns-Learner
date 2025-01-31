@@ -6,7 +6,7 @@ from Patterns.extract_patterns_from_reference_DFA import get_all_input_sequences
 from Patterns.pattern_checker import violate_any_pattern, violate_any_pattern2
 from Utilities.DISJOINTSETS import DisjointSet
 from Utilities.PTA import PTA
-from Utilities.write_clear_file import write_to_file
+from Utilities.write_clear_file import write_to_file_in_new_line
 
 
 class Learner:
@@ -43,16 +43,16 @@ class Learner:
         self.visited = []
         # self.pick_next_blue(self.pta.G.initial_state)
         self.update_blue_states()
-        write_to_file(self.edsm_file_name,f'BLUE_STATES: {self.blue_states}')
+        write_to_file_in_new_line(self.edsm_file_name, f'BLUE_STATES: {self.blue_states}')
         # self.draw()
         # mergable_states is  a list contains all pairs of state that are valid to be merged with their merging scour
         mergable_states=[]
         blue=None
         valid_for_at_least_one_red = False
         for blue in self.blue_states:
-            write_to_file(self.edsm_file_name, f'RED_STATES: {self.red_states}')
+            write_to_file_in_new_line(self.edsm_file_name, f'RED_STATES: {self.red_states}')
             for red in self.red_states:
-                write_to_file(self.edsm_file_name, f'RED: {red} >< BLUE: {blue} ')
+                write_to_file_in_new_line(self.edsm_file_name, f'RED: {red} >< BLUE: {blue} ')
                 # Create a new disjoint set data structure
                 ds = DisjointSet()
                 ds.s1 = red
@@ -68,7 +68,7 @@ class Learner:
                 if add_new_state:
                     self.compute_classes2(ds, work_to_do)
                 # ds.print()
-                write_to_file(self.edsm_file_name, ds.to_string())
+                write_to_file_in_new_line(self.edsm_file_name, ds.to_string())
                 if self.is_valid_merge(ds):
                     merging_scour = self.compute_scour(ds)
                     ds.merging_scour = merging_scour
@@ -77,7 +77,7 @@ class Learner:
                         valid_for_at_least_one_red = True
                 else:
                     ds.merging_scour = -1
-                write_to_file(self.edsm_file_name,f'merging score for {ds.s1} & {ds.s2}: {ds.merging_scour}')
+                write_to_file_in_new_line(self.edsm_file_name, f'merging score for {ds.s1} & {ds.s2}: {ds.merging_scour}')
 
             if not valid_for_at_least_one_red:
                  # the blue_state can't be merged with any red_state
@@ -86,9 +86,9 @@ class Learner:
                 break
         if valid_for_at_least_one_red:
             ds_with_highest_scour = self.pick_high_scour_pair(mergable_states)
-            write_to_file(self.edsm_file_name,'***********************************************************')
-            write_to_file(self.edsm_file_name,f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
-            write_to_file(self.edsm_file_name,'***********************************************************')
+            write_to_file_in_new_line(self.edsm_file_name, '***********************************************************')
+            write_to_file_in_new_line(self.edsm_file_name, f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
+            write_to_file_in_new_line(self.edsm_file_name, '***********************************************************')
             print(
                 f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
             self.merge_sets(ds_with_highest_scour)
@@ -117,7 +117,7 @@ class Learner:
         # self.pick_next_blue(self.pta.G.initial_state)
         self.update_blue_states()
         # print(f'BLUE_STATES: {self.blue_states}')
-        write_to_file(self.with_pattern_file_name, f'BLUE_STATES: {self.blue_states}')
+        write_to_file_in_new_line(self.with_pattern_file_name, f'BLUE_STATES: {self.blue_states}')
         # self.draw()
         # mergable_states is  a list contains all pairs of state that are valid to be merged with their merging scour
         mergable_states=[]
@@ -125,7 +125,7 @@ class Learner:
         valid_for_at_least_one_red = False
         for blue in self.blue_states:
             # print(f'RED_STATES: {self.red_states}')
-            write_to_file(self.with_pattern_file_name, f'RED_STATES: {self.red_states}')
+            write_to_file_in_new_line(self.with_pattern_file_name, f'RED_STATES: {self.red_states}')
             for red in self.red_states:
                 # print(f'BLUE: {blue} - RED: {red}')
                 # Create a new disjoint set data structure
@@ -153,12 +153,12 @@ class Learner:
                     graph_violate_pattern, violated_patterns = violate_any_pattern2(pattern_list, temp_learner.pta.G)
                     if graph_violate_pattern:
                         print(f'Violate a Pattern: {ds.s1} & {ds.s2} => score: {merging_scour}')
-                        write_to_file(self.with_pattern_file_name, f'Violate a Pattern: {ds.s1} & {ds.s2} => score: {merging_scour}')
+                        write_to_file_in_new_line(self.with_pattern_file_name, f'Violate a Pattern: {ds.s1} & {ds.s2} => score: {merging_scour}')
                         # print(f'violated patterns:')
-                        write_to_file(self.with_pattern_file_name, f'violated patterns:')
+                        write_to_file_in_new_line(self.with_pattern_file_name, f'violated patterns:')
                         for vp in violated_patterns:
                             # print(vp)
-                            write_to_file(self.with_pattern_file_name, f'{vp}')
+                            write_to_file_in_new_line(self.with_pattern_file_name, f'{vp}')
                         # decrease the merging scour by 2 to avoid this merge
                         merging_scour -= 2
 
@@ -172,7 +172,7 @@ class Learner:
                     # ds.print()
 
                 # print(f'BLUE: {blue} - RED: {red}=> {ds.merging_scour}')
-                write_to_file(self.with_pattern_file_name, f'BLUE: {blue} - RED: {red}=> {ds.merging_scour}')
+                write_to_file_in_new_line(self.with_pattern_file_name, f'BLUE: {blue} - RED: {red}=> {ds.merging_scour}')
 
             if not valid_for_at_least_one_red:
                  # the blue_state can't be merged with any red_state
@@ -184,10 +184,10 @@ class Learner:
         if valid_for_at_least_one_red:
             ds_with_highest_scour = self.pick_high_scour_pair(mergable_states)
             print(f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
-            write_to_file(self.with_pattern_file_name, f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
+            write_to_file_in_new_line(self.with_pattern_file_name, f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
             if ds_with_highest_scour.s1.get_reference_state() != ds_with_highest_scour.s2.get_reference_state():
                 print(f'Incorrect merge: {ds_with_highest_scour.s1} & {ds_with_highest_scour.s2}')
-                write_to_file(self.with_pattern_file_name, f'Incorrect merge: {ds_with_highest_scour.s1} & {ds_with_highest_scour.s2}')
+                write_to_file_in_new_line(self.with_pattern_file_name, f'Incorrect merge: {ds_with_highest_scour.s1} & {ds_with_highest_scour.s2}')
                 incorrect_merges = True
             self.merge_sets(ds_with_highest_scour)
             # if incorrect_merges:
