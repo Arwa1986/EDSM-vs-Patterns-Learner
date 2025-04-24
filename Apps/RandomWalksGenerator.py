@@ -165,3 +165,21 @@ if __name__ == '__main__':
     positive_walks = genetare_transition_cover_walks(G, 5, 5)
     for walk in positive_walks:
         print(walk)
+
+def split_into_evaluation_and_training_lists(walks):
+    Evaluation_pos_walks = []
+    random_index_list = []
+    for i in range(29):
+        random_index = random.randint(0, len(walks) - 1)
+        if random_index not in random_index_list:
+            random_index_list.append(random_index)
+            # add the evaluation traces
+            Evaluation_pos_walks.append(walks[random_index])
+
+    Training_pos_walks = []
+    for i in range(len(walks) - 1):
+        # remove the evaluation traces
+        if i not in random_index_list:
+            Training_pos_walks.append(walks[i])
+
+    return Evaluation_pos_walks,Training_pos_walks

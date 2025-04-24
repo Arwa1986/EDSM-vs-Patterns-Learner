@@ -1,6 +1,6 @@
 import copy
 import random
-import networkx as nx
+# import networkx as nx
 
 from Patterns.extract_patterns_from_reference_DFA import get_all_input_sequences_with_one_output
 from Patterns.pattern_checker import violate_any_pattern, violate_any_pattern2
