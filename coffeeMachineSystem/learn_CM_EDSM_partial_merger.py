@@ -1,5 +1,8 @@
 from Apps.RandomWalksGenerator import generate_random_walks, split_into_evaluation_and_training_lists
-from Form_Converters.GraphObj_DotFile_converter import dot_to_Graph
+from Form_Converters.Dictionary_Networkx_Converter import dictionary_to_networkx2
+from Form_Converters.GraphObj_DotFile_converter import dot_to_Graph, graph_to_dot
+from Form_Converters.dot_to_png import dot_to_png
+from Utilities.Draw_graph import draw_multiDigraph, draw_multidigraph_with_labels
 # from State import State
 # from Form_Converters.Dictionary_Networkx_Converter import networkx_to_dictionary
 # from Form_Converters.DotFile_Networks_converter import dot_to_multidigraph
@@ -16,10 +19,10 @@ clear_file('EDSM_Learner_tracker.txt')
 CM_Graph = dot_to_Graph('coffeemachine.dot')
 
 # 3- generate random walks
-CM_pos_walks, evalutation_CM_neg_walks = generate_random_walks(CM_Graph, 10, 80, 30)
+CM_pos_walks, evalutation_CM_neg_walks = generate_random_walks(CM_Graph, 10, 40, 3)
 # split the positive traces into training and evaluation traces
-Evaluation_CM_pos_walks, Training_CM_pos_walks= split_into_evaluation_and_training_lists(CM_pos_walks)
-
+# Evaluation_CM_pos_walks, Training_CM_pos_walks= split_into_evaluation_and_training_lists(CM_pos_walks)
+Training_CM_pos_walks = CM_pos_walks
 write_to_file_in_new_line('EDSM_Learner_Traces', '__________Learning______________')
 write_to_file_in_new_line('EDSM_Learner_Traces', '__________Positive Traces_________')
 for walk in Training_CM_pos_walks:
@@ -30,15 +33,22 @@ for walk in Training_CM_pos_walks:
       write_to_file_in_new_line('EDSM_Learner_Traces', walk_str)
 # 4- build PTA
 coffeMachine_pta = PTA()
-coffeMachine_pta.build_pta(Training_CM_pos_walks)
-
+coffeMachine_pta.build_labeled_pta(CM_Graph ,Training_CM_pos_walks)
+# pta_networkx = dictionary_to_networkx2(coffeMachine_pta.G.graph)
+# draw the PTA
+# draw_multidigraph_with_labels(pta_networkx, 'PTA')
+graph_to_dot(coffeMachine_pta.G, "pta.dot")
+dot_to_png("pta.dot", "pta.png")
 # run EDSM learner
 coffeMachine_edsm = Learner(coffeMachine_pta)
 coffeMachine_edsm.setup('EDSM_Learner_tracker.txt', 'EDSM_PAT_Learner_tracker.txt')
-print('-------PTA--------')
-coffeMachine_edsm.pta.G.print_graph()
+# print('-------PTA--------')
+# coffeMachine_edsm.pta.G.print_graph()
 coffeMachine_edsm.run_EDSM_learner()
-
+# edsm_networkx = dictionary_to_networkx2(coffeMachine_edsm.pta.G.graph)
+# draw_multidigraph_with_labels(edsm_networkx, 'edsm')
+graph_to_dot(coffeMachine_edsm.pta.G, "edsm.dot")
+dot_to_png("edsm.dot", "edsm.png")
 # evaluate the learned automata
 # write_to_file_in_new_line('EDSM_Learner_Traces', '__________EVALUATION______________')
 # write_to_file_in_new_line('EDSM_Learner_Traces', '__________Positive Traces_________')
@@ -55,7 +65,7 @@ coffeMachine_edsm.run_EDSM_learner()
 #             walk_str += label
 #             walk_str += ', '
 #       write_to_file_in_new_line('EDSM_Learner_Traces', walk_str)
-
+#
 # e = Evaluation(coffeMachine_edsm, Evaluation_CM_pos_walks, evalutation_CM_neg_walks)
 # true_positive, true_negative, false_positive, false_negative, precision, recall, specificity, F_measure, Accuracy, BCR = e.evaluate()
 # print(f'true_positive = {true_positive}\n'

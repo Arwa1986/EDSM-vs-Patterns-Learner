@@ -25,6 +25,7 @@ class Learner:
         self.counter = 1
         self.edsm_file_name= edsm_file_name
         self.with_pattern_file_name = with_pattern_file_name
+        self.number_of_states_in_PTA = len(self.pta.G.graph.keys())
 
 
     def is_all_states_red(self):
@@ -35,7 +36,11 @@ class Learner:
         return True
 
     def run_EDSM_learner(self):
-        if self.is_all_states_red():
+        current_number_of_states = len(self.pta.G.graph.keys())
+        if self.is_all_states_red() or current_number_of_states <= (self.number_of_states_in_PTA/3):
+            print("number of states in the PTA is less than half of the original number of states")
+            print("states in the PTA: ", self.number_of_states_in_PTA)
+            print("states in the partial automata: ", current_number_of_states)
             return
 
         self.found_blue = False
@@ -85,17 +90,19 @@ class Learner:
                 self.make_children_blue(blue)
                 break
         if valid_for_at_least_one_red:
-            ds_with_highest_scour = self.pick_high_scour_pair(mergable_states)
+            print(f'number of states before merge: {len(self.pta.G.graph.keys())} - threshold: {len(self.pta.G.graph.keys())/4}')
+            ds_with_highest_score = self.pick_high_scour_pair(mergable_states)
             write_to_file_in_new_line(self.edsm_file_name, '***********************************************************')
-            write_to_file_in_new_line(self.edsm_file_name, f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
+            write_to_file_in_new_line(self.edsm_file_name, f'{ds_with_highest_score.s1} & {ds_with_highest_score.s2} has the highest score : {ds_with_highest_score.merging_scour}')
             write_to_file_in_new_line(self.edsm_file_name, '***********************************************************')
             print(
-                f'{ds_with_highest_scour.s1} & {ds_with_highest_scour.s2} has the highest scour : {ds_with_highest_scour.merging_scour}')
-            self.merge_sets(ds_with_highest_scour)
+                f'{self.counter}- {ds_with_highest_score.s1} & {ds_with_highest_score.s2} has the highest score : {ds_with_highest_score.merging_scour}')
+            self.merge_sets(ds_with_highest_score)
+
             # write_to_file('EDSM_Learner_tracker.txt' ,self.pta.G.to_string())
-            print(f'merge counter: {self.counter}')
-            if ds_with_highest_scour.s1.get_reference_state() != ds_with_highest_scour.s2.get_reference_state():
-                print(f'Incorrect merge: {ds_with_highest_scour.s1} & {ds_with_highest_scour.s2}')
+            # print(f'merge counter: {self.counter}')
+            if ds_with_highest_score.s1.get_reference_state() != ds_with_highest_score.s2.get_reference_state():
+                print(f'Incorrect merge: {ds_with_highest_score.s1} & {ds_with_highest_score.s2}')
 
             # self.pta.G.print_graph()
             self.counter +=1

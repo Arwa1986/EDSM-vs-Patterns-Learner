@@ -11,6 +11,9 @@ class Graph:
     def __init__(self):
         self.graph = {}
         self.initial_state = ""
+        self.input_alphabet =[]
+        self.output_alphabet =[]
+        self.alphabet = []
 
     def __eq__(self, other):
         equal = False
@@ -81,6 +84,12 @@ class Graph:
 
     def get_output_alphabet(self):
         return self.output_alphabet
+
+    def set_alphabet(self, alphabet):
+        self.alphabet = alphabet
+
+    def get_alphabet(self):
+        return self.alphabet
 
     def add_state(self, state:State):
         if state not in self.graph:

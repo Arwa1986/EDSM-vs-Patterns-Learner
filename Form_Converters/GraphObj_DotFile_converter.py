@@ -1,3 +1,5 @@
+import re
+
 import pydot
 from State import State
 from Transition import Transition
@@ -19,16 +21,44 @@ def dot_to_Graph(dot_file_path):
     output_alphabet = set()
 
     # Create State objects for each node
+    # for node in graph.get_nodes():
+    #     state = State(node.get_name())
+    #     graph_dictionary[state] = {}
     for node in graph.get_nodes():
-        state = State(node.get_name())
+        name = node.get_name().strip('"') #strip('"'): remove double quotes
+        if name in ('node', 'graph', 'edge'):  # Skip global settings
+            continue
+        label = node.get_label().strip('"') if node.get_label() else name
+        state = State(label=label)
+
+        # Set color if defined
+        fillcolor = node.get_fillcolor()
+        if fillcolor:
+            if fillcolor.strip('"') == "yellow":
+                state.color = "yellow"
+            else:
+                state.color = "white"  # default
+
+        isInitial = (node.get_shape())
+        if isInitial == "doublecircle":
+            state.isInitial = True
+            graph_obj.set_initial_state(state)
+        else:
+            state.isInitial = False
+
         graph_dictionary[state] = {}
 
     # Create Transition objects for each edge and extract input/output
     for edge in graph.get_edges():
-        from_state = State(edge.get_source())
-        to_state = State(edge.get_destination())
+        # from_state = State(edge.get_source())
+        # to_state = State(edge.get_destination())
+
+        from_state = get_state_by_label(graph_dictionary, edge.get_source())
+        to_state = get_state_by_label(graph_dictionary, edge.get_destination())
         label = edge.get_label().strip('"')
-        input_symbol, output_symbol = label.split(' / ')
+        # input_symbol, output_symbol = label.split(' / ')
+        #split the label into input and output symbols when "/" is present (e.g., "a / b" => "a", "b")(e.g., "a/b" => "a", "b")
+        input_symbol, output_symbol = re.split(r'\s*/\s*', label, maxsplit=1)
         input_alphabet.add(input_symbol)
         output_alphabet.add(output_symbol)
         transition = Transition(from_state, to_state, label)
@@ -46,16 +76,22 @@ def dot_to_Graph(dot_file_path):
     graph_obj.set_output_alphabet(list(output_alphabet))
 
     # Set the initial state (assuming the first node is the initial state)
-    initial_state_label = list(graph.get_nodes())[0].get_name()
-    for state in graph_dictionary.keys():
-        if state.label == initial_state_label:
-            initial_state = state
-            graph_obj.set_initial_state(initial_state)
-            break
+    # initial_state_label = list(graph.get_nodes())[0].get_name()
+    # for state in graph_dictionary.keys():
+    #     if state.label == initial_state_label:
+    #         initial_state = state
+    #         graph_obj.set_initial_state(initial_state)
+    #         break
 
 
 
     return graph_obj
+
+def get_state_by_label(graph_dict, label):
+    for state in graph_dict.keys():
+        if state.label == label:
+            return state
+    return None  # If not found
 
 # Example usage
 # dot_file_path = 'Test/Patterns/extract_patteens_from_reference_DFA/coffeemachine.dot'
@@ -64,3 +100,39 @@ def dot_to_Graph(dot_file_path):
 # print("Input Alphabet:", graph_obj.input_alphabet)
 # print("Output Alphabet:", graph_obj.output_alphabet)
 # print("Initial State:", graph_obj.initial_state)
+
+def graph_to_dot(graph: Graph, filename="output.dot"):
+    lines = []
+    lines.append("digraph G {")
+    lines.append("  rankdir=LR;")  # Left-to-right layout
+    lines.append('  node [shape=circle, style=filled, fillcolor=white];')
+
+    for state in graph.get_all_states():
+        attrs = []
+
+        # Color and shape adjustments
+        if state.isInitial:
+            attrs.append('fillcolor=lightblue')
+        elif state.color == 'red':
+            attrs.append('fillcolor=red')
+        elif state.color == 'blue':
+            attrs.append('fillcolor=blue')
+        elif state.color == 'yellow':
+            attrs.append('fillcolor=yellow')
+
+        lines.append(f'  "{state.label}" [{", ".join(attrs)}];')
+
+    for from_state, to_states in graph.graph.items():
+        edge_labels = {}  # collect multiple labels for same edge
+        for to_state, transitions in to_states.items():
+            label = "\\n".join([t.label for t in transitions])
+            lines.append(f'  "{from_state.label}" -> "{to_state.label}" [label="{label}"];')
+
+    lines.append("}")
+    dot_output = "\n".join(lines)
+
+    with open(filename, 'w') as f:
+        f.write(dot_output)
+
+    print(f"DOT file written to {filename}")
+    return dot_output
