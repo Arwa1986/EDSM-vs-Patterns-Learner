@@ -1,3 +1,5 @@
+import re
+
 
 class Transition:
     def __init__(self, from_state, to_state, label):
@@ -20,10 +22,17 @@ class Transition:
         return hash((self.from_state, self.to_state, self.label))
 
     def set_input_output(self):
-        index = self.label.find(' / ')
-        if index != -1:
-            self.input = self.label[:index]
-            self.output = self.label[index + 3:]
+        # index = self.label.find(' / ')
+        # if index != -1:
+        #     self.input = self.label[:index]
+        #     self.output = self.label[index + 3:]
+        # input output are sperated by / with or without white space
+        match = re.search(r'\s*/\s*', self.label)
+        if match:
+            input_end = match.start()
+            output_start = match.end()
+            self.input = self.label[:input_end]
+            self.output = self.label[output_start:]
 
     def is_self_loop(self):
         return self.from_state == self.to_state
