@@ -50,12 +50,12 @@ class PTA:
                     output_alphabet_set.add(new_transition.output)
                     # the distination now become the source for the next transaction
                     current_state = to_state
-        # add a special self-loop transition at the end of each trace.
-        # this transition is used for the porspose of NuSMS model checker.
-        # NuSMV generates a counterexample if there is an infinite sequence of events.
-        new_transition = self.G.add_transition(current_state, current_state, 'to_be_continued / add_transition')
-        input_alphabet_set.add(new_transition.input)
-        output_alphabet_set.add(new_transition.output)
+        # # add a special self-loop transition at the end of each trace.
+        # # this transition is used for the porspose of NuSMS model checker.
+        # # NuSMV generates a counterexample if there is an infinite sequence of events.
+        # new_transition = self.G.add_transition(current_state, current_state, 'to_be_continued / add_transition')
+        # input_alphabet_set.add(new_transition.input)
+        # output_alphabet_set.add(new_transition.output)
         return input_alphabet_set, output_alphabet_set
 
     def build_pta(self, positive_traces):
@@ -72,6 +72,7 @@ class PTA:
     def add_trace_for_labeled_pta(self,RefDFA_G, trace):
         input_alphabet_set = set()
         output_alphabet_set = set()
+        alphabet_set = set()
         currentStateRefDFA = RefDFA_G.initial_state
         # if the graph is empty add the first trace
         if self.G.is_empty() :
@@ -91,6 +92,7 @@ class PTA:
                 new_transition = self.G.add_transition(current_state, to_state, trace[i])
                 input_alphabet_set.add(new_transition.input)
                 output_alphabet_set.add(new_transition.output)
+                alphabet_set.add(new_transition.label)
                 # the distination now become the source for the next transaction
                 current_state = to_state
                 currentStateRefDFA = RefDFA_to_state
@@ -118,27 +120,31 @@ class PTA:
                     new_transition = self.G.add_transition(current_state, to_state, trace[j])
                     input_alphabet_set.add(new_transition.input)
                     output_alphabet_set.add(new_transition.output)
+                    alphabet_set.add(new_transition.label)
                     # the distination now become the source for the next transaction
                     current_state = to_state
                     currentStateRefDFA = RefDFA_to_state
-        # add a special self-loop transition at the end of each trace.
-        # this transition is used for the porspose of NuSMS model checker.
-        # NuSMV generates a counterexample if there is an infinite sequence of events.
-        new_transition = self.G.add_transition(current_state, current_state, 'to_be_continued / add_transition')
-        input_alphabet_set.add(new_transition.input)
-        output_alphabet_set.add(new_transition.output)
-        return input_alphabet_set, output_alphabet_set
+        # # add a special self-loop transition at the end of each trace.
+        # # this transition is used for the porspose of NuSMS model checker.
+        # # NuSMV generates a counterexample if there is an infinite sequence of events.
+        # new_transition = self.G.add_transition(current_state, current_state, 'to_be_continued / add_transition')
+        # input_alphabet_set.add(new_transition.input)
+        # output_alphabet_set.add(new_transition.output)
+        return input_alphabet_set, output_alphabet_set, alphabet_set
 
     def build_labeled_pta(self,RefDFA, positive_traces):
         all_input = set()
         all_output = set()
+        alphabet_set = set()
         for t in positive_traces:
-            input_set, output_set = self.add_trace_for_labeled_pta(RefDFA, t)
+            input_set, output_set, alphabet = self.add_trace_for_labeled_pta(RefDFA, t)
             for i in input_set:
                 all_input.add(i)
             for o in output_set:
                 all_output.add(o)
-        return list(all_input), list(all_output)
+            for a in alphabet:
+                alphabet_set.add(a)
+        return list(all_input), list(all_output), list(alphabet_set)
 
 if __name__ == "__main__":
     pta = PTA()
