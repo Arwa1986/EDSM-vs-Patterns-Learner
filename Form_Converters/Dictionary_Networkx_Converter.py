@@ -1,5 +1,5 @@
 import networkx as nx
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 from Graph import Graph
 from State import State
@@ -15,6 +15,19 @@ def dictionary_to_networkx(graph_dict):
         for tgt, transitions in targets.items():
             for transition in transitions:
                 G.add_edge(src, tgt, transition=transition)
+
+    return G
+
+
+def dictionary_to_networkx2(graph_dict):
+    # Create an empty MultiDiGraph
+    G = nx.MultiDiGraph()
+
+    # Add nodes and edges to the graph
+    for src, targets in graph_dict.items():
+        for tgt, transitions in targets.items():
+            for transition in transitions:
+                G.add_edge(src.label, tgt.label, label=transition.label)
 
     return G
 
