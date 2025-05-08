@@ -5,6 +5,11 @@ class State:
             self.type = type
             self.isInitial = isInitial
             self.color = "white"
+            # color code:
+            # white: unlabeled
+            #  red : can't merged with another red
+            #  blue: cna be merged with a red state
+            #  yellow: sink state - marked as rejected
             self.ref_state = None
 
     def __hash__(self):
@@ -29,3 +34,6 @@ class State:
 
     def get_reference_state(self):
         return self.ref_state
+
+    def print_state(self):
+        print(f"State: {self.label}, Type: {self.type}, Is Initial: {self.isInitial}, Color: {self.color}")
